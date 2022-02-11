@@ -2,6 +2,21 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+    "baseUrl": "./",
+    "paths": {
+      "@constants/*": ["src/constants/*"],
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/components/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/common/utils/*"],
+      "@pages/*": ["src/pages/*"],
+      "@modules/*": ["src/modules/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@services/*": ["src/services/*"],
+      "@types/*": ["src/types/*"],
+    },
+    "typeRoots": ["./@types", "./node_modules/@types"],
+
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
     // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
@@ -98,5 +113,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "./@types/**/*"],
+  "exclude": ["node_modules"]
 }
