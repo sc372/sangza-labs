@@ -44,6 +44,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "recoil": "^0.6.1",
     "sass": "^1.49.7",
     "slash": "^4.0.0",
     "tailwindcss": "^3.0.21"
@@ -54,6 +55,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.5",
+    "@types/recoil": "^0.0.9",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^7.32.0",
