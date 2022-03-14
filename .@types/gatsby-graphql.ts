@@ -55,10 +55,22 @@ export type File = Node & {
   birthtime?: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   birthtimeMs?: Maybe<Scalars['Float']>;
+  blksize?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Scalars['Int']>;
+  /** Copy file to static directory and return public url to it */
+  publicURL?: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type ImageSharp */
   childrenImageSharp?: Maybe<Array<Maybe<ImageSharp>>>;
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   childImageSharp?: Maybe<ImageSharp>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
+  /** Returns all children nodes filtered by type AuthorJson */
+  childrenAuthorJson?: Maybe<Array<Maybe<AuthorJson>>>;
+  /** Returns the first child node of type AuthorJson or null if there are no children of given type on this node */
+  childAuthorJson?: Maybe<AuthorJson>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -241,6 +253,7 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
+  mapping?: Maybe<SiteMapping>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   jsxRuntime?: Maybe<Scalars['String']>;
@@ -259,11 +272,16 @@ export type SiteBuildTimeArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
+export type SiteMapping = {
+  MarkdownRemark_frontmatter_author?: Maybe<Scalars['String']>;
+};
+
 export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
+  disqus?: Maybe<Scalars['String']>;
 };
 
 export type SiteFunction = Node & {
@@ -602,9 +620,13 @@ export type MarkdownWordCount = {
 
 export type MarkdownRemark = Node & {
   id: Scalars['ID'];
+  frontmatter?: Maybe<MarkdownRemarkFrontmatter>;
+  excerpt?: Maybe<Scalars['String']>;
+  rawMarkdownBody?: Maybe<Scalars['String']>;
+  fileAbsolutePath?: Maybe<Scalars['String']>;
+  fields?: Maybe<MarkdownRemarkFields>;
   html?: Maybe<Scalars['String']>;
   htmlAst?: Maybe<Scalars['JSON']>;
-  excerpt?: Maybe<Scalars['String']>;
   excerptAst?: Maybe<Scalars['JSON']>;
   headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
   timeToRead?: Maybe<Scalars['Int']>;
@@ -641,6 +663,49 @@ export type MarkdownRemarkTableOfContentsArgs = {
   heading?: InputMaybe<Scalars['String']>;
 };
 
+export type MarkdownRemarkFrontmatter = {
+  title?: Maybe<Scalars['String']>;
+  createdDate?: Maybe<Scalars['Date']>;
+  updatedDate?: Maybe<Scalars['Date']>;
+  author?: Maybe<AuthorJson>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
+  draft?: Maybe<Scalars['Boolean']>;
+  project?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type MarkdownRemarkFrontmatterCreatedDateArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MarkdownRemarkFrontmatterUpdatedDateArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkFields = {
+  slug?: Maybe<Scalars['String']>;
+};
+
+export type AuthorJson = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  bio?: Maybe<Scalars['String']>;
+  avatar?: Maybe<File>;
+  twitter?: Maybe<Scalars['String']>;
+  github?: Maybe<Scalars['String']>;
+  jsonId?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -660,6 +725,8 @@ export type Query = {
   allImageSharp: ImageSharpConnection;
   markdownRemark?: Maybe<MarkdownRemark>;
   allMarkdownRemark: MarkdownRemarkConnection;
+  authorJson?: Maybe<AuthorJson>;
+  allAuthorJson: AuthorJsonConnection;
 };
 
 
@@ -695,8 +762,15 @@ export type QueryFileArgs = {
   ctime?: InputMaybe<DateQueryOperatorInput>;
   birthtime?: InputMaybe<DateQueryOperatorInput>;
   birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  blksize?: InputMaybe<IntQueryOperatorInput>;
+  blocks?: InputMaybe<IntQueryOperatorInput>;
+  publicURL?: InputMaybe<StringQueryOperatorInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+  childrenAuthorJson?: InputMaybe<AuthorJsonFilterListInput>;
+  childAuthorJson?: InputMaybe<AuthorJsonFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -764,6 +838,7 @@ export type QuerySiteArgs = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  mapping?: InputMaybe<SiteMappingFilterInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
   jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
@@ -894,9 +969,13 @@ export type QueryAllImageSharpArgs = {
 
 export type QueryMarkdownRemarkArgs = {
   id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  fileAbsolutePath?: InputMaybe<StringQueryOperatorInput>;
+  fields?: InputMaybe<MarkdownRemarkFieldsFilterInput>;
   html?: InputMaybe<StringQueryOperatorInput>;
   htmlAst?: InputMaybe<JsonQueryOperatorInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
   excerptAst?: InputMaybe<JsonQueryOperatorInput>;
   headings?: InputMaybe<MarkdownHeadingFilterListInput>;
   timeToRead?: InputMaybe<IntQueryOperatorInput>;
@@ -911,6 +990,27 @@ export type QueryMarkdownRemarkArgs = {
 export type QueryAllMarkdownRemarkArgs = {
   filter?: InputMaybe<MarkdownRemarkFilterInput>;
   sort?: InputMaybe<MarkdownRemarkSortInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryAuthorJsonArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  bio?: InputMaybe<StringQueryOperatorInput>;
+  avatar?: InputMaybe<FileFilterInput>;
+  twitter?: InputMaybe<StringQueryOperatorInput>;
+  github?: InputMaybe<StringQueryOperatorInput>;
+  jsonId?: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllAuthorJsonArgs = {
+  filter?: InputMaybe<AuthorJsonFilterInput>;
+  sort?: InputMaybe<AuthorJsonSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -1054,6 +1154,123 @@ export type BooleanQueryOperatorInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
 };
 
+export type MarkdownRemarkFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type MarkdownRemarkFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  fileAbsolutePath?: InputMaybe<StringQueryOperatorInput>;
+  fields?: InputMaybe<MarkdownRemarkFieldsFilterInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatterFilterInput = {
+  title?: InputMaybe<StringQueryOperatorInput>;
+  createdDate?: InputMaybe<DateQueryOperatorInput>;
+  updatedDate?: InputMaybe<DateQueryOperatorInput>;
+  author?: InputMaybe<AuthorJsonFilterInput>;
+  tags?: InputMaybe<StringQueryOperatorInput>;
+  category?: InputMaybe<StringQueryOperatorInput>;
+  draft?: InputMaybe<BooleanQueryOperatorInput>;
+  project?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type AuthorJsonFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  bio?: InputMaybe<StringQueryOperatorInput>;
+  avatar?: InputMaybe<FileFilterInput>;
+  twitter?: InputMaybe<StringQueryOperatorInput>;
+  github?: InputMaybe<StringQueryOperatorInput>;
+  jsonId?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type FileFilterInput = {
+  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
+  absolutePath?: InputMaybe<StringQueryOperatorInput>;
+  relativePath?: InputMaybe<StringQueryOperatorInput>;
+  extension?: InputMaybe<StringQueryOperatorInput>;
+  size?: InputMaybe<IntQueryOperatorInput>;
+  prettySize?: InputMaybe<StringQueryOperatorInput>;
+  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
+  accessTime?: InputMaybe<DateQueryOperatorInput>;
+  changeTime?: InputMaybe<DateQueryOperatorInput>;
+  birthTime?: InputMaybe<DateQueryOperatorInput>;
+  root?: InputMaybe<StringQueryOperatorInput>;
+  dir?: InputMaybe<StringQueryOperatorInput>;
+  base?: InputMaybe<StringQueryOperatorInput>;
+  ext?: InputMaybe<StringQueryOperatorInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
+  dev?: InputMaybe<IntQueryOperatorInput>;
+  mode?: InputMaybe<IntQueryOperatorInput>;
+  nlink?: InputMaybe<IntQueryOperatorInput>;
+  uid?: InputMaybe<IntQueryOperatorInput>;
+  gid?: InputMaybe<IntQueryOperatorInput>;
+  rdev?: InputMaybe<IntQueryOperatorInput>;
+  ino?: InputMaybe<FloatQueryOperatorInput>;
+  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  atime?: InputMaybe<DateQueryOperatorInput>;
+  mtime?: InputMaybe<DateQueryOperatorInput>;
+  ctime?: InputMaybe<DateQueryOperatorInput>;
+  birthtime?: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  blksize?: InputMaybe<IntQueryOperatorInput>;
+  blocks?: InputMaybe<IntQueryOperatorInput>;
+  publicURL?: InputMaybe<StringQueryOperatorInput>;
+  childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
+  childImageSharp?: InputMaybe<ImageSharpFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+  childrenAuthorJson?: InputMaybe<AuthorJsonFilterListInput>;
+  childAuthorJson?: InputMaybe<AuthorJsonFilterInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type AuthorJsonFilterListInput = {
+  elemMatch?: InputMaybe<AuthorJsonFilterInput>;
+};
+
+export type MarkdownRemarkFieldsFilterInput = {
+  slug?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
+};
+
+export type MarkdownHeadingFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  value?: InputMaybe<StringQueryOperatorInput>;
+  depth?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MarkdownWordCountFilterInput = {
+  paragraphs?: InputMaybe<IntQueryOperatorInput>;
+  sentences?: InputMaybe<IntQueryOperatorInput>;
+  words?: InputMaybe<IntQueryOperatorInput>;
+};
+
 export type FileConnection = {
   totalCount: Scalars['Int'];
   edges: Array<FileEdge>;
@@ -1141,6 +1358,9 @@ export type FileFieldsEnum =
   | 'ctime'
   | 'birthtime'
   | 'birthtimeMs'
+  | 'blksize'
+  | 'blocks'
+  | 'publicURL'
   | 'childrenImageSharp'
   | 'childrenImageSharp___fixed___base64'
   | 'childrenImageSharp___fixed___tracedSVG'
@@ -1282,6 +1502,408 @@ export type FileFieldsEnum =
   | 'childImageSharp___internal___mediaType'
   | 'childImageSharp___internal___owner'
   | 'childImageSharp___internal___type'
+  | 'childrenMarkdownRemark'
+  | 'childrenMarkdownRemark___id'
+  | 'childrenMarkdownRemark___frontmatter___title'
+  | 'childrenMarkdownRemark___frontmatter___createdDate'
+  | 'childrenMarkdownRemark___frontmatter___updatedDate'
+  | 'childrenMarkdownRemark___frontmatter___author___id'
+  | 'childrenMarkdownRemark___frontmatter___author___children'
+  | 'childrenMarkdownRemark___frontmatter___author___bio'
+  | 'childrenMarkdownRemark___frontmatter___author___twitter'
+  | 'childrenMarkdownRemark___frontmatter___author___github'
+  | 'childrenMarkdownRemark___frontmatter___author___jsonId'
+  | 'childrenMarkdownRemark___frontmatter___tags'
+  | 'childrenMarkdownRemark___frontmatter___category'
+  | 'childrenMarkdownRemark___frontmatter___draft'
+  | 'childrenMarkdownRemark___frontmatter___project'
+  | 'childrenMarkdownRemark___excerpt'
+  | 'childrenMarkdownRemark___rawMarkdownBody'
+  | 'childrenMarkdownRemark___fileAbsolutePath'
+  | 'childrenMarkdownRemark___fields___slug'
+  | 'childrenMarkdownRemark___html'
+  | 'childrenMarkdownRemark___htmlAst'
+  | 'childrenMarkdownRemark___excerptAst'
+  | 'childrenMarkdownRemark___headings'
+  | 'childrenMarkdownRemark___headings___id'
+  | 'childrenMarkdownRemark___headings___value'
+  | 'childrenMarkdownRemark___headings___depth'
+  | 'childrenMarkdownRemark___timeToRead'
+  | 'childrenMarkdownRemark___tableOfContents'
+  | 'childrenMarkdownRemark___wordCount___paragraphs'
+  | 'childrenMarkdownRemark___wordCount___sentences'
+  | 'childrenMarkdownRemark___wordCount___words'
+  | 'childrenMarkdownRemark___parent___id'
+  | 'childrenMarkdownRemark___parent___parent___id'
+  | 'childrenMarkdownRemark___parent___parent___children'
+  | 'childrenMarkdownRemark___parent___children'
+  | 'childrenMarkdownRemark___parent___children___id'
+  | 'childrenMarkdownRemark___parent___children___children'
+  | 'childrenMarkdownRemark___parent___internal___content'
+  | 'childrenMarkdownRemark___parent___internal___contentDigest'
+  | 'childrenMarkdownRemark___parent___internal___description'
+  | 'childrenMarkdownRemark___parent___internal___fieldOwners'
+  | 'childrenMarkdownRemark___parent___internal___ignoreType'
+  | 'childrenMarkdownRemark___parent___internal___mediaType'
+  | 'childrenMarkdownRemark___parent___internal___owner'
+  | 'childrenMarkdownRemark___parent___internal___type'
+  | 'childrenMarkdownRemark___children'
+  | 'childrenMarkdownRemark___children___id'
+  | 'childrenMarkdownRemark___children___parent___id'
+  | 'childrenMarkdownRemark___children___parent___children'
+  | 'childrenMarkdownRemark___children___children'
+  | 'childrenMarkdownRemark___children___children___id'
+  | 'childrenMarkdownRemark___children___children___children'
+  | 'childrenMarkdownRemark___children___internal___content'
+  | 'childrenMarkdownRemark___children___internal___contentDigest'
+  | 'childrenMarkdownRemark___children___internal___description'
+  | 'childrenMarkdownRemark___children___internal___fieldOwners'
+  | 'childrenMarkdownRemark___children___internal___ignoreType'
+  | 'childrenMarkdownRemark___children___internal___mediaType'
+  | 'childrenMarkdownRemark___children___internal___owner'
+  | 'childrenMarkdownRemark___children___internal___type'
+  | 'childrenMarkdownRemark___internal___content'
+  | 'childrenMarkdownRemark___internal___contentDigest'
+  | 'childrenMarkdownRemark___internal___description'
+  | 'childrenMarkdownRemark___internal___fieldOwners'
+  | 'childrenMarkdownRemark___internal___ignoreType'
+  | 'childrenMarkdownRemark___internal___mediaType'
+  | 'childrenMarkdownRemark___internal___owner'
+  | 'childrenMarkdownRemark___internal___type'
+  | 'childMarkdownRemark___id'
+  | 'childMarkdownRemark___frontmatter___title'
+  | 'childMarkdownRemark___frontmatter___createdDate'
+  | 'childMarkdownRemark___frontmatter___updatedDate'
+  | 'childMarkdownRemark___frontmatter___author___id'
+  | 'childMarkdownRemark___frontmatter___author___children'
+  | 'childMarkdownRemark___frontmatter___author___bio'
+  | 'childMarkdownRemark___frontmatter___author___twitter'
+  | 'childMarkdownRemark___frontmatter___author___github'
+  | 'childMarkdownRemark___frontmatter___author___jsonId'
+  | 'childMarkdownRemark___frontmatter___tags'
+  | 'childMarkdownRemark___frontmatter___category'
+  | 'childMarkdownRemark___frontmatter___draft'
+  | 'childMarkdownRemark___frontmatter___project'
+  | 'childMarkdownRemark___excerpt'
+  | 'childMarkdownRemark___rawMarkdownBody'
+  | 'childMarkdownRemark___fileAbsolutePath'
+  | 'childMarkdownRemark___fields___slug'
+  | 'childMarkdownRemark___html'
+  | 'childMarkdownRemark___htmlAst'
+  | 'childMarkdownRemark___excerptAst'
+  | 'childMarkdownRemark___headings'
+  | 'childMarkdownRemark___headings___id'
+  | 'childMarkdownRemark___headings___value'
+  | 'childMarkdownRemark___headings___depth'
+  | 'childMarkdownRemark___timeToRead'
+  | 'childMarkdownRemark___tableOfContents'
+  | 'childMarkdownRemark___wordCount___paragraphs'
+  | 'childMarkdownRemark___wordCount___sentences'
+  | 'childMarkdownRemark___wordCount___words'
+  | 'childMarkdownRemark___parent___id'
+  | 'childMarkdownRemark___parent___parent___id'
+  | 'childMarkdownRemark___parent___parent___children'
+  | 'childMarkdownRemark___parent___children'
+  | 'childMarkdownRemark___parent___children___id'
+  | 'childMarkdownRemark___parent___children___children'
+  | 'childMarkdownRemark___parent___internal___content'
+  | 'childMarkdownRemark___parent___internal___contentDigest'
+  | 'childMarkdownRemark___parent___internal___description'
+  | 'childMarkdownRemark___parent___internal___fieldOwners'
+  | 'childMarkdownRemark___parent___internal___ignoreType'
+  | 'childMarkdownRemark___parent___internal___mediaType'
+  | 'childMarkdownRemark___parent___internal___owner'
+  | 'childMarkdownRemark___parent___internal___type'
+  | 'childMarkdownRemark___children'
+  | 'childMarkdownRemark___children___id'
+  | 'childMarkdownRemark___children___parent___id'
+  | 'childMarkdownRemark___children___parent___children'
+  | 'childMarkdownRemark___children___children'
+  | 'childMarkdownRemark___children___children___id'
+  | 'childMarkdownRemark___children___children___children'
+  | 'childMarkdownRemark___children___internal___content'
+  | 'childMarkdownRemark___children___internal___contentDigest'
+  | 'childMarkdownRemark___children___internal___description'
+  | 'childMarkdownRemark___children___internal___fieldOwners'
+  | 'childMarkdownRemark___children___internal___ignoreType'
+  | 'childMarkdownRemark___children___internal___mediaType'
+  | 'childMarkdownRemark___children___internal___owner'
+  | 'childMarkdownRemark___children___internal___type'
+  | 'childMarkdownRemark___internal___content'
+  | 'childMarkdownRemark___internal___contentDigest'
+  | 'childMarkdownRemark___internal___description'
+  | 'childMarkdownRemark___internal___fieldOwners'
+  | 'childMarkdownRemark___internal___ignoreType'
+  | 'childMarkdownRemark___internal___mediaType'
+  | 'childMarkdownRemark___internal___owner'
+  | 'childMarkdownRemark___internal___type'
+  | 'childrenAuthorJson'
+  | 'childrenAuthorJson___id'
+  | 'childrenAuthorJson___parent___id'
+  | 'childrenAuthorJson___parent___parent___id'
+  | 'childrenAuthorJson___parent___parent___children'
+  | 'childrenAuthorJson___parent___children'
+  | 'childrenAuthorJson___parent___children___id'
+  | 'childrenAuthorJson___parent___children___children'
+  | 'childrenAuthorJson___parent___internal___content'
+  | 'childrenAuthorJson___parent___internal___contentDigest'
+  | 'childrenAuthorJson___parent___internal___description'
+  | 'childrenAuthorJson___parent___internal___fieldOwners'
+  | 'childrenAuthorJson___parent___internal___ignoreType'
+  | 'childrenAuthorJson___parent___internal___mediaType'
+  | 'childrenAuthorJson___parent___internal___owner'
+  | 'childrenAuthorJson___parent___internal___type'
+  | 'childrenAuthorJson___children'
+  | 'childrenAuthorJson___children___id'
+  | 'childrenAuthorJson___children___parent___id'
+  | 'childrenAuthorJson___children___parent___children'
+  | 'childrenAuthorJson___children___children'
+  | 'childrenAuthorJson___children___children___id'
+  | 'childrenAuthorJson___children___children___children'
+  | 'childrenAuthorJson___children___internal___content'
+  | 'childrenAuthorJson___children___internal___contentDigest'
+  | 'childrenAuthorJson___children___internal___description'
+  | 'childrenAuthorJson___children___internal___fieldOwners'
+  | 'childrenAuthorJson___children___internal___ignoreType'
+  | 'childrenAuthorJson___children___internal___mediaType'
+  | 'childrenAuthorJson___children___internal___owner'
+  | 'childrenAuthorJson___children___internal___type'
+  | 'childrenAuthorJson___internal___content'
+  | 'childrenAuthorJson___internal___contentDigest'
+  | 'childrenAuthorJson___internal___description'
+  | 'childrenAuthorJson___internal___fieldOwners'
+  | 'childrenAuthorJson___internal___ignoreType'
+  | 'childrenAuthorJson___internal___mediaType'
+  | 'childrenAuthorJson___internal___owner'
+  | 'childrenAuthorJson___internal___type'
+  | 'childrenAuthorJson___bio'
+  | 'childrenAuthorJson___avatar___sourceInstanceName'
+  | 'childrenAuthorJson___avatar___absolutePath'
+  | 'childrenAuthorJson___avatar___relativePath'
+  | 'childrenAuthorJson___avatar___extension'
+  | 'childrenAuthorJson___avatar___size'
+  | 'childrenAuthorJson___avatar___prettySize'
+  | 'childrenAuthorJson___avatar___modifiedTime'
+  | 'childrenAuthorJson___avatar___accessTime'
+  | 'childrenAuthorJson___avatar___changeTime'
+  | 'childrenAuthorJson___avatar___birthTime'
+  | 'childrenAuthorJson___avatar___root'
+  | 'childrenAuthorJson___avatar___dir'
+  | 'childrenAuthorJson___avatar___base'
+  | 'childrenAuthorJson___avatar___ext'
+  | 'childrenAuthorJson___avatar___name'
+  | 'childrenAuthorJson___avatar___relativeDirectory'
+  | 'childrenAuthorJson___avatar___dev'
+  | 'childrenAuthorJson___avatar___mode'
+  | 'childrenAuthorJson___avatar___nlink'
+  | 'childrenAuthorJson___avatar___uid'
+  | 'childrenAuthorJson___avatar___gid'
+  | 'childrenAuthorJson___avatar___rdev'
+  | 'childrenAuthorJson___avatar___ino'
+  | 'childrenAuthorJson___avatar___atimeMs'
+  | 'childrenAuthorJson___avatar___mtimeMs'
+  | 'childrenAuthorJson___avatar___ctimeMs'
+  | 'childrenAuthorJson___avatar___atime'
+  | 'childrenAuthorJson___avatar___mtime'
+  | 'childrenAuthorJson___avatar___ctime'
+  | 'childrenAuthorJson___avatar___birthtime'
+  | 'childrenAuthorJson___avatar___birthtimeMs'
+  | 'childrenAuthorJson___avatar___blksize'
+  | 'childrenAuthorJson___avatar___blocks'
+  | 'childrenAuthorJson___avatar___publicURL'
+  | 'childrenAuthorJson___avatar___childrenImageSharp'
+  | 'childrenAuthorJson___avatar___childrenImageSharp___gatsbyImageData'
+  | 'childrenAuthorJson___avatar___childrenImageSharp___id'
+  | 'childrenAuthorJson___avatar___childrenImageSharp___children'
+  | 'childrenAuthorJson___avatar___childImageSharp___gatsbyImageData'
+  | 'childrenAuthorJson___avatar___childImageSharp___id'
+  | 'childrenAuthorJson___avatar___childImageSharp___children'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___id'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___excerpt'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___rawMarkdownBody'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___fileAbsolutePath'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___html'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___htmlAst'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___excerptAst'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___headings'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___timeToRead'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___tableOfContents'
+  | 'childrenAuthorJson___avatar___childrenMarkdownRemark___children'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___id'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___excerpt'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___rawMarkdownBody'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___fileAbsolutePath'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___html'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___htmlAst'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___excerptAst'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___headings'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___timeToRead'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___tableOfContents'
+  | 'childrenAuthorJson___avatar___childMarkdownRemark___children'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___id'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___children'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___bio'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___twitter'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___github'
+  | 'childrenAuthorJson___avatar___childrenAuthorJson___jsonId'
+  | 'childrenAuthorJson___avatar___childAuthorJson___id'
+  | 'childrenAuthorJson___avatar___childAuthorJson___children'
+  | 'childrenAuthorJson___avatar___childAuthorJson___bio'
+  | 'childrenAuthorJson___avatar___childAuthorJson___twitter'
+  | 'childrenAuthorJson___avatar___childAuthorJson___github'
+  | 'childrenAuthorJson___avatar___childAuthorJson___jsonId'
+  | 'childrenAuthorJson___avatar___id'
+  | 'childrenAuthorJson___avatar___parent___id'
+  | 'childrenAuthorJson___avatar___parent___children'
+  | 'childrenAuthorJson___avatar___children'
+  | 'childrenAuthorJson___avatar___children___id'
+  | 'childrenAuthorJson___avatar___children___children'
+  | 'childrenAuthorJson___avatar___internal___content'
+  | 'childrenAuthorJson___avatar___internal___contentDigest'
+  | 'childrenAuthorJson___avatar___internal___description'
+  | 'childrenAuthorJson___avatar___internal___fieldOwners'
+  | 'childrenAuthorJson___avatar___internal___ignoreType'
+  | 'childrenAuthorJson___avatar___internal___mediaType'
+  | 'childrenAuthorJson___avatar___internal___owner'
+  | 'childrenAuthorJson___avatar___internal___type'
+  | 'childrenAuthorJson___twitter'
+  | 'childrenAuthorJson___github'
+  | 'childrenAuthorJson___jsonId'
+  | 'childAuthorJson___id'
+  | 'childAuthorJson___parent___id'
+  | 'childAuthorJson___parent___parent___id'
+  | 'childAuthorJson___parent___parent___children'
+  | 'childAuthorJson___parent___children'
+  | 'childAuthorJson___parent___children___id'
+  | 'childAuthorJson___parent___children___children'
+  | 'childAuthorJson___parent___internal___content'
+  | 'childAuthorJson___parent___internal___contentDigest'
+  | 'childAuthorJson___parent___internal___description'
+  | 'childAuthorJson___parent___internal___fieldOwners'
+  | 'childAuthorJson___parent___internal___ignoreType'
+  | 'childAuthorJson___parent___internal___mediaType'
+  | 'childAuthorJson___parent___internal___owner'
+  | 'childAuthorJson___parent___internal___type'
+  | 'childAuthorJson___children'
+  | 'childAuthorJson___children___id'
+  | 'childAuthorJson___children___parent___id'
+  | 'childAuthorJson___children___parent___children'
+  | 'childAuthorJson___children___children'
+  | 'childAuthorJson___children___children___id'
+  | 'childAuthorJson___children___children___children'
+  | 'childAuthorJson___children___internal___content'
+  | 'childAuthorJson___children___internal___contentDigest'
+  | 'childAuthorJson___children___internal___description'
+  | 'childAuthorJson___children___internal___fieldOwners'
+  | 'childAuthorJson___children___internal___ignoreType'
+  | 'childAuthorJson___children___internal___mediaType'
+  | 'childAuthorJson___children___internal___owner'
+  | 'childAuthorJson___children___internal___type'
+  | 'childAuthorJson___internal___content'
+  | 'childAuthorJson___internal___contentDigest'
+  | 'childAuthorJson___internal___description'
+  | 'childAuthorJson___internal___fieldOwners'
+  | 'childAuthorJson___internal___ignoreType'
+  | 'childAuthorJson___internal___mediaType'
+  | 'childAuthorJson___internal___owner'
+  | 'childAuthorJson___internal___type'
+  | 'childAuthorJson___bio'
+  | 'childAuthorJson___avatar___sourceInstanceName'
+  | 'childAuthorJson___avatar___absolutePath'
+  | 'childAuthorJson___avatar___relativePath'
+  | 'childAuthorJson___avatar___extension'
+  | 'childAuthorJson___avatar___size'
+  | 'childAuthorJson___avatar___prettySize'
+  | 'childAuthorJson___avatar___modifiedTime'
+  | 'childAuthorJson___avatar___accessTime'
+  | 'childAuthorJson___avatar___changeTime'
+  | 'childAuthorJson___avatar___birthTime'
+  | 'childAuthorJson___avatar___root'
+  | 'childAuthorJson___avatar___dir'
+  | 'childAuthorJson___avatar___base'
+  | 'childAuthorJson___avatar___ext'
+  | 'childAuthorJson___avatar___name'
+  | 'childAuthorJson___avatar___relativeDirectory'
+  | 'childAuthorJson___avatar___dev'
+  | 'childAuthorJson___avatar___mode'
+  | 'childAuthorJson___avatar___nlink'
+  | 'childAuthorJson___avatar___uid'
+  | 'childAuthorJson___avatar___gid'
+  | 'childAuthorJson___avatar___rdev'
+  | 'childAuthorJson___avatar___ino'
+  | 'childAuthorJson___avatar___atimeMs'
+  | 'childAuthorJson___avatar___mtimeMs'
+  | 'childAuthorJson___avatar___ctimeMs'
+  | 'childAuthorJson___avatar___atime'
+  | 'childAuthorJson___avatar___mtime'
+  | 'childAuthorJson___avatar___ctime'
+  | 'childAuthorJson___avatar___birthtime'
+  | 'childAuthorJson___avatar___birthtimeMs'
+  | 'childAuthorJson___avatar___blksize'
+  | 'childAuthorJson___avatar___blocks'
+  | 'childAuthorJson___avatar___publicURL'
+  | 'childAuthorJson___avatar___childrenImageSharp'
+  | 'childAuthorJson___avatar___childrenImageSharp___gatsbyImageData'
+  | 'childAuthorJson___avatar___childrenImageSharp___id'
+  | 'childAuthorJson___avatar___childrenImageSharp___children'
+  | 'childAuthorJson___avatar___childImageSharp___gatsbyImageData'
+  | 'childAuthorJson___avatar___childImageSharp___id'
+  | 'childAuthorJson___avatar___childImageSharp___children'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___id'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___excerpt'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___rawMarkdownBody'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___fileAbsolutePath'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___html'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___htmlAst'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___excerptAst'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___headings'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___timeToRead'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___tableOfContents'
+  | 'childAuthorJson___avatar___childrenMarkdownRemark___children'
+  | 'childAuthorJson___avatar___childMarkdownRemark___id'
+  | 'childAuthorJson___avatar___childMarkdownRemark___excerpt'
+  | 'childAuthorJson___avatar___childMarkdownRemark___rawMarkdownBody'
+  | 'childAuthorJson___avatar___childMarkdownRemark___fileAbsolutePath'
+  | 'childAuthorJson___avatar___childMarkdownRemark___html'
+  | 'childAuthorJson___avatar___childMarkdownRemark___htmlAst'
+  | 'childAuthorJson___avatar___childMarkdownRemark___excerptAst'
+  | 'childAuthorJson___avatar___childMarkdownRemark___headings'
+  | 'childAuthorJson___avatar___childMarkdownRemark___timeToRead'
+  | 'childAuthorJson___avatar___childMarkdownRemark___tableOfContents'
+  | 'childAuthorJson___avatar___childMarkdownRemark___children'
+  | 'childAuthorJson___avatar___childrenAuthorJson'
+  | 'childAuthorJson___avatar___childrenAuthorJson___id'
+  | 'childAuthorJson___avatar___childrenAuthorJson___children'
+  | 'childAuthorJson___avatar___childrenAuthorJson___bio'
+  | 'childAuthorJson___avatar___childrenAuthorJson___twitter'
+  | 'childAuthorJson___avatar___childrenAuthorJson___github'
+  | 'childAuthorJson___avatar___childrenAuthorJson___jsonId'
+  | 'childAuthorJson___avatar___childAuthorJson___id'
+  | 'childAuthorJson___avatar___childAuthorJson___children'
+  | 'childAuthorJson___avatar___childAuthorJson___bio'
+  | 'childAuthorJson___avatar___childAuthorJson___twitter'
+  | 'childAuthorJson___avatar___childAuthorJson___github'
+  | 'childAuthorJson___avatar___childAuthorJson___jsonId'
+  | 'childAuthorJson___avatar___id'
+  | 'childAuthorJson___avatar___parent___id'
+  | 'childAuthorJson___avatar___parent___children'
+  | 'childAuthorJson___avatar___children'
+  | 'childAuthorJson___avatar___children___id'
+  | 'childAuthorJson___avatar___children___children'
+  | 'childAuthorJson___avatar___internal___content'
+  | 'childAuthorJson___avatar___internal___contentDigest'
+  | 'childAuthorJson___avatar___internal___description'
+  | 'childAuthorJson___avatar___internal___fieldOwners'
+  | 'childAuthorJson___avatar___internal___ignoreType'
+  | 'childAuthorJson___avatar___internal___mediaType'
+  | 'childAuthorJson___avatar___internal___owner'
+  | 'childAuthorJson___avatar___internal___type'
+  | 'childAuthorJson___twitter'
+  | 'childAuthorJson___github'
+  | 'childAuthorJson___jsonId'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -1408,46 +2030,6 @@ export type FileGroupConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
   field: FileFieldsEnum;
-};
-
-export type FileFilterInput = {
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  gid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<FloatQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
-  childImageSharp?: InputMaybe<ImageSharpFilterInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
 };
 
 export type FileSortInput = {
@@ -1712,6 +2294,11 @@ export type SiteSiteMetadataFilterInput = {
   description?: InputMaybe<StringQueryOperatorInput>;
   author?: InputMaybe<StringQueryOperatorInput>;
   siteUrl?: InputMaybe<StringQueryOperatorInput>;
+  disqus?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type SiteMappingFilterInput = {
+  MarkdownRemark_frontmatter_author?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteConnection = {
@@ -1765,8 +2352,10 @@ export type SiteFieldsEnum =
   | 'siteMetadata___description'
   | 'siteMetadata___author'
   | 'siteMetadata___siteUrl'
+  | 'siteMetadata___disqus'
   | 'port'
   | 'host'
+  | 'mapping___MarkdownRemark_frontmatter_author'
   | 'polyfill'
   | 'pathPrefix'
   | 'jsxRuntime'
@@ -1904,6 +2493,7 @@ export type SiteFilterInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  mapping?: InputMaybe<SiteMappingFilterInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
   jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
@@ -2968,22 +3558,6 @@ export type ImageSharpSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type MarkdownHeadingFilterListInput = {
-  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
-};
-
-export type MarkdownHeadingFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  value?: InputMaybe<StringQueryOperatorInput>;
-  depth?: InputMaybe<IntQueryOperatorInput>;
-};
-
-export type MarkdownWordCountFilterInput = {
-  paragraphs?: InputMaybe<IntQueryOperatorInput>;
-  sentences?: InputMaybe<IntQueryOperatorInput>;
-  words?: InputMaybe<IntQueryOperatorInput>;
-};
-
 export type MarkdownRemarkConnection = {
   totalCount: Scalars['Int'];
   edges: Array<MarkdownRemarkEdge>;
@@ -3031,9 +3605,76 @@ export type MarkdownRemarkEdge = {
 
 export type MarkdownRemarkFieldsEnum =
   | 'id'
+  | 'frontmatter___title'
+  | 'frontmatter___createdDate'
+  | 'frontmatter___updatedDate'
+  | 'frontmatter___author___id'
+  | 'frontmatter___author___parent___id'
+  | 'frontmatter___author___parent___children'
+  | 'frontmatter___author___children'
+  | 'frontmatter___author___children___id'
+  | 'frontmatter___author___children___children'
+  | 'frontmatter___author___internal___content'
+  | 'frontmatter___author___internal___contentDigest'
+  | 'frontmatter___author___internal___description'
+  | 'frontmatter___author___internal___fieldOwners'
+  | 'frontmatter___author___internal___ignoreType'
+  | 'frontmatter___author___internal___mediaType'
+  | 'frontmatter___author___internal___owner'
+  | 'frontmatter___author___internal___type'
+  | 'frontmatter___author___bio'
+  | 'frontmatter___author___avatar___sourceInstanceName'
+  | 'frontmatter___author___avatar___absolutePath'
+  | 'frontmatter___author___avatar___relativePath'
+  | 'frontmatter___author___avatar___extension'
+  | 'frontmatter___author___avatar___size'
+  | 'frontmatter___author___avatar___prettySize'
+  | 'frontmatter___author___avatar___modifiedTime'
+  | 'frontmatter___author___avatar___accessTime'
+  | 'frontmatter___author___avatar___changeTime'
+  | 'frontmatter___author___avatar___birthTime'
+  | 'frontmatter___author___avatar___root'
+  | 'frontmatter___author___avatar___dir'
+  | 'frontmatter___author___avatar___base'
+  | 'frontmatter___author___avatar___ext'
+  | 'frontmatter___author___avatar___name'
+  | 'frontmatter___author___avatar___relativeDirectory'
+  | 'frontmatter___author___avatar___dev'
+  | 'frontmatter___author___avatar___mode'
+  | 'frontmatter___author___avatar___nlink'
+  | 'frontmatter___author___avatar___uid'
+  | 'frontmatter___author___avatar___gid'
+  | 'frontmatter___author___avatar___rdev'
+  | 'frontmatter___author___avatar___ino'
+  | 'frontmatter___author___avatar___atimeMs'
+  | 'frontmatter___author___avatar___mtimeMs'
+  | 'frontmatter___author___avatar___ctimeMs'
+  | 'frontmatter___author___avatar___atime'
+  | 'frontmatter___author___avatar___mtime'
+  | 'frontmatter___author___avatar___ctime'
+  | 'frontmatter___author___avatar___birthtime'
+  | 'frontmatter___author___avatar___birthtimeMs'
+  | 'frontmatter___author___avatar___blksize'
+  | 'frontmatter___author___avatar___blocks'
+  | 'frontmatter___author___avatar___publicURL'
+  | 'frontmatter___author___avatar___childrenImageSharp'
+  | 'frontmatter___author___avatar___childrenMarkdownRemark'
+  | 'frontmatter___author___avatar___childrenAuthorJson'
+  | 'frontmatter___author___avatar___id'
+  | 'frontmatter___author___avatar___children'
+  | 'frontmatter___author___twitter'
+  | 'frontmatter___author___github'
+  | 'frontmatter___author___jsonId'
+  | 'frontmatter___tags'
+  | 'frontmatter___category'
+  | 'frontmatter___draft'
+  | 'frontmatter___project'
+  | 'excerpt'
+  | 'rawMarkdownBody'
+  | 'fileAbsolutePath'
+  | 'fields___slug'
   | 'html'
   | 'htmlAst'
-  | 'excerpt'
   | 'excerptAst'
   | 'headings'
   | 'headings___id'
@@ -3171,23 +3812,546 @@ export type MarkdownRemarkGroupConnectionGroupArgs = {
   field: MarkdownRemarkFieldsEnum;
 };
 
-export type MarkdownRemarkFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  html?: InputMaybe<StringQueryOperatorInput>;
-  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
-  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
-  timeToRead?: InputMaybe<IntQueryOperatorInput>;
-  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
-  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
 export type MarkdownRemarkSortInput = {
   fields?: InputMaybe<Array<InputMaybe<MarkdownRemarkFieldsEnum>>>;
+  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
+};
+
+export type AuthorJsonConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<AuthorJsonEdge>;
+  nodes: Array<AuthorJson>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<AuthorJsonGroupConnection>;
+};
+
+
+export type AuthorJsonConnectionDistinctArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonConnectionMaxArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonConnectionMinArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonConnectionSumArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: AuthorJsonFieldsEnum;
+};
+
+export type AuthorJsonEdge = {
+  next?: Maybe<AuthorJson>;
+  node: AuthorJson;
+  previous?: Maybe<AuthorJson>;
+};
+
+export type AuthorJsonFieldsEnum =
+  | 'id'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'bio'
+  | 'avatar___sourceInstanceName'
+  | 'avatar___absolutePath'
+  | 'avatar___relativePath'
+  | 'avatar___extension'
+  | 'avatar___size'
+  | 'avatar___prettySize'
+  | 'avatar___modifiedTime'
+  | 'avatar___accessTime'
+  | 'avatar___changeTime'
+  | 'avatar___birthTime'
+  | 'avatar___root'
+  | 'avatar___dir'
+  | 'avatar___base'
+  | 'avatar___ext'
+  | 'avatar___name'
+  | 'avatar___relativeDirectory'
+  | 'avatar___dev'
+  | 'avatar___mode'
+  | 'avatar___nlink'
+  | 'avatar___uid'
+  | 'avatar___gid'
+  | 'avatar___rdev'
+  | 'avatar___ino'
+  | 'avatar___atimeMs'
+  | 'avatar___mtimeMs'
+  | 'avatar___ctimeMs'
+  | 'avatar___atime'
+  | 'avatar___mtime'
+  | 'avatar___ctime'
+  | 'avatar___birthtime'
+  | 'avatar___birthtimeMs'
+  | 'avatar___blksize'
+  | 'avatar___blocks'
+  | 'avatar___publicURL'
+  | 'avatar___childrenImageSharp'
+  | 'avatar___childrenImageSharp___fixed___base64'
+  | 'avatar___childrenImageSharp___fixed___tracedSVG'
+  | 'avatar___childrenImageSharp___fixed___aspectRatio'
+  | 'avatar___childrenImageSharp___fixed___width'
+  | 'avatar___childrenImageSharp___fixed___height'
+  | 'avatar___childrenImageSharp___fixed___src'
+  | 'avatar___childrenImageSharp___fixed___srcSet'
+  | 'avatar___childrenImageSharp___fixed___srcWebp'
+  | 'avatar___childrenImageSharp___fixed___srcSetWebp'
+  | 'avatar___childrenImageSharp___fixed___originalName'
+  | 'avatar___childrenImageSharp___fluid___base64'
+  | 'avatar___childrenImageSharp___fluid___tracedSVG'
+  | 'avatar___childrenImageSharp___fluid___aspectRatio'
+  | 'avatar___childrenImageSharp___fluid___src'
+  | 'avatar___childrenImageSharp___fluid___srcSet'
+  | 'avatar___childrenImageSharp___fluid___srcWebp'
+  | 'avatar___childrenImageSharp___fluid___srcSetWebp'
+  | 'avatar___childrenImageSharp___fluid___sizes'
+  | 'avatar___childrenImageSharp___fluid___originalImg'
+  | 'avatar___childrenImageSharp___fluid___originalName'
+  | 'avatar___childrenImageSharp___fluid___presentationWidth'
+  | 'avatar___childrenImageSharp___fluid___presentationHeight'
+  | 'avatar___childrenImageSharp___gatsbyImageData'
+  | 'avatar___childrenImageSharp___original___width'
+  | 'avatar___childrenImageSharp___original___height'
+  | 'avatar___childrenImageSharp___original___src'
+  | 'avatar___childrenImageSharp___resize___src'
+  | 'avatar___childrenImageSharp___resize___tracedSVG'
+  | 'avatar___childrenImageSharp___resize___width'
+  | 'avatar___childrenImageSharp___resize___height'
+  | 'avatar___childrenImageSharp___resize___aspectRatio'
+  | 'avatar___childrenImageSharp___resize___originalName'
+  | 'avatar___childrenImageSharp___id'
+  | 'avatar___childrenImageSharp___parent___id'
+  | 'avatar___childrenImageSharp___parent___children'
+  | 'avatar___childrenImageSharp___children'
+  | 'avatar___childrenImageSharp___children___id'
+  | 'avatar___childrenImageSharp___children___children'
+  | 'avatar___childrenImageSharp___internal___content'
+  | 'avatar___childrenImageSharp___internal___contentDigest'
+  | 'avatar___childrenImageSharp___internal___description'
+  | 'avatar___childrenImageSharp___internal___fieldOwners'
+  | 'avatar___childrenImageSharp___internal___ignoreType'
+  | 'avatar___childrenImageSharp___internal___mediaType'
+  | 'avatar___childrenImageSharp___internal___owner'
+  | 'avatar___childrenImageSharp___internal___type'
+  | 'avatar___childImageSharp___fixed___base64'
+  | 'avatar___childImageSharp___fixed___tracedSVG'
+  | 'avatar___childImageSharp___fixed___aspectRatio'
+  | 'avatar___childImageSharp___fixed___width'
+  | 'avatar___childImageSharp___fixed___height'
+  | 'avatar___childImageSharp___fixed___src'
+  | 'avatar___childImageSharp___fixed___srcSet'
+  | 'avatar___childImageSharp___fixed___srcWebp'
+  | 'avatar___childImageSharp___fixed___srcSetWebp'
+  | 'avatar___childImageSharp___fixed___originalName'
+  | 'avatar___childImageSharp___fluid___base64'
+  | 'avatar___childImageSharp___fluid___tracedSVG'
+  | 'avatar___childImageSharp___fluid___aspectRatio'
+  | 'avatar___childImageSharp___fluid___src'
+  | 'avatar___childImageSharp___fluid___srcSet'
+  | 'avatar___childImageSharp___fluid___srcWebp'
+  | 'avatar___childImageSharp___fluid___srcSetWebp'
+  | 'avatar___childImageSharp___fluid___sizes'
+  | 'avatar___childImageSharp___fluid___originalImg'
+  | 'avatar___childImageSharp___fluid___originalName'
+  | 'avatar___childImageSharp___fluid___presentationWidth'
+  | 'avatar___childImageSharp___fluid___presentationHeight'
+  | 'avatar___childImageSharp___gatsbyImageData'
+  | 'avatar___childImageSharp___original___width'
+  | 'avatar___childImageSharp___original___height'
+  | 'avatar___childImageSharp___original___src'
+  | 'avatar___childImageSharp___resize___src'
+  | 'avatar___childImageSharp___resize___tracedSVG'
+  | 'avatar___childImageSharp___resize___width'
+  | 'avatar___childImageSharp___resize___height'
+  | 'avatar___childImageSharp___resize___aspectRatio'
+  | 'avatar___childImageSharp___resize___originalName'
+  | 'avatar___childImageSharp___id'
+  | 'avatar___childImageSharp___parent___id'
+  | 'avatar___childImageSharp___parent___children'
+  | 'avatar___childImageSharp___children'
+  | 'avatar___childImageSharp___children___id'
+  | 'avatar___childImageSharp___children___children'
+  | 'avatar___childImageSharp___internal___content'
+  | 'avatar___childImageSharp___internal___contentDigest'
+  | 'avatar___childImageSharp___internal___description'
+  | 'avatar___childImageSharp___internal___fieldOwners'
+  | 'avatar___childImageSharp___internal___ignoreType'
+  | 'avatar___childImageSharp___internal___mediaType'
+  | 'avatar___childImageSharp___internal___owner'
+  | 'avatar___childImageSharp___internal___type'
+  | 'avatar___childrenMarkdownRemark'
+  | 'avatar___childrenMarkdownRemark___id'
+  | 'avatar___childrenMarkdownRemark___frontmatter___title'
+  | 'avatar___childrenMarkdownRemark___frontmatter___createdDate'
+  | 'avatar___childrenMarkdownRemark___frontmatter___updatedDate'
+  | 'avatar___childrenMarkdownRemark___frontmatter___tags'
+  | 'avatar___childrenMarkdownRemark___frontmatter___category'
+  | 'avatar___childrenMarkdownRemark___frontmatter___draft'
+  | 'avatar___childrenMarkdownRemark___frontmatter___project'
+  | 'avatar___childrenMarkdownRemark___excerpt'
+  | 'avatar___childrenMarkdownRemark___rawMarkdownBody'
+  | 'avatar___childrenMarkdownRemark___fileAbsolutePath'
+  | 'avatar___childrenMarkdownRemark___fields___slug'
+  | 'avatar___childrenMarkdownRemark___html'
+  | 'avatar___childrenMarkdownRemark___htmlAst'
+  | 'avatar___childrenMarkdownRemark___excerptAst'
+  | 'avatar___childrenMarkdownRemark___headings'
+  | 'avatar___childrenMarkdownRemark___headings___id'
+  | 'avatar___childrenMarkdownRemark___headings___value'
+  | 'avatar___childrenMarkdownRemark___headings___depth'
+  | 'avatar___childrenMarkdownRemark___timeToRead'
+  | 'avatar___childrenMarkdownRemark___tableOfContents'
+  | 'avatar___childrenMarkdownRemark___wordCount___paragraphs'
+  | 'avatar___childrenMarkdownRemark___wordCount___sentences'
+  | 'avatar___childrenMarkdownRemark___wordCount___words'
+  | 'avatar___childrenMarkdownRemark___parent___id'
+  | 'avatar___childrenMarkdownRemark___parent___children'
+  | 'avatar___childrenMarkdownRemark___children'
+  | 'avatar___childrenMarkdownRemark___children___id'
+  | 'avatar___childrenMarkdownRemark___children___children'
+  | 'avatar___childrenMarkdownRemark___internal___content'
+  | 'avatar___childrenMarkdownRemark___internal___contentDigest'
+  | 'avatar___childrenMarkdownRemark___internal___description'
+  | 'avatar___childrenMarkdownRemark___internal___fieldOwners'
+  | 'avatar___childrenMarkdownRemark___internal___ignoreType'
+  | 'avatar___childrenMarkdownRemark___internal___mediaType'
+  | 'avatar___childrenMarkdownRemark___internal___owner'
+  | 'avatar___childrenMarkdownRemark___internal___type'
+  | 'avatar___childMarkdownRemark___id'
+  | 'avatar___childMarkdownRemark___frontmatter___title'
+  | 'avatar___childMarkdownRemark___frontmatter___createdDate'
+  | 'avatar___childMarkdownRemark___frontmatter___updatedDate'
+  | 'avatar___childMarkdownRemark___frontmatter___tags'
+  | 'avatar___childMarkdownRemark___frontmatter___category'
+  | 'avatar___childMarkdownRemark___frontmatter___draft'
+  | 'avatar___childMarkdownRemark___frontmatter___project'
+  | 'avatar___childMarkdownRemark___excerpt'
+  | 'avatar___childMarkdownRemark___rawMarkdownBody'
+  | 'avatar___childMarkdownRemark___fileAbsolutePath'
+  | 'avatar___childMarkdownRemark___fields___slug'
+  | 'avatar___childMarkdownRemark___html'
+  | 'avatar___childMarkdownRemark___htmlAst'
+  | 'avatar___childMarkdownRemark___excerptAst'
+  | 'avatar___childMarkdownRemark___headings'
+  | 'avatar___childMarkdownRemark___headings___id'
+  | 'avatar___childMarkdownRemark___headings___value'
+  | 'avatar___childMarkdownRemark___headings___depth'
+  | 'avatar___childMarkdownRemark___timeToRead'
+  | 'avatar___childMarkdownRemark___tableOfContents'
+  | 'avatar___childMarkdownRemark___wordCount___paragraphs'
+  | 'avatar___childMarkdownRemark___wordCount___sentences'
+  | 'avatar___childMarkdownRemark___wordCount___words'
+  | 'avatar___childMarkdownRemark___parent___id'
+  | 'avatar___childMarkdownRemark___parent___children'
+  | 'avatar___childMarkdownRemark___children'
+  | 'avatar___childMarkdownRemark___children___id'
+  | 'avatar___childMarkdownRemark___children___children'
+  | 'avatar___childMarkdownRemark___internal___content'
+  | 'avatar___childMarkdownRemark___internal___contentDigest'
+  | 'avatar___childMarkdownRemark___internal___description'
+  | 'avatar___childMarkdownRemark___internal___fieldOwners'
+  | 'avatar___childMarkdownRemark___internal___ignoreType'
+  | 'avatar___childMarkdownRemark___internal___mediaType'
+  | 'avatar___childMarkdownRemark___internal___owner'
+  | 'avatar___childMarkdownRemark___internal___type'
+  | 'avatar___childrenAuthorJson'
+  | 'avatar___childrenAuthorJson___id'
+  | 'avatar___childrenAuthorJson___parent___id'
+  | 'avatar___childrenAuthorJson___parent___children'
+  | 'avatar___childrenAuthorJson___children'
+  | 'avatar___childrenAuthorJson___children___id'
+  | 'avatar___childrenAuthorJson___children___children'
+  | 'avatar___childrenAuthorJson___internal___content'
+  | 'avatar___childrenAuthorJson___internal___contentDigest'
+  | 'avatar___childrenAuthorJson___internal___description'
+  | 'avatar___childrenAuthorJson___internal___fieldOwners'
+  | 'avatar___childrenAuthorJson___internal___ignoreType'
+  | 'avatar___childrenAuthorJson___internal___mediaType'
+  | 'avatar___childrenAuthorJson___internal___owner'
+  | 'avatar___childrenAuthorJson___internal___type'
+  | 'avatar___childrenAuthorJson___bio'
+  | 'avatar___childrenAuthorJson___avatar___sourceInstanceName'
+  | 'avatar___childrenAuthorJson___avatar___absolutePath'
+  | 'avatar___childrenAuthorJson___avatar___relativePath'
+  | 'avatar___childrenAuthorJson___avatar___extension'
+  | 'avatar___childrenAuthorJson___avatar___size'
+  | 'avatar___childrenAuthorJson___avatar___prettySize'
+  | 'avatar___childrenAuthorJson___avatar___modifiedTime'
+  | 'avatar___childrenAuthorJson___avatar___accessTime'
+  | 'avatar___childrenAuthorJson___avatar___changeTime'
+  | 'avatar___childrenAuthorJson___avatar___birthTime'
+  | 'avatar___childrenAuthorJson___avatar___root'
+  | 'avatar___childrenAuthorJson___avatar___dir'
+  | 'avatar___childrenAuthorJson___avatar___base'
+  | 'avatar___childrenAuthorJson___avatar___ext'
+  | 'avatar___childrenAuthorJson___avatar___name'
+  | 'avatar___childrenAuthorJson___avatar___relativeDirectory'
+  | 'avatar___childrenAuthorJson___avatar___dev'
+  | 'avatar___childrenAuthorJson___avatar___mode'
+  | 'avatar___childrenAuthorJson___avatar___nlink'
+  | 'avatar___childrenAuthorJson___avatar___uid'
+  | 'avatar___childrenAuthorJson___avatar___gid'
+  | 'avatar___childrenAuthorJson___avatar___rdev'
+  | 'avatar___childrenAuthorJson___avatar___ino'
+  | 'avatar___childrenAuthorJson___avatar___atimeMs'
+  | 'avatar___childrenAuthorJson___avatar___mtimeMs'
+  | 'avatar___childrenAuthorJson___avatar___ctimeMs'
+  | 'avatar___childrenAuthorJson___avatar___atime'
+  | 'avatar___childrenAuthorJson___avatar___mtime'
+  | 'avatar___childrenAuthorJson___avatar___ctime'
+  | 'avatar___childrenAuthorJson___avatar___birthtime'
+  | 'avatar___childrenAuthorJson___avatar___birthtimeMs'
+  | 'avatar___childrenAuthorJson___avatar___blksize'
+  | 'avatar___childrenAuthorJson___avatar___blocks'
+  | 'avatar___childrenAuthorJson___avatar___publicURL'
+  | 'avatar___childrenAuthorJson___avatar___childrenImageSharp'
+  | 'avatar___childrenAuthorJson___avatar___childrenMarkdownRemark'
+  | 'avatar___childrenAuthorJson___avatar___childrenAuthorJson'
+  | 'avatar___childrenAuthorJson___avatar___id'
+  | 'avatar___childrenAuthorJson___avatar___children'
+  | 'avatar___childrenAuthorJson___twitter'
+  | 'avatar___childrenAuthorJson___github'
+  | 'avatar___childrenAuthorJson___jsonId'
+  | 'avatar___childAuthorJson___id'
+  | 'avatar___childAuthorJson___parent___id'
+  | 'avatar___childAuthorJson___parent___children'
+  | 'avatar___childAuthorJson___children'
+  | 'avatar___childAuthorJson___children___id'
+  | 'avatar___childAuthorJson___children___children'
+  | 'avatar___childAuthorJson___internal___content'
+  | 'avatar___childAuthorJson___internal___contentDigest'
+  | 'avatar___childAuthorJson___internal___description'
+  | 'avatar___childAuthorJson___internal___fieldOwners'
+  | 'avatar___childAuthorJson___internal___ignoreType'
+  | 'avatar___childAuthorJson___internal___mediaType'
+  | 'avatar___childAuthorJson___internal___owner'
+  | 'avatar___childAuthorJson___internal___type'
+  | 'avatar___childAuthorJson___bio'
+  | 'avatar___childAuthorJson___avatar___sourceInstanceName'
+  | 'avatar___childAuthorJson___avatar___absolutePath'
+  | 'avatar___childAuthorJson___avatar___relativePath'
+  | 'avatar___childAuthorJson___avatar___extension'
+  | 'avatar___childAuthorJson___avatar___size'
+  | 'avatar___childAuthorJson___avatar___prettySize'
+  | 'avatar___childAuthorJson___avatar___modifiedTime'
+  | 'avatar___childAuthorJson___avatar___accessTime'
+  | 'avatar___childAuthorJson___avatar___changeTime'
+  | 'avatar___childAuthorJson___avatar___birthTime'
+  | 'avatar___childAuthorJson___avatar___root'
+  | 'avatar___childAuthorJson___avatar___dir'
+  | 'avatar___childAuthorJson___avatar___base'
+  | 'avatar___childAuthorJson___avatar___ext'
+  | 'avatar___childAuthorJson___avatar___name'
+  | 'avatar___childAuthorJson___avatar___relativeDirectory'
+  | 'avatar___childAuthorJson___avatar___dev'
+  | 'avatar___childAuthorJson___avatar___mode'
+  | 'avatar___childAuthorJson___avatar___nlink'
+  | 'avatar___childAuthorJson___avatar___uid'
+  | 'avatar___childAuthorJson___avatar___gid'
+  | 'avatar___childAuthorJson___avatar___rdev'
+  | 'avatar___childAuthorJson___avatar___ino'
+  | 'avatar___childAuthorJson___avatar___atimeMs'
+  | 'avatar___childAuthorJson___avatar___mtimeMs'
+  | 'avatar___childAuthorJson___avatar___ctimeMs'
+  | 'avatar___childAuthorJson___avatar___atime'
+  | 'avatar___childAuthorJson___avatar___mtime'
+  | 'avatar___childAuthorJson___avatar___ctime'
+  | 'avatar___childAuthorJson___avatar___birthtime'
+  | 'avatar___childAuthorJson___avatar___birthtimeMs'
+  | 'avatar___childAuthorJson___avatar___blksize'
+  | 'avatar___childAuthorJson___avatar___blocks'
+  | 'avatar___childAuthorJson___avatar___publicURL'
+  | 'avatar___childAuthorJson___avatar___childrenImageSharp'
+  | 'avatar___childAuthorJson___avatar___childrenMarkdownRemark'
+  | 'avatar___childAuthorJson___avatar___childrenAuthorJson'
+  | 'avatar___childAuthorJson___avatar___id'
+  | 'avatar___childAuthorJson___avatar___children'
+  | 'avatar___childAuthorJson___twitter'
+  | 'avatar___childAuthorJson___github'
+  | 'avatar___childAuthorJson___jsonId'
+  | 'avatar___id'
+  | 'avatar___parent___id'
+  | 'avatar___parent___parent___id'
+  | 'avatar___parent___parent___children'
+  | 'avatar___parent___children'
+  | 'avatar___parent___children___id'
+  | 'avatar___parent___children___children'
+  | 'avatar___parent___internal___content'
+  | 'avatar___parent___internal___contentDigest'
+  | 'avatar___parent___internal___description'
+  | 'avatar___parent___internal___fieldOwners'
+  | 'avatar___parent___internal___ignoreType'
+  | 'avatar___parent___internal___mediaType'
+  | 'avatar___parent___internal___owner'
+  | 'avatar___parent___internal___type'
+  | 'avatar___children'
+  | 'avatar___children___id'
+  | 'avatar___children___parent___id'
+  | 'avatar___children___parent___children'
+  | 'avatar___children___children'
+  | 'avatar___children___children___id'
+  | 'avatar___children___children___children'
+  | 'avatar___children___internal___content'
+  | 'avatar___children___internal___contentDigest'
+  | 'avatar___children___internal___description'
+  | 'avatar___children___internal___fieldOwners'
+  | 'avatar___children___internal___ignoreType'
+  | 'avatar___children___internal___mediaType'
+  | 'avatar___children___internal___owner'
+  | 'avatar___children___internal___type'
+  | 'avatar___internal___content'
+  | 'avatar___internal___contentDigest'
+  | 'avatar___internal___description'
+  | 'avatar___internal___fieldOwners'
+  | 'avatar___internal___ignoreType'
+  | 'avatar___internal___mediaType'
+  | 'avatar___internal___owner'
+  | 'avatar___internal___type'
+  | 'twitter'
+  | 'github'
+  | 'jsonId';
+
+export type AuthorJsonGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<AuthorJsonEdge>;
+  nodes: Array<AuthorJson>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<AuthorJsonGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type AuthorJsonGroupConnectionDistinctArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonGroupConnectionMaxArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonGroupConnectionMinArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonGroupConnectionSumArgs = {
+  field: AuthorJsonFieldsEnum;
+};
+
+
+export type AuthorJsonGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: AuthorJsonFieldsEnum;
+};
+
+export type AuthorJsonSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<AuthorJsonFieldsEnum>>>;
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
@@ -3195,6 +4359,34 @@ export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null, description?: string | null, author?: string | null } | null } | null };
+
+export type TemplateBlogPostQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type TemplateBlogPostQuery = { site?: { siteMetadata?: { disqus?: string | null } | null } | null, post?: { html?: string | null, htmlAst?: any | null, excerpt?: string | null, excerptAst?: any | null, timeToRead?: number | null, fields?: { slug?: string | null } | null, frontmatter?: { tags?: Array<string | null> | null, title?: string | null, createdDate?: any | null } | null } | null, recents: { edges: Array<{ node: { timeToRead?: number | null, fields?: { slug?: string | null } | null, frontmatter?: { title?: string | null, author?: { id: string, avatar?: { children: Array<{ fixed?: { src: string, srcSet: string } | null } | {}> } | null } | null } | null } }> } };
+
+export type TemplateProjectPostQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type TemplateProjectPostQuery = { site?: { siteMetadata?: { disqus?: string | null } | null } | null, post?: { html?: string | null, htmlAst?: any | null, excerpt?: string | null, excerptAst?: any | null, timeToRead?: number | null, fields?: { slug?: string | null } | null, frontmatter?: { project?: Array<string | null> | null, title?: string | null, createdDate?: any | null } | null } | null };
+
+export type TemplateProjectPageQueryVariables = Exact<{
+  project?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type TemplateProjectPageQuery = { projects: { group: Array<{ fieldValue?: string | null, totalCount: number }> }, posts: { totalCount: number, edges: Array<{ node: { excerpt?: string | null, timeToRead?: number | null, internal: { content?: string | null }, fields?: { slug?: string | null } | null, frontmatter?: { title?: string | null, createdDate?: any | null, project?: Array<string | null> | null } | null } }> } };
+
+export type TemplateTagPageQueryVariables = Exact<{
+  tag?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type TemplateTagPageQuery = { tags: { group: Array<{ fieldValue?: string | null, totalCount: number }> }, posts: { totalCount: number, edges: Array<{ node: { excerpt?: string | null, timeToRead?: number | null, internal: { content?: string | null }, fields?: { slug?: string | null } | null, frontmatter?: { title?: string | null, createdDate?: any | null, tags?: Array<string | null> | null } | null } }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 

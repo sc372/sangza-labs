@@ -5,10 +5,15 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `sangza labs | scientific thinking`,
     description: `상자 입니다.`,
-    author: `@sangza`,
+    author: `sangza`,
     siteUrl: `https://www.sangza.com/`,
+    disqus: 'gatsby-typescript',
+  },
+  mapping: {
+    'MarkdownRemark.frontmatter.author': `AuthorJson`,
   },
   plugins: [
+    `gatsby-plugin-tsconfig-paths`,
     // Expose `/data` to graphQL layer
     {
       resolve: `gatsby-source-filesystem`,
