@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link, graphql } from 'gatsby'
 import { RouteComponentProps, WindowLocation } from '@reach/router'
 
-import { MarkdownRemark, MarkdownRemarkConnection, Site } from '../types/graphql-types'
+// import { MarkdownRemark, MarkdownRemarkConnection, Site } from '../types/graphql-types'
 import { withMainLayout, IMainLayoutProps } from '../components/layout/main-layout'
 
 interface IProjectPostProps extends IMainLayoutProps, RouteComponentProps {

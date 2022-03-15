@@ -3936,12 +3936,7 @@ export type imageSharpDistinctEnum =
   | 'internal___type'
   | 'internal___owner'
 
-export type imageSharpGroupEnum =
-  | 'id'
-  | 'parent'
-  | 'internal___contentDigest'
-  | 'internal___type'
-  | 'internal___owner'
+export type imageSharpGroupEnum = 'id' | 'parent' | 'internal___contentDigest' | 'internal___type' | 'internal___owner'
 
 export interface imageSharpGroupConnectionConnection {
   pageInfo: PageInfo

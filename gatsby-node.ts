@@ -44,8 +44,6 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
       })
     }, {})
 
-    console.log('1')
-
     graphql(
       `
         {
@@ -72,7 +70,6 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
       }
       const posts = result.data.posts.edges.map((p) => p.node)
 
-      console.log('2')
       // Create blog page-styles
       posts
         .filter((post) => post.fields.slug.startsWith('/blog/'))
@@ -86,7 +83,6 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
           })
         })
 
-      console.log('3')
       // Create project post page-styles
       posts
         .filter((post) => post.fields.slug.startsWith('/project/'))
@@ -100,7 +96,6 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
           })
         })
 
-      console.log('4')
       // Create tags page-styles
       posts
         .reduce((mem, post) => cleanArray(mem.concat(get(post, 'frontmatter.tags'))), [])
@@ -114,7 +109,6 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
           })
         })
 
-      console.log('5')
       // Create project page-styles
       posts
         .reduce((mem, post) => cleanArray(mem.concat(get(post, 'frontmatter.project'))), [])
@@ -128,9 +122,7 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
           })
         })
 
-      console.log('6')
       resolve()
-      console.log('7')
     })
   })
 }

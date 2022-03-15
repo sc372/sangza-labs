@@ -27,15 +27,15 @@
       "@constants/*": ["src/constants/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/components/layouts/*"],
-      "@styles/*": ["src/styles/*"],
+      "@scss/*": ["src/scss/*"],
       "@utils/*": ["src/common/utils/*"],
       "@pages/*": ["src/pages/*"],
       "@modules/*": ["src/modules/*"],
       "@hooks/*": ["src/hooks/*"],
       "@services/*": ["src/services/*"],
-      "@types/*": ["src/types/*"],
+      "@types/*": [".@types/*"],
     },
-    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "typeRoots": ["./.@types", "./node_modules/@types"],
 
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
@@ -133,6 +133,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["./src/**/*", "./@types/**/*"],
+  "include": ["./src/**/*", "./.@types/*"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,54 @@
+.blog-post-wrapper {
+  padding: 10vh 10vw 2vh 10vw;
+
+  .blog-post-subject-wrapper {
+    .index-blog-tag-text {
+      cursor: pointer;
+    }
+
+    .index-blog-tag-text:hover {
+      color: #daa520;
+    }
+  }
+
+  .blog-post-min-read {
+    padding: 0.5vw 0;
+    color: #783201;
+  }
+
+  .blog-post-hr {
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid #e8e8e8;
+    margin: 1.5em 0; padding: 0;
+  }
+
+  .blog-post-content-wrapper {
+    padding: 2vh 0;
+  }
+
+  .side-anchor-wrapper {
+    padding: 2vh 2vw;
+    position: fixed;
+
+    .side-anchor-text {
+      font-size: 1rem;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .side-anchor-text-active {
+      font-size: 1rem;
+      color: #daa520;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .side-anchor-text:hover {
+      color: #daa520;
+    }
+  }
+}

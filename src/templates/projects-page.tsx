@@ -2,7 +2,8 @@ import * as React from 'react'
 import { graphql, Link } from 'gatsby'
 
 import { withMainLayout, IMainLayoutProps } from '../components/layout/main-layout'
-import { MarkdownRemarkConnection } from '../types/graphql-types'
+// import { MarkdownRemarkConnection } from '../types/graphql-types'
+import { MarkdownRemarkConnection } from '@types/gatsby-graphql'
 
 interface IProjectPageProps extends IMainLayoutProps {
   data: {
