@@ -4360,6 +4360,11 @@ export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null, description?: string | null, author?: string | null } | null } | null };
 
+export type PageIndexQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PageIndexQuery = { tags: { group: Array<{ fieldValue?: string | null, totalCount: number }> }, posts: { totalCount: number, edges: Array<{ node: { excerpt?: string | null, timeToRead?: number | null, fileAbsolutePath?: string | null, internal: { content?: string | null }, fields?: { slug?: string | null } | null, frontmatter?: { title?: string | null, createdDate?: any | null, tags?: Array<string | null> | null, category?: Array<string | null> | null } | null } }> } };
+
 export type TemplateBlogPostQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;

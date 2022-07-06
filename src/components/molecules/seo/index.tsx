@@ -31,6 +31,14 @@ const Seo: FC<ISeoProps> = ({ description, lang, metaList, title }) => {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  console.log(metaDescription)
+  console.log(metaDescription)
+  console.log(metaDescription)
+  console.log(metaDescription)
+  console.log(defaultTitle)
+  console.log(defaultTitle)
+  console.log(defaultTitle)
+  console.log(defaultTitle)
 
   return (
     <Helmet
