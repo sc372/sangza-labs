@@ -1,0 +1,11 @@
+---
+title: {{title}}
+createdDate: "{{createdDate}}"
+updatedDate: "{{createdDate}}"
+author: {{author}}{{tags}}
+category:
+  - blog
+
+draft: {{draft}}
+
+---
