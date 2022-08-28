@@ -1,16 +1,13 @@
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { isPageLoadingAtom } from '@modules/drawer/atom'
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { isOpenDrawerMenuAtom } from "./atom";
 
-export const useIsDwawer = () => {
-  const [isPageLoading, setIsPageLoading] = useRecoilState(isPageLoadingAtom)
-
-  useEffect(() => {
-    setIsPageLoading(false)
-  }, [])
+export const useIsOpenDwawerMenu = () => {
+  const [isOpenDrawerMenu, setIsOpenDrawerMenu] =
+    useRecoilState(isOpenDrawerMenuAtom);
 
   return {
-    isPageLoading,
-    setIsPageLoading,
-  }
-}
+    isOpenDrawerMenu,
+    setIsOpenDrawerMenu,
+  };
+};
