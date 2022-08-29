@@ -1,5 +1,5 @@
-import MenuDrawer from "@components/atoms/MenuDrawer";
-import Header from "@components/ortanisms/Header";
+import MenuDrawer from "@components/organisms/MenuDrawer";
+import Header from "@components/organisms/Header";
 import { IWrapperComponentProps } from "common/interfaces";
 import { FC } from "react";
 
