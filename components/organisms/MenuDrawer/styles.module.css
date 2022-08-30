@@ -1,0 +1,16 @@
+.menuDrawer {
+  position: fixed;
+  height: 100%;
+  background: white;
+  color: white;
+  top: 0;
+  right: 100%;
+  width: 40%;
+  z-index: 200;
+  box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.5);
+  transform: translateX(0);
+  transition: transform 0.1s ease-out;
+}
+.menuDrawer.open {
+  transform: translateX(100%);
+}
