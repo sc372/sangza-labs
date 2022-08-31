@@ -1,9 +1,14 @@
+import SearchInput from "@components/atoms/SearchInput";
 import MainLayout from "@components/layouts/MainLayout";
 import type { NextPage } from "next";
 import { ReactElement } from "react";
 
 const IndexPage: NextPage = () => {
-  return <>lsdkjfl</>;
+  return (
+    <>
+      <SearchInput />
+    </>
+  );
 };
 
 export default IndexPage;
