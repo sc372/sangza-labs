@@ -6,8 +6,7 @@ author: sangza
 tags:
   - sangza
   - etc
-category:
-  - blog
+category: blog
 draft: false
 ---
 
@@ -19,7 +18,7 @@ draft: false
 
 이번에 회사를 퇴사하면서 당분간 내 시간을 활용할 수 있게 되었다.
 
-약 2년 전 만들었던 [블로그](https://sc372.github.io/)가 있는데, 
+약 2년 전 만들었던 [블로그](https://sc372.github.io/)가 있는데,
 [hexo](https://hexo.io/ko/index.html) 라는 프레임워크를 이용한 사이트 였다.
 테마를 적용하면 비교적 쉽게 만들 수 있는 정적 사이트 생성기 였다. 이번에는 이전 직장에서
 [react](https://reactjs.org) 를 잘 사용해 왔던 터라 react 기반의 정적 사이트 생성기인

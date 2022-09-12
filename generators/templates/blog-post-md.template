@@ -2,9 +2,9 @@
 title: {{title}}
 createdDate: "{{createdDate}}"
 updatedDate: "{{createdDate}}"
-author: {{author}}{{tags}}
-category:
-  - blog
+author: {{author}}
+category: blog
+tags: {{tags}}
 
 draft: {{draft}}
 

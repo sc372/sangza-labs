@@ -5,20 +5,19 @@ updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
-category:
-  - blog
+category: blog
 draft: false
 ---
 
-해시 탐색법은 key에 value를 저장하는 데이터 구조인 
+해시 탐색법은 key에 value를 저장하는 데이터 구조인
 [해시 테이블](https://ko.wikipedia.org/wiki/해시_테이블)에
-[해시함수](https://ko.wikipedia.org/wiki/해시함수)를 활용하여 
+[해시함수](https://ko.wikipedia.org/wiki/해시함수)를 활용하여
 데이터를 저장하고 탐색시 한번에 데이터를 찾아낼 수 있다.
 선형 탐색법이나 이진 탐색법 보다 빠르게 탐색할 수 있다.
 
-근본적인 문제가 있는데 서로 다른 값이 해시 함수를 통해 만들어진 index 가 
-동일하여 충돌(collision) 하는 경우가 있는데 이런 경우에는 여러 해결 방법이 있는데 
-그 중 Open addressing 방식 중에 선형 탐사(Linear Probing) 방법이 있다. 
+근본적인 문제가 있는데 서로 다른 값이 해시 함수를 통해 만들어진 index 가
+동일하여 충돌(collision) 하는 경우가 있는데 이런 경우에는 여러 해결 방법이 있는데
+그 중 Open addressing 방식 중에 선형 탐사(Linear Probing) 방법이 있다.
 선형 탐사 방법은 index + 1 을 해나가면서 빈 공간은 찾는 방식이다.
 (그 밖의 다른 방법은 따로 정리 할 예정이다)
 
@@ -26,7 +25,7 @@ draft: false
 을 활용해 보겠다.
 
 division method 는 해시 테이블 크기 m 으로 나눈 나머지 값을 해시 값으로 결정한다.
-해시 테이블의 크기는 2의 제곱수와 거리가 먼 소수(prime number)를 주로 활용합니다. 
+해시 테이블의 크기는 2의 제곱수와 거리가 먼 소수(prime number)를 주로 활용합니다.
 테이블내의 공간을 효율적으로 활용한다고 합니다.
 
   - index = value % m
