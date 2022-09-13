@@ -2,10 +2,10 @@ import * as actions from "./action";
 import * as atoms from "./atom";
 import * as keys from "./key";
 
-const drawer = {
+const post = {
   ...actions,
   ...atoms,
   ...keys,
 };
 
-export default drawer;
+export default post;

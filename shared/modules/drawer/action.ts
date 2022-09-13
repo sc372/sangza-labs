@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { isOpenMenuDrawerAtom } from "./atom";
 
-export const useIsOpenMenuDrawer = () => {
+export const useIsOpenMenuDrawerActions = () => {
   const [isOpenMenuDrawer, setIsOpenMenuDrawer] =
     useRecoilState(isOpenMenuDrawerAtom);
 

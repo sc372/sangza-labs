@@ -1,7 +1,7 @@
+import fp from "lodash/fp";
+import { useEffect, useState } from "react";
 import { PAGE_SIZE } from "shared/common/constants";
 import { Post } from "shared/common/interfaces";
-import React, { useEffect, useState } from "react";
-import fp from "lodash/fp";
 
 export const DOTS = 0;
 
@@ -11,7 +11,8 @@ export interface UsePagination {
   isNext: boolean;
 }
 
-export interface UsePaginationParams {
+export interface UsePaginationParams<T> {
+  data: Array<T>;
   totalCount: number;
   pageSize: number;
   currentPage: number;
@@ -20,9 +21,12 @@ export interface UsePaginationParams {
 const makeArray = (length: number, addLength = 0) =>
   Array.from({ length }, (_, i) => i + 1 + addLength);
 
-type UsePaginationFunction = (params: UsePaginationParams) => UsePagination;
+type UsePaginationFunction = <T>(
+  params: UsePaginationParams<T>
+) => UsePagination;
 
 export const usePagination: UsePaginationFunction = ({
+  data,
   totalCount,
   pageSize,
   currentPage,
@@ -32,7 +36,7 @@ export const usePagination: UsePaginationFunction = ({
   const initTailPageRangeCount = 5;
   const result = {
     isPreview: currentPage !== 1,
-    isNext: currentPage === totalPageCount,
+    isNext: currentPage !== totalPageCount,
   };
 
   if (totalPageCount === 1)

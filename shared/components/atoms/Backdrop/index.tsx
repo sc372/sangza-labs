@@ -1,8 +1,8 @@
-import { useIsOpenMenuDrawer } from "shared/modules/drawer/action";
+import { useIsOpenMenuDrawerActions } from "shared/modules/drawer/action";
 import styles from "./styles.module.css";
 
 const Backdrop = () => {
-  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawer();
+  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerActions();
   return (
     <div
       className={`${styles.backdrop}`}

@@ -1,3 +1,5 @@
+import type { GetStaticProps, NextPage } from "next";
+import { ReactElement } from "react";
 import { PAGE_SIZE } from "shared/common/constants";
 import { Post } from "shared/common/interfaces";
 import SearchInput from "shared/components/atoms/SearchInput";
@@ -6,8 +8,6 @@ import Pagination from "shared/components/molecules/Pagination";
 import PostThumbnail from "shared/components/molecules/PostThumbnail";
 import { usePaginationHelper } from "shared/hooks/usePagination";
 import { getAllPosts } from "shared/utils/doc";
-import type { GetStaticProps, NextPage } from "next";
-import { ReactElement } from "react";
 
 interface Props {
   posts: Array<Post>;
@@ -26,6 +26,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
         <PostThumbnail key={i} post={post} />
       ))}
       <Pagination
+        contents={posts}
         onChange={onChange}
         totalCount={totalCount}
         pageSize={PAGE_SIZE}

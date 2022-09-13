@@ -1,10 +1,9 @@
 import MenuIconButton from "shared/components/atoms/MenuDrawerButton";
 import Title from "shared/components/atoms/Title";
-import { useIsOpenMenuDrawer } from "shared/modules/drawer/action";
-import { RiMenuFill } from "react-icons/ri";
+import { useIsOpenMenuDrawerActions } from "shared/modules/drawer/action";
 
 const Header = () => {
-  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawer();
+  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerActions();
   return (
     <>
       <div className="min-h-full">
