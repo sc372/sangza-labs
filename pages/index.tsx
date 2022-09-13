@@ -7,22 +7,13 @@ import PostThumbnail from "shared/components/molecules/PostThumbnail";
 import { usePaginationHelper } from "shared/hooks/usePagination";
 import { getAllPosts } from "shared/utils/doc";
 import type { GetStaticProps, NextPage } from "next";
-import { useEffect } from "react";
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 
 interface Props {
   posts: Array<Post>;
 }
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [filteredPosts, setFilteredPosts] = useState<Array<Post>>([]);
-  // const totalCount = posts.length;
-  // const onChange = (pageNum: number) => setCurrentPage(pageNum);
-
-  // useEffect(() => {
-  //   setFilteredPosts(posts.splice((currentPage - 1) * PAGE_SIZE, PAGE_SIZE));
-  // }, [currentPage]);
   const { currentPage, totalCount, filteredPosts, onChange } =
     usePaginationHelper({
       posts,
