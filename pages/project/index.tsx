@@ -1,33 +1,41 @@
-import React from "react";
-import MainLayout from "shared/components/layouts/MainLayout";
-import { getAllBlogPosts, getAllProjectPosts } from "shared/utils/doc";
 import { GetStaticProps, NextPage } from "next";
-import { Post } from "shared/common/interfaces";
-import { usePaginationHelper } from "shared/hooks/usePagination";
-import PostThumbnail from "shared/components/molecules/PostThumbnail";
-import Pagination from "shared/components/molecules/Pagination";
 import { PAGE_SIZE } from "shared/common/constants";
+import { Post } from "shared/common/interfaces";
+import MainLayout from "shared/components/layouts/MainLayout";
+import Pagination from "shared/components/molecules/Pagination";
+import PostThumbnail from "shared/components/molecules/PostThumbnail";
+import { usePagination } from "shared/hooks/usePagination";
+import { getAllProjectPosts } from "shared/utils/doc";
 
 interface Props {
   posts: Array<Post>;
 }
 
 const ProjectPage: NextPage<Props> = ({ posts }) => {
-  const { currentPage, totalCount, filteredPosts, onChange } =
-    usePaginationHelper({
-      posts,
-    });
+  const {
+    currentPage,
+    isPreview,
+    isNext,
+    pageNumbers,
+    totalCount,
+    dataForPage,
+    onPageChange,
+  } = usePagination({
+    data: posts,
+    pageSize: PAGE_SIZE,
+  });
 
   return (
     <>
-      {filteredPosts.map((post: Post, i: number) => (
+      {dataForPage?.map((post: Post, i: number) => (
         <PostThumbnail key={i} post={post} />
       ))}
       <Pagination
-        onChange={onChange}
-        totalCount={totalCount}
-        pageSize={PAGE_SIZE}
+        onPageChange={onPageChange}
         currentPage={currentPage}
+        isPreview={isPreview}
+        isNext={isNext}
+        pageNumbers={pageNumbers}
       />
     </>
   );

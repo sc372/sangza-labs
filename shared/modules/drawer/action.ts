@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { isOpenMenuDrawerAtom } from "./atom";
 
-export const useIsOpenMenuDrawerActions = () => {
+export const useIsOpenMenuDrawerAction = () => {
   const [isOpenMenuDrawer, setIsOpenMenuDrawer] =
     useRecoilState(isOpenMenuDrawerAtom);
 

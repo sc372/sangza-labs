@@ -3,10 +3,10 @@ import { WrapperComponentProps } from "shared/common/interfaces";
 import Backdrop from "shared/components/atoms/Backdrop";
 import Header from "shared/components/organisms/Header";
 import MenuDrawer from "shared/components/organisms/MenuDrawer";
-import { useIsOpenMenuDrawerActions } from "shared/modules/drawer/action";
+import { useIsOpenMenuDrawerAction } from "shared/modules/drawer/action";
 
 const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
-  const { isOpenMenuDrawer } = useIsOpenMenuDrawerActions();
+  const { isOpenMenuDrawer } = useIsOpenMenuDrawerAction();
 
   return (
     <>

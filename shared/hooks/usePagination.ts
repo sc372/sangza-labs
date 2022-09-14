@@ -1,116 +1,129 @@
-import fp from "lodash/fp";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { PAGE_SIZE } from "shared/common/constants";
-import { Post } from "shared/common/interfaces";
 
 export const DOTS = 0;
-
-export interface UsePagination {
-  isPreview: boolean;
-  pageNumbers: number[];
-  isNext: boolean;
-}
+const PAGE_RANGE_COUNT = 3;
+const INIT_TAIL_PAGE_RANGE_COUNT = 5;
 
 export interface UsePaginationParams<T> {
   data: Array<T>;
-  totalCount: number;
   pageSize: number;
+}
+
+export interface UsePagination<T> {
   currentPage: number;
+  isPreview: boolean;
+  isNext: boolean;
+  pageNumbers: Array<number>;
+  totalCount: number;
+  dataForPage: Array<T>;
+  onPageChange: () => void;
 }
 
 const makeArray = (length: number, addLength = 0) =>
   Array.from({ length }, (_, i) => i + 1 + addLength);
 
-type UsePaginationFunction = <T>(
-  params: UsePaginationParams<T>
-) => UsePagination;
-
-export const usePagination: UsePaginationFunction = ({
+export const usePagination = <T>({
   data,
-  totalCount,
   pageSize,
-  currentPage,
-}) => {
-  const totalPageCount = Math.ceil(totalCount / pageSize);
-  const pageRangeCount = 3;
-  const initTailPageRangeCount = 5;
-  const result = {
-    isPreview: currentPage !== 1,
-    isNext: currentPage !== totalPageCount,
-  };
-
-  if (totalPageCount === 1)
-    return { isPreview: false, isNext: false, pageNumbers: [totalPageCount] };
-
-  if (currentPage > totalPageCount)
-    return { isPreview: false, isNext: false, pageNumbers: [] };
-
-  if (pageRangeCount + 3 >= totalPageCount)
-    return { ...result, pageNumbers: makeArray(totalPageCount) };
-
-  if (currentPage < initTailPageRangeCount)
-    return {
-      ...result,
-      pageNumbers: [...makeArray(initTailPageRangeCount), DOTS, totalPageCount],
-    };
-
-  if (currentPage >= initTailPageRangeCount && currentPage < totalPageCount - 3)
-    return {
-      ...result,
-      pageNumbers: [
-        1,
-        DOTS,
-        ...makeArray(pageRangeCount, currentPage - 2),
-        DOTS,
-        totalPageCount,
-      ],
-    };
-
-  return {
-    ...result,
-    pageNumbers: [
-      1,
-      DOTS,
-      ...makeArray(initTailPageRangeCount + 2, totalPageCount - 5),
-    ],
-  };
-};
-
-interface UsePaginationHelperParams {
-  posts: Array<Post>;
-}
-
-interface UsePaginationHelper {
-  currentPage: number;
-  totalCount: number;
-  filteredPosts: Array<Post>;
-  onChange: (pageNum: number) => void;
-}
-
-type UsePaginationHelperFunction = (
-  params: UsePaginationHelperParams
-) => UsePaginationHelper;
-
-export const usePaginationHelper: UsePaginationHelperFunction = ({ posts }) => {
-  const totalCount = posts.length;
+}: UsePaginationParams<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [orgPosts] = useState<Array<Post>>(posts);
-  const [filteredPosts, setFilteredPosts] = useState<Array<Post>>([]);
-  const onChange = (pageNum: number) => setCurrentPage(pageNum);
+  const [orgData] = useState<Array<T>>(data);
+  const onPageChange = (pageNum: number) => setCurrentPage(pageNum);
+  const totalCount = data.length;
+  const totalPageCount = useMemo(() => {
+    return Math.ceil(totalCount / pageSize);
+  }, [totalCount, pageSize]);
 
-  useEffect(() => {
-    setFilteredPosts(
-      fp.slice(
-        (currentPage - 1) * PAGE_SIZE,
-        PAGE_SIZE <= totalCount ? PAGE_SIZE * currentPage : totalCount
-      )(orgPosts)
+  const isPreviewNext = useMemo(() => {
+    return {
+      isPreview: currentPage !== 1,
+      isNext: currentPage !== totalPageCount,
+    };
+  }, [currentPage, totalPageCount]);
+
+  const dataForPage = useMemo(() => {
+    return orgData.slice(
+      (currentPage - 1) * PAGE_SIZE,
+      PAGE_SIZE <= totalCount ? PAGE_SIZE * currentPage : totalCount
     );
   }, [currentPage]);
 
+  if (totalPageCount === 1)
+    return {
+      currentPage,
+      isPreview: false,
+      isNext: false,
+      pageNumbers: [totalPageCount],
+      totalCount,
+      dataForPage,
+      onPageChange,
+    };
+
+  if (currentPage > totalPageCount)
+    return {
+      currentPage,
+      isPreview: false,
+      isNext: false,
+      pageNumbers: [],
+      totalCount,
+      dataForPage,
+      onPageChange,
+    };
+
+  if (PAGE_RANGE_COUNT + 3 >= totalPageCount)
+    return {
+      currentPage,
+      ...isPreviewNext,
+      pageNumbers: makeArray(totalPageCount),
+      totalCount,
+      dataForPage,
+      onPageChange,
+    };
+
+  if (currentPage < INIT_TAIL_PAGE_RANGE_COUNT)
+    return {
+      currentPage,
+      ...isPreviewNext,
+      pageNumbers: [
+        ...makeArray(INIT_TAIL_PAGE_RANGE_COUNT),
+        DOTS,
+        totalPageCount,
+      ],
+      totalCount,
+      dataForPage,
+      onPageChange,
+    };
+
+  if (
+    currentPage >= INIT_TAIL_PAGE_RANGE_COUNT &&
+    currentPage < totalPageCount - 3
+  )
+    return {
+      currentPage,
+      ...isPreviewNext,
+      pageNumbers: [
+        1,
+        DOTS,
+        ...makeArray(PAGE_RANGE_COUNT, currentPage - 2),
+        DOTS,
+        totalPageCount,
+      ],
+      totalCount,
+      dataForPage,
+      onPageChange,
+    };
+
   return {
     currentPage,
+    ...isPreviewNext,
+    pageNumbers: [
+      1,
+      DOTS,
+      ...makeArray(INIT_TAIL_PAGE_RANGE_COUNT + 2, totalPageCount - 5),
+    ],
     totalCount,
-    filteredPosts,
-    onChange,
+    dataForPage,
+    onPageChange,
   };
 };

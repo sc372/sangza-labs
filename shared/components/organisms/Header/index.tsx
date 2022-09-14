@@ -1,9 +1,9 @@
 import MenuIconButton from "shared/components/atoms/MenuDrawerButton";
 import Title from "shared/components/atoms/Title";
-import { useIsOpenMenuDrawerActions } from "shared/modules/drawer/action";
+import { useIsOpenMenuDrawerAction } from "shared/modules/drawer/action";
 
 const Header = () => {
-  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerActions();
+  const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction();
   return (
     <>
       <div className="min-h-full">
