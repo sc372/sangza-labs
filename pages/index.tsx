@@ -1,6 +1,7 @@
+import { useDebounce } from "@hooks/useDebounce";
 import { usePagination } from "@hooks/usePagination";
 import type { GetStaticProps, NextPage } from "next";
-import { ReactElement } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 import { PAGE_SIZE } from "shared/common/constants";
 import { Post } from "shared/common/interfaces";
 import SearchInput from "shared/components/atoms/SearchInput";
@@ -14,9 +15,20 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    console.log(e.target.value);
-  const onSearchClick = () => console.log("skjdhf");
+  const [searchText, setSearchText] = useState("");
+  const debouncedSearchText = useDebounce<string>(searchText, 500);
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setSearchText(e.target.value);
+  // const onSearchClick = (searchText: string) =>
+  // const onSearchClick = (searchText: string) =>
+  //   posts.filter(
+  //     (post) =>
+  //       post.content.includes(searchText) ||
+  //       post.meta.title.includes(searchText)
+  //   );
+
+  // useEffect(() =>
+  // , [debouncedSearchText]);
 
   const {
     currentPage,
