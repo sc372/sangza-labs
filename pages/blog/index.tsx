@@ -1,3 +1,4 @@
+import Posts from "@components/organisms/Posts";
 import { GetStaticProps, NextPage } from "next";
 import { Post } from "shared/common/interfaces";
 import MainLayout from "shared/components/layouts/MainLayout";
