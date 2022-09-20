@@ -47,7 +47,7 @@ export const usePagination = <T>({
       (currentPage - 1) * PAGE_SIZE,
       PAGE_SIZE <= totalCount ? PAGE_SIZE * currentPage : totalCount
     );
-  }, [currentPage]);
+  }, [currentPage, data]);
 
   if (totalPageCount === 1)
     return {

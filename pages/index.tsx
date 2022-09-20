@@ -1,13 +1,10 @@
-import { useDebounce } from "@hooks/useDebounce";
-import { usePagination } from "@hooks/usePagination";
+import Posts from "@components/organisms/Posts";
+import { useSearchText } from "@hooks/useSearchText";
 import type { GetStaticProps, NextPage } from "next";
-import { ChangeEvent, ReactElement, useState } from "react";
-import { PAGE_SIZE } from "shared/common/constants";
+import { ReactElement } from "react";
 import { Post } from "shared/common/interfaces";
 import SearchInput from "shared/components/atoms/SearchInput";
 import MainLayout from "shared/components/layouts/MainLayout";
-import Pagination from "shared/components/molecules/Pagination";
-import PostThumbnail from "shared/components/molecules/PostThumbnail";
 import { getAllPosts } from "shared/utils/doc";
 
 interface Props {
@@ -15,47 +12,28 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
-  const [searchText, setSearchText] = useState("");
-  const debouncedSearchText = useDebounce<string>(searchText, 500);
-  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setSearchText(e.target.value);
-  // const onSearchClick = (searchText: string) =>
-  // const onSearchClick = (searchText: string) =>
-  //   posts.filter(
-  //     (post) =>
-  //       post.content.includes(searchText) ||
-  //       post.meta.title.includes(searchText)
-  //   );
-
-  // useEffect(() =>
-  // , [debouncedSearchText]);
+  const onSearchFilter = (searchText: string): Array<Post> =>
+    posts.filter(
+      (post) =>
+        post.content.includes(searchText) ||
+        post.meta.title.includes(searchText)
+    );
 
   const {
-    currentPage,
-    isPreview,
-    isNext,
-    pageNumbers,
-    totalCount,
-    dataForPage,
-    onPageChange,
-  } = usePagination({
-    data: posts,
-    pageSize: PAGE_SIZE,
-  });
+    filteredData,
+    onSearchInputChange,
+    onSearchInputClick,
+    onSearchInputKeyDown,
+  } = useSearchText({ data: posts, onSearchFilter });
 
   return (
     <>
-      <SearchInput onChange={onSearchChange} onClick={onSearchClick} />
-      {dataForPage?.map((post: Post, i: number) => (
-        <PostThumbnail key={i} post={post} />
-      ))}
-      <Pagination
-        onPageChange={onPageChange}
-        currentPage={currentPage}
-        isPreview={isPreview}
-        isNext={isNext}
-        pageNumbers={pageNumbers}
+      <SearchInput
+        onChange={onSearchInputChange}
+        onClick={onSearchInputClick}
+        onKeyDown={onSearchInputKeyDown}
       />
+      <Posts posts={filteredData} />
     </>
   );
 };
