@@ -1,8 +1,8 @@
 import { Post } from '@common/interfaces'
+import MainLayout from '@components/layouts/MainLayout'
 import Posts from '@components/organisms/Posts'
+import { getAllTags, getPostsByTag } from '@utils/doc'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import MainLayout from 'shared/components/layouts/MainLayout'
-import { getAllTags, getPostsByTag } from 'shared/utils/doc'
 
 type Props = {
   slug: string
@@ -12,7 +12,7 @@ type Props = {
 const TagPage: NextPage<Props> = ({ slug, posts }) => {
   return (
     <>
-      <div>{slug}</div>
+      <div># {slug}</div>
       <Posts posts={posts} />
     </>
   )

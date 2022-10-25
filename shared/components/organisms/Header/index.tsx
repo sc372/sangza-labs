@@ -1,6 +1,6 @@
-import MenuIconButton from 'shared/components/atoms/MenuDrawerButton'
-import Title from 'shared/components/atoms/Title'
-import { useIsOpenMenuDrawerAction } from 'shared/modules/drawer/action'
+import MenuIconButton from '@components/atoms/MenuDrawerButton'
+import Title from '@components/atoms/Title'
+import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
 const Header = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()

@@ -1,7 +1,7 @@
-import { Post } from 'shared/common/interfaces'
-import Date from 'shared/components/atoms/Date'
-import Tag from 'shared/components/atoms/Tag'
-import { getSlug } from 'shared/utils/doc'
+import { Post } from '@common/interfaces'
+import Date from '@components/atoms/Date'
+import Tag from '@components/atoms/Tag'
+import { getSlug } from '@utils/doc'
 import Link from 'next/link'
 import { FC } from 'react'
 import { RiPriceTag3Line } from 'react-icons/ri'
@@ -20,7 +20,7 @@ const ProjectThumbnail: FC<Props> = ({ post }) => {
           <Date date={post.meta?.createdDate} />
           <RiPriceTag3Line />
           {post.meta?.tags?.map((tag, i) => (
-            <Tag key={i} name={tag} onClick={() => {}} />
+            <Tag key={i} name={tag} href={`/blog/tags/${tag}`} />
           ))}
         </div>
       </Link>

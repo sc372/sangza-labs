@@ -1,8 +1,8 @@
+import { Meta, Post } from '@common/interfaces'
 import fs from 'fs'
 import { sync } from 'glob'
 import matter from 'gray-matter'
 import fp from 'lodash/fp'
-import { Meta, Post } from 'shared/common/interfaces'
 
 const POSTS_PATH = `${process.cwd()}/data/**/*.md`
 const PROJECT = 'project'

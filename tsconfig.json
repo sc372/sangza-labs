@@ -7,7 +7,6 @@
       "@components/*": ["shared/components/*"],
       "@styles/*": ["shared/styles/*"],
       "@utils/*": ["shared/utils/*"],
-      "@libs/*": ["shared/utils/*"],
       "@pages/*": ["pages/*"],
       "@modules/*": ["shared/modules/*"],
       "@hooks/*": ["shared/hooks/*"],

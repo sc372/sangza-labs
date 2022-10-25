@@ -1,4 +1,4 @@
-import { useIsOpenMenuDrawerAction } from 'shared/modules/drawer/action'
+import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 import styles from './styles.module.css'
 
 const MenuDrawer = () => {

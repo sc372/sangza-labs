@@ -1,8 +1,7 @@
-import React from 'react'
-import MainLayout from 'shared/components/layouts/MainLayout'
-import { getAllProjectPosts } from 'shared/utils/doc'
+import { Post } from '@common/interfaces'
+import MainLayout from '@components/layouts/MainLayout'
+import { getAllProjectPosts } from '@utils/doc'
 import { GetStaticProps, NextPage } from 'next'
-import { Post } from 'shared/common/interfaces'
 
 interface Props {
   posts: Array<Post>

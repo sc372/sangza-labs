@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import styles from './styles.module.css'
 
 interface Props {
   name: string
-  onClick: () => void
+  href: string
 }
 
-const Tag: FC<Props> = ({ name }) => {
+const Tag: FC<Props> = ({ name, href }) => {
   return (
-    <Link href="/">
+    <Link href={href}>
       <div className="cursor-pointer">{name}</div>
     </Link>
   )

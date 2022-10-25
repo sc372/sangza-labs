@@ -1,8 +1,8 @@
-import { PAGE_SIZE } from 'shared/common/constants'
-import { Post } from 'shared/common/interfaces'
-import Pagination from 'shared/components/molecules/Pagination'
-import { usePaginationHelper } from 'shared/hooks/usePagination'
-import React, { FC, useState } from 'react'
+import { PAGE_SIZE } from '@common/constants'
+import { Post } from '@common/interfaces'
+import Pagination from '@components/molecules/Pagination'
+import { usePaginationHelper } from '@hooks/usePagination'
+import { FC } from 'react'
 
 interface Props {
   posts: Array<Post>

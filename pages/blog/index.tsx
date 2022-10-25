@@ -1,8 +1,8 @@
+import { Post } from '@common/interfaces'
+import MainLayout from '@components/layouts/MainLayout'
 import Posts from '@components/organisms/Posts'
+import { getAllBlogPosts } from '@utils/doc'
 import { GetStaticProps, NextPage } from 'next'
-import { Post } from 'shared/common/interfaces'
-import MainLayout from 'shared/components/layouts/MainLayout'
-import { getAllBlogPosts } from 'shared/utils/doc'
 
 interface Props {
   posts: Array<Post>

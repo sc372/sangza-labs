@@ -1,5 +1,5 @@
+import { PAGE_SIZE } from '@common/constants'
 import { useMemo, useState } from 'react'
-import { PAGE_SIZE } from 'shared/common/constants'
 
 export const DOTS = 0
 const PAGE_RANGE_COUNT = 3

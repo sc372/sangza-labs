@@ -1,10 +1,9 @@
-import React from 'react'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import MainLayout from 'shared/components/layouts/MainLayout'
-import { getAllPosts, getBlogPath, getPost, getSlug } from 'shared/utils/doc'
-import { Post } from 'shared/common/interfaces'
+import { Post } from '@common/interfaces'
+import MainLayout from '@components/layouts/MainLayout'
+import { getAllPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
+import { markdownToHtml } from '@utils/markdown'
 import fp from 'lodash/fp'
-import { markdownToHtml } from 'shared/utils/markdown'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import {
   MDXRemote,
   MDXRemoteProps,
