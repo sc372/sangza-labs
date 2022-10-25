@@ -1,16 +1,49 @@
 .menuDrawer {
   position: fixed;
+  overflow: auto;
   height: 100%;
+  width: calc(10% + 180px);
   background: white;
   color: white;
   top: 0;
   right: 100%;
-  width: 40%;
   z-index: 200;
+  padding: 40px;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.5);
   transform: translateX(0);
   transition: transform 0.1s ease-out;
 }
 .menuDrawer.open {
   transform: translateX(100%);
+  box-shadow: 2px 0 8px rgb(0 0 0 / 15%);
+}
+
+.profileTitle {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.profileCardContainer {
+  height: calc(12vw + 260px);
+  position: relative;
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+}
+
+.profileCardImage {
+  height: calc(12vw + 260px);
+}
+
+.profileWrapper {
+  padding: calc(1vw);
+}
+.profileMeta {
+  color: black;
+}
+
+.profileDescription {
+  color: rgb(129, 133, 137);
+  font-style: italic;
 }
