@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { FC } from "react";
-import styles from "./styles.module.css";
+import Link from 'next/link'
+import { FC } from 'react'
+import styles from './styles.module.css'
 
 interface Props {
-  name: string;
-  onClick: () => void;
+  name: string
+  onClick: () => void
 }
 
 const Tag: FC<Props> = ({ name }) => {
@@ -12,7 +12,7 @@ const Tag: FC<Props> = ({ name }) => {
     <Link href="/">
       <div className="cursor-pointer">{name}</div>
     </Link>
-  );
-};
+  )
+}
 
-export default Tag;
+export default Tag

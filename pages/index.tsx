@@ -1,14 +1,14 @@
-import Posts from "@components/organisms/Posts";
-import { useSearchText } from "@hooks/useSearchText";
-import type { GetStaticProps, NextPage } from "next";
-import { ReactElement } from "react";
-import { Post } from "shared/common/interfaces";
-import SearchInput from "shared/components/atoms/SearchInput";
-import MainLayout from "shared/components/layouts/MainLayout";
-import { getAllPosts } from "shared/utils/doc";
+import Posts from '@components/organisms/Posts'
+import { useSearchText } from '@hooks/useSearchText'
+import type { GetStaticProps, NextPage } from 'next'
+import { ReactElement } from 'react'
+import { Post } from 'shared/common/interfaces'
+import SearchInput from 'shared/components/atoms/SearchInput'
+import MainLayout from 'shared/components/layouts/MainLayout'
+import { getAllPosts } from 'shared/utils/doc'
 
 interface Props {
-  posts: Array<Post>;
+  posts: Array<Post>
 }
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
@@ -17,14 +17,14 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
       (post) =>
         post.content.includes(searchText) ||
         post.meta.title.includes(searchText)
-    );
+    )
 
   const {
     filteredData,
     onSearchInputChange,
     onSearchInputClick,
     onSearchInputKeyDown,
-  } = useSearchText({ data: posts, onSearchFilter });
+  } = useSearchText({ data: posts, onSearchFilter })
 
   return (
     <>
@@ -35,18 +35,18 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
       />
       <Posts posts={filteredData} />
     </>
-  );
-};
+  )
+}
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context);
+  console.log(context)
   return {
     props: {
       posts: await getAllPosts(),
     },
-  };
-};
+  }
+}
 
-export default IndexPage;
+export default IndexPage
 // @ts-ignore
-IndexPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
+IndexPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>

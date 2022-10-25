@@ -28,34 +28,33 @@ division method 는 해시 테이블 크기 m 으로 나눈 나머지 값을 해
 해시 테이블의 크기는 2의 제곱수와 거리가 먼 소수(prime number)를 주로 활용합니다.
 테이블내의 공간을 효율적으로 활용한다고 합니다.
 
-  - index = value % m
+- index = value % m
 
 해시 테이블은 충돌에 대한 솔루션과 해시 함수 기법은 한가지가 아닙니다. 관련해서는 이후 포스팅에서 다뤄보도록 하겠습니다.
 
 ---
 
-## 자바스크립트 적용  (with javascript)
+## 자바스크립트 적용 (with javascript)
 
- - 해시 함수는 division method
+- 해시 함수는 division method
 
-### 배열을 이용해서 충돌을 피하는 방법  (with array)
+### 배열을 이용해서 충돌을 피하는 방법 (with array)
 
 ```js
 class HashSearchArr {
-
-  constructor(size){
+  constructor(size) {
     this.buckets = new Array(size)
     this.size = size
   }
 
-  hash(num){
+  hash(num) {
     return num % this.size
   }
 
-  set(num){
+  set(num) {
     let index = this.hash(num)
 
-    if(!this.buckets[index]) {
+    if (!this.buckets[index]) {
       this.buckets[index] = []
     }
 
@@ -64,45 +63,44 @@ class HashSearchArr {
     return console.log(index)
   }
 
-  get(num){
+  get(num) {
     let index = this.hash(num)
 
-    if(!this.buckets[index]) {
-      return console.log("not found!")
+    if (!this.buckets[index]) {
+      return console.log('not found!')
     }
 
-    for(let bucket of this.buckets[index]){
-      if(bucket === num){
-        return console.log("found!")
+    for (let bucket of this.buckets[index]) {
+      if (bucket === num) {
+        return console.log('found!')
       }
     }
   }
 }
 ```
 
-### open addressing  (with linear Probing)
+### open addressing (with linear Probing)
 
 ```js
 class HashSearchAddIndex {
-
-  constructor(size){
+  constructor(size) {
     this.buckets = new Array(size)
     this.size = size
   }
 
-  hash(num){
+  hash(num) {
     return num % this.size
   }
 
   isAlready(index, num) {
     let addIndex = index + 1
 
-    while(addIndex <= this.size - 1) {
-      if(this.buckets[addIndex] === num) {
-        return console.log("existed number!")
+    while (addIndex <= this.size - 1) {
+      if (this.buckets[addIndex] === num) {
+        return console.log('existed number!')
       }
 
-      if(!!this.buckets[addIndex]) {
+      if (!!this.buckets[addIndex]) {
         addIndex++
       } else {
         this.buckets[addIndex] = num
@@ -111,15 +109,15 @@ class HashSearchAddIndex {
     }
   }
 
-  set(num){
+  set(num) {
     let index = this.hash(num)
 
-    if(!!this.buckets[index]) {
+    if (!!this.buckets[index]) {
       return this.isAlready(index, num)
     }
 
-    if(this.buckets[index] === num) {
-      return console.log("existed number!")
+    if (this.buckets[index] === num) {
+      return console.log('existed number!')
     }
 
     this.buckets[index] = num
@@ -131,8 +129,8 @@ class HashSearchAddIndex {
     let collisionIndex = index
     let isFound = false
 
-    while(collisionIndex <= this.size - 1) {
-      if(this.buckets[collisionIndex + 1] !== num) {
+    while (collisionIndex <= this.size - 1) {
+      if (this.buckets[collisionIndex + 1] !== num) {
         collisionIndex++
       } else {
         isFound = true
@@ -140,14 +138,14 @@ class HashSearchAddIndex {
       }
     }
 
-    return isFound ? console.log("found!") : console.log("not found!")
+    return isFound ? console.log('found!') : console.log('not found!')
   }
 
-  get(num){
+  get(num) {
     let index = this.hash(num)
 
-    if(this.buckets[index] === num) {
-      return console.log("found!")
+    if (this.buckets[index] === num) {
+      return console.log('found!')
     } else {
       return this.isCollision(index, num)
     }

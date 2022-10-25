@@ -50,7 +50,6 @@ a {
 @tailwind utilities;
 
 @layer base {
-
   html,
   body {
     @apply block relative h-full m-0 p-0 overflow-hidden;
@@ -78,6 +77,4 @@ a {
     font-weight: 300;
     src: url("../public/static/fonts/FontsFree-Net-Magistral4.ttf")
   } */
-
 }
-

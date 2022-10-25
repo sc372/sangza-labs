@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 에라토스테네스의 체 (Sieve of Eratosthenes)
-createdDate: "2019-05-24"
-updatedDate: "2019-06-07"
+createdDate: '2019-05-24'
+updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
@@ -29,12 +29,12 @@ draft: false
 ```javascript
 const sieveOfEratosthenes = (num) => {
   // 입력된 정수의 크기 만큼 ture 배열을 초기화 한다.
-  const temp = new Array(num).fill(true);
+  const temp = new Array(num).fill(true)
   // 소수들의 배열을 담기 위한 값을 초기화한다.
-  const primeNums = [];
+  const primeNums = []
 
   // 첫번째 원소는 0 이므로 false 를 대입한다.
-  temp[0] = false;
+  temp[0] = false
 
   // 두번째 원소 부터 반복 문을 시작한다.
   for (var i = 2; i <= num; i++) {
@@ -42,7 +42,7 @@ const sieveOfEratosthenes = (num) => {
     if (temp[i]) {
       // 인덱스의 배수를 반복문을 통해서 false 를 대입한다.
       for (var j = i * i; j <= num; j += i) {
-        temp[j] = false;
+        temp[j] = false
       }
     }
   }
@@ -50,14 +50,14 @@ const sieveOfEratosthenes = (num) => {
   // true 인 원소만 인덱스 번호와 바꾸고 primeNums 에 담는다.
   for (let i = 0; i <= num; i++) {
     if (temp[i]) {
-      primeNums.push(i);
+      primeNums.push(i)
     }
   }
 
-  return primeNums;
-};
+  return primeNums
+}
 
-const getPrimeNums = sieveOfEratosthenes(30);
-console.log(getPrimeNums);
+const getPrimeNums = sieveOfEratosthenes(30)
+console.log(getPrimeNums)
 // [ 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ]
 ```

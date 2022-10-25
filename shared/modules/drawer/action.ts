@@ -1,14 +1,14 @@
-import { useRecoilState } from "recoil";
-import { isOpenMenuDrawerAtom } from "./atom";
+import { useRecoilState } from 'recoil'
+import { isOpenMenuDrawerAtom } from './atom'
 
 export const useIsOpenMenuDrawerAction = () => {
   const [isOpenMenuDrawer, setIsOpenMenuDrawer] =
-    useRecoilState(isOpenMenuDrawerAtom);
+    useRecoilState(isOpenMenuDrawerAtom)
 
-  const toggleIsOpenMenuDrawer = () => setIsOpenMenuDrawer(!isOpenMenuDrawer);
+  const toggleIsOpenMenuDrawer = () => setIsOpenMenuDrawer(!isOpenMenuDrawer)
 
   return {
     isOpenMenuDrawer,
     toggleIsOpenMenuDrawer,
-  };
-};
+  }
+}

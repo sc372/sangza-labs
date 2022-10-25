@@ -1,7 +1,7 @@
 ---
 title: sangza | simple-blog-app-react-node
-createdDate: "2019-06-07"
-updatedDate: "2019-06-07"
+createdDate: '2019-06-07'
+updatedDate: '2019-06-07'
 author: sangza
 category: project
 project: sangza

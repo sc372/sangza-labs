@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const Title = () => {
   return (
@@ -7,7 +7,7 @@ const Title = () => {
         sangza <span className="">|</span> scientific thinking
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default Title;
+export default Title

@@ -1,7 +1,7 @@
 ---
 title: bGlam | mobile-b2c
-createdDate: "2019-05-15"
-updatedDate: "2019-05-15"
+createdDate: '2019-05-15'
+updatedDate: '2019-05-15'
 author: sangza
 category: project
 project: bGlam
@@ -154,7 +154,7 @@ const mapState = (state: IRematchState) => ({
   $searchConditionUiStates: {
     serviceCategoryTypes: state.$searchConditionUi.serviceCategoryTypes,
   },
-});
+})
 
 // 매핑시킬 state 조작 dispatch를 선언한다.
 const mapDispatch = (dispatch: IRematchDispatch) => ({
@@ -162,13 +162,13 @@ const mapDispatch = (dispatch: IRematchDispatch) => ({
     selectServiceCategoryTypes: () =>
       dispatch.$serviceCategoryTypes.selectServiceCategoryTypes(),
   },
-});
+})
 
 // state와 state를 조작하는 dispatch 함수들이 MainCategory 컴포넌트에 매핑된다.
 export const MainCategoryCommonContainer = connect(
   mapState,
   mapDispatch
-)(MainCategoryCommon);
+)(MainCategoryCommon)
 ```
 
 - `src/navigators`
@@ -195,27 +195,27 @@ export const MainCategoryCommonContainer = connect(
     effects: {
       async getIsAuthToken() {
         // isLoading 값을 두어, 로딩바를 컨트롤 한다.
-        this.setState({ res: { isLoading: true } });
-        const res = await axios.post("/common/access/auth-token/is-auth-token");
+        this.setState({ res: { isLoading: true } })
+        const res = await axios.post('/common/access/auth-token/is-auth-token')
 
         if (res.status === 200) {
           this.setState({
             isAuthToken: res.data.isAuthToken,
             // successRes라는 helper 함수를 통해, 균일한 response값을 만든다.
             res: successRes(res),
-          });
+          })
           // 성공여부 및 http status 값을 리턴한다.
-          return successReturn();
+          return successReturn()
         } else {
           this.setState({
             isAuthToken: res.data.isAuthToken,
             res: failRes(res),
-          });
-          return failReturn(res);
+          })
+          return failReturn(res)
         }
       },
     } as IIsAuthTokenEffects,
-  });
+  })
   ```
 
 ## 주요 논의 사항 (Discussions)
@@ -260,7 +260,7 @@ UI, domain 데이터 타입을 분리하고 각각의 역할에 맞도록 활용
 
 _비글램 b2c App 시연영상_
 
-[![시연영상](https://i.postimg.cc/Prmr01r4/image.png)](http://www.youtube.com/watch?v=M_faTTDGKUI "bGlam b2c app")
+[![시연영상](https://i.postimg.cc/Prmr01r4/image.png)](http://www.youtube.com/watch?v=M_faTTDGKUI 'bGlam b2c app')
 
 - 일반/카카오 로그인
   - JWT 토큰 인증방식으로 로그인 기능 구현
@@ -286,6 +286,7 @@ _비글램 b2c App 시연영상_
 <img src="https://i.postimg.cc/C15PZfJq/chat.png" width="200" />
 
 - 결제과정
+
   - iamport 모듈 통한 결제 연동
   - 티켓 개수 변경
   - 쿠폰입력, 포인트 사용 기능

@@ -1,16 +1,16 @@
-import { PAGE_SIZE } from "shared/common/constants";
-import { Post } from "shared/common/interfaces";
-import Pagination from "shared/components/molecules/Pagination";
-import { usePaginationHelper } from "shared/hooks/usePagination";
-import React, { FC, useState } from "react";
+import { PAGE_SIZE } from 'shared/common/constants'
+import { Post } from 'shared/common/interfaces'
+import Pagination from 'shared/components/molecules/Pagination'
+import { usePaginationHelper } from 'shared/hooks/usePagination'
+import React, { FC, useState } from 'react'
 
 interface Props {
-  posts: Array<Post>;
+  posts: Array<Post>
 }
 
 const SubjectList: FC<Props> = ({ posts }) => {
   const { currentPage, totalCount, filteredPosts, onChange } =
-    usePaginationHelper({ posts });
+    usePaginationHelper({ posts })
 
   return (
     <>
@@ -21,5 +21,5 @@ const SubjectList: FC<Props> = ({ posts }) => {
         currentPage={currentPage}
       />
     </>
-  );
-};
+  )
+}

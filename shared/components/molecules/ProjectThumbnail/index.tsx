@@ -1,13 +1,13 @@
-import { Post } from "shared/common/interfaces";
-import Date from "shared/components/atoms/Date";
-import Tag from "shared/components/atoms/Tag";
-import { getSlug } from "shared/utils/doc";
-import Link from "next/link";
-import { FC } from "react";
-import { RiPriceTag3Line } from "react-icons/ri";
+import { Post } from 'shared/common/interfaces'
+import Date from 'shared/components/atoms/Date'
+import Tag from 'shared/components/atoms/Tag'
+import { getSlug } from 'shared/utils/doc'
+import Link from 'next/link'
+import { FC } from 'react'
+import { RiPriceTag3Line } from 'react-icons/ri'
 
 interface Props {
-  project: Post;
+  project: Post
 }
 
 const ProjectThumbnail: FC<Props> = ({ post }) => {
@@ -25,7 +25,7 @@ const ProjectThumbnail: FC<Props> = ({ post }) => {
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectThumbnail;
+export default ProjectThumbnail

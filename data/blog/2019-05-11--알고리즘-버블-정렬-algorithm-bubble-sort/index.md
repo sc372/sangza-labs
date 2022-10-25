@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 버블 정렬 (algorithm | bubble sort)
-createdDate: "2019-05-11"
-updatedDate: "2019-06-07"
+createdDate: '2019-05-11'
+updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
@@ -33,24 +33,24 @@ N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 �
 
 ```js
 const bubbleSort = (arr = []) => {
-  if (!arr.length) return console.log("oops");
+  if (!arr.length) return console.log('oops')
 
   for (let i = 0; i < arr.length - 1; i++) {
-    let temp;
+    let temp
 
     for (let j = 0; j < arr.length - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
-        temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
+        temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j + 1] = temp
       }
     }
   }
 
-  return console.log(arr);
-};
+  return console.log(arr)
+}
 
-bubbleSort([3, 1, 8, 5, 20, 15]);
+bubbleSort([3, 1, 8, 5, 20, 15])
 // [ 1, 3, 5, 8, 15, 20 ]
 ```
 

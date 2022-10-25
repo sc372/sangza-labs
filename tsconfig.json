@@ -11,7 +11,7 @@
       "@pages/*": ["pages/*"],
       "@modules/*": ["shared/modules/*"],
       "@hooks/*": ["shared/hooks/*"],
-      "@types/*": ["shared/@types/*"],
+      "@types/*": ["shared/@types/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

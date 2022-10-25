@@ -18,7 +18,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "next/core-web-vitals",
-    "prettier"
+    "prettier",
+    "next"
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",

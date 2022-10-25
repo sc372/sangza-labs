@@ -1,7 +1,7 @@
 ---
 title: bGlam | mobile-b2b
-createdDate: "2019-05-21"
-updatedDate: "2019-05-21"
+createdDate: '2019-05-21'
+updatedDate: '2019-05-21'
 author: sangza
 category: project
 project: bGlam
@@ -126,24 +126,24 @@ import {
   stateHelper,
   mutationHelper,
   getterHelper,
-} from "./helper/model-helper";
+} from './helper/model-helper'
 
 const state = {
   ...stateHelper,
   isDrawerOpen: false,
-};
+}
 
 const getters = {
   ...getterHelper,
   getIsDrawerOpen: (state) => state.isDrawerOpen,
-};
+}
 
 const mutations = {
   ...mutationHelper,
   SET_IS_DRAWER_OPEN: (state, payload) => (state.isDrawerOpen = payload),
-};
+}
 
-const actions = {};
+const actions = {}
 
 export const layout = {
   state,
@@ -151,14 +151,14 @@ export const layout = {
   mutations,
   actions,
   namespaced: true,
-};
+}
 ```
 
 ## 주요 기능 (core features)
 
 _비글램 업체용 works App 시연영상_
 
-[![시연영상](https://i.postimg.cc/Pr4nmy5B/image.png)](https://youtu.be/ynQbqWL6l-g "bGlam works app")
+[![시연영상](https://i.postimg.cc/Pr4nmy5B/image.png)](https://youtu.be/ynQbqWL6l-g 'bGlam works app')
 
 - 로그인
 

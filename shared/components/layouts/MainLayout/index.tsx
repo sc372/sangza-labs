@@ -1,12 +1,12 @@
-import { FC } from "react";
-import { WrapperComponentProps } from "shared/common/interfaces";
-import Backdrop from "shared/components/atoms/Backdrop";
-import Header from "shared/components/organisms/Header";
-import MenuDrawer from "shared/components/organisms/MenuDrawer";
-import { useIsOpenMenuDrawerAction } from "shared/modules/drawer/action";
+import { FC } from 'react'
+import { WrapperComponentProps } from 'shared/common/interfaces'
+import Backdrop from 'shared/components/atoms/Backdrop'
+import Header from 'shared/components/organisms/Header'
+import MenuDrawer from 'shared/components/organisms/MenuDrawer'
+import { useIsOpenMenuDrawerAction } from 'shared/modules/drawer/action'
 
 const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
-  const { isOpenMenuDrawer } = useIsOpenMenuDrawerAction();
+  const { isOpenMenuDrawer } = useIsOpenMenuDrawerAction()
 
   return (
     <>
@@ -17,7 +17,7 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
         {children}
       </main>
     </>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout

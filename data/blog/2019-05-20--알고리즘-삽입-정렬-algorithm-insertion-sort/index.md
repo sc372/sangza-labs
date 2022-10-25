@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 삽입 정렬 (algorithm | insertion sort)
-createdDate: "2019-05-20"
-updatedDate: "2019-06-07"
+createdDate: '2019-05-20'
+updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
@@ -34,23 +34,23 @@ N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 �
 
 ```javascript
 const insertionSort = (arr = []) => {
-  if (!arr.length) return console.log("oops!");
+  if (!arr.length) return console.log('oops!')
 
   for (let i = 1; i < arr.length; i++) {
-    let temp = arr[i];
-    let j;
+    let temp = arr[i]
+    let j
 
     for (j = i - 1; j >= 0 && arr[j] > temp; j--) {
-      arr[j + 1] = arr[j];
+      arr[j + 1] = arr[j]
     }
 
-    arr[j + 1] = temp;
+    arr[j + 1] = temp
   }
 
-  return console.log(arr);
-};
+  return console.log(arr)
+}
 
-insertionSort([3, 1, 8, 5, 20, 15]);
+insertionSort([3, 1, 8, 5, 20, 15])
 // [ 1, 3, 5, 8, 15, 20 ]
 ```
 

@@ -1,12 +1,12 @@
-import { PAGE_SIZE } from "@common/constants";
-import { Post } from "@common/interfaces";
-import Pagination from "@components/molecules/Pagination";
-import PostThumbnail from "@components/molecules/PostThumbnail";
-import { usePagination } from "@hooks/usePagination";
-import { FC } from "react";
+import { PAGE_SIZE } from '@common/constants'
+import { Post } from '@common/interfaces'
+import Pagination from '@components/molecules/Pagination'
+import PostThumbnail from '@components/molecules/PostThumbnail'
+import { usePagination } from '@hooks/usePagination'
+import { FC } from 'react'
 
 interface Props {
-  posts: Array<Post>;
+  posts: Array<Post>
 }
 
 const Posts: FC<Props> = ({ posts }) => {
@@ -21,7 +21,7 @@ const Posts: FC<Props> = ({ posts }) => {
   } = usePagination({
     data: posts,
     pageSize: PAGE_SIZE,
-  });
+  })
 
   return (
     <>
@@ -36,7 +36,7 @@ const Posts: FC<Props> = ({ posts }) => {
         pageNumbers={pageNumbers}
       />
     </>
-  );
-};
+  )
+}
 
-export default Posts;
+export default Posts

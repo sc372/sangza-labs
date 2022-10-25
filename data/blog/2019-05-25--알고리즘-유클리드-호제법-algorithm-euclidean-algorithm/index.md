@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 유클리드 호제법 (algorithm | euclidean algorithm)
-createdDate: "2019-05-25"
-updatedDate: "2019-06-07"
+createdDate: '2019-05-25'
+updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
@@ -41,36 +41,36 @@ draft: false
 
 ```javascript
 const euclideanAlgorithm = (x, y) => {
-  let temp, r;
+  let temp, r
 
   // 큰값을 x 에 담는다.
   if (x < y) {
-    temp = x;
-    x = y;
-    y = temp;
+    temp = x
+    x = y
+    y = temp
   }
 
   // 나머지가 0 이 되기 전까지 반복문을 실행한다.
   while (y !== 0) {
-    r = x % y;
-    x = y;
-    y = r;
+    r = x % y
+    x = y
+    y = r
   }
 
-  return x;
-};
+  return x
+}
 
 // 재귀적 방법
 const recEuclideanAlgorithm = (x, y) => {
-  if (y === 0) return x;
-  else return recEuclideanAlgorithm(y, x % y);
-};
+  if (y === 0) return x
+  else return recEuclideanAlgorithm(y, x % y)
+}
 
-const getGratestCommonDivisor = euclideanAlgorithm(1029, 1071);
-const getGratestCommonDivisorWithRec = recEuclideanAlgorithm(73870, 10383800);
+const getGratestCommonDivisor = euclideanAlgorithm(1029, 1071)
+const getGratestCommonDivisorWithRec = recEuclideanAlgorithm(73870, 10383800)
 
-console.log(getGratestCommonDivisor);
+console.log(getGratestCommonDivisor)
 // 21
-console.log(getGratestCommonDivisorWithRec);
+console.log(getGratestCommonDivisorWithRec)
 // 10
 ```

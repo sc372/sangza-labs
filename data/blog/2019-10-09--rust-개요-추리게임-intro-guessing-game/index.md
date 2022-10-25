@@ -1,7 +1,7 @@
 ---
 title: rust | 개요 & 추리게임 (intro & guessing game)
-createdDate: "2019-10-09"
-updatedDate: "2019-10-09"
+createdDate: '2019-10-09'
+updatedDate: '2019-10-09'
 author: sangza
 tags:
   - rust

@@ -1,12 +1,12 @@
-import { FC } from "react";
-import styles from "./styles.module.css";
+import { FC } from 'react'
+import styles from './styles.module.css'
 
 interface Props {
-  date: string;
+  date: string
 }
 
 const Date: FC<Props> = ({ date }) => {
-  return <div>{date}</div>;
-};
+  return <div>{date}</div>
+}
 
-export default Date;
+export default Date

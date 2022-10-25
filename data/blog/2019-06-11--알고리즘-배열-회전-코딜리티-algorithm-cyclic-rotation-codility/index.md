@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 배열 회전 [코딜리티] (algorithm | CyclicRotation [codility])
-createdDate: "2019-06-11"
-updatedDate: "2019-06-11"
+createdDate: '2019-06-11'
+updatedDate: '2019-06-11'
 author: sangza
 tags:
   - algorithm
@@ -24,18 +24,18 @@ draft: false
 ```javascript
 function solution(A, K) {
   // 배열 A의 개수와 K 의 수가 같거나 K 가 0 일 경우에는 배열 A 를 그대로 리턴한다.
-  if (A.length === K || K === 0) return A;
+  if (A.length === K || K === 0) return A
 
   // K 가 배열 A 의 개수보다 큰 수 일 경우가 있어서 K 를 A 의 개수로 나눈 나머지를 k 에 담는다.
-  let k = K % A.length;
+  let k = K % A.length
 
   // 배열 A의 뒤에서 부터 k 만큼의 원소를 잘라내고 T 에 담는다.
-  const T = A.splice(0, A.length - k);
+  const T = A.splice(0, A.length - k)
 
   // 배열 A의 뒤에서 부터 k 만큼의 원소를 H 에 담는다.
-  const H = A.splice(A.length - k, A.length);
+  const H = A.splice(A.length - k, A.length)
 
   // 각 T, H 를 위치에 맞게 배열을 만들고 리턴한다.
-  return [...H, ...T];
+  return [...H, ...T]
 }
 ```

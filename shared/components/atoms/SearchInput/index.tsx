@@ -1,11 +1,11 @@
-import { ChangeEvent, FC, KeyboardEvent } from "react";
-import { RiSearch2Line } from "react-icons/ri";
-import styles from "./styles.module.css";
+import { ChangeEvent, FC, KeyboardEvent } from 'react'
+import { RiSearch2Line } from 'react-icons/ri'
+import styles from './styles.module.css'
 
 interface Props {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  onClick: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void
+  onClick: () => void
 }
 
 const SearchInput: FC<Props> = ({ onChange, onClick, onKeyDown }) => {
@@ -23,7 +23,7 @@ const SearchInput: FC<Props> = ({ onChange, onClick, onKeyDown }) => {
         onClick={onClick}
       />
     </div>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput

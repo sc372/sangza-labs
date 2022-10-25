@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react'
 
 interface Props {
-  onPageChange: (pageNum: number) => void;
-  currentPage: number;
-  isPreview: boolean;
-  isNext: boolean;
-  pageNumbers: Array<number>;
+  onPageChange: (pageNum: number) => void
+  currentPage: number
+  isPreview: boolean
+  isNext: boolean
+  pageNumbers: Array<number>
 }
 
 const Pagination: FC<Props> = ({
@@ -117,8 +117,8 @@ const Pagination: FC<Props> = ({
         </ul>
       </nav>
     </div>
-  );
+  )
   // return <Link href="/"></Link>;
-};
+}
 
-export default Pagination;
+export default Pagination

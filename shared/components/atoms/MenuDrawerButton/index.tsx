@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { RiMenuFill } from "react-icons/ri";
+import { FC } from 'react'
+import { RiMenuFill } from 'react-icons/ri'
 
 const MenuDrawerButton: FC<
   React.DetailedHTMLProps<
@@ -11,7 +11,7 @@ const MenuDrawerButton: FC<
     <button onClick={onClick}>
       <RiMenuFill />
     </button>
-  );
-};
+  )
+}
 
-export default MenuDrawerButton;
+export default MenuDrawerButton

@@ -1,7 +1,7 @@
 ---
 title: bGlam | web-b2c
-createdDate: "2019-05-19"
-updatedDate: "2019-05-19"
+createdDate: '2019-05-19'
+updatedDate: '2019-05-19'
 author: sangza
 category: project
 project: bGlam
@@ -135,4 +135,4 @@ web-b2c
 
 ## 시연영상 (rehearse)
 
-[![bGlam B2C web](https://img.youtube.com/vi/wVIrlDs1w_8/0.jpg)](http://www.youtube.com/watch?v=wVIrlDs1w_8 "bGlam B2C web")
+[![bGlam B2C web](https://img.youtube.com/vi/wVIrlDs1w_8/0.jpg)](http://www.youtube.com/watch?v=wVIrlDs1w_8 'bGlam B2C web')

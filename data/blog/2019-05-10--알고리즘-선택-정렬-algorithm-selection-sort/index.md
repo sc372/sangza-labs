@@ -1,7 +1,7 @@
 ---
 title: 알고리즘 | 선택 정렬 (algorithm | selection sort)
-createdDate: "2019-05-10"
-updatedDate: "2019-06-07"
+createdDate: '2019-05-10'
+updatedDate: '2019-06-07'
 author: sangza
 tags:
   - algorithm
@@ -41,32 +41,32 @@ N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 �
 
 ```js
 const selectionSort = (arr = []) => {
-  if (!arr.length) return console.log("oops!");
+  if (!arr.length) return console.log('oops!')
 
   for (let i = 0; i < arr.length - 1; i++) {
-    let min = i;
-    let temp;
+    let min = i
+    let temp
 
     // 첫번째 인덱스를 제외한 배열을 for 문으로 순회함
     for (let j = i + 1; j < arr.length; j++) {
       // 첫번째 인덱스 보다 작은 값이 나오면 해당 인덱스를 min 에 대입함
       if (arr[min] > arr[j]) {
-        min = j;
+        min = j
       }
     }
 
     // 가장 작은 값의 인덱스(min)의 값을 temp 에 담아둠
-    temp = arr[min];
+    temp = arr[min]
     // 첫번째 인덱스의 값을 가장 작은 값의 인덱스에 대입함
-    arr[min] = arr[i];
+    arr[min] = arr[i]
     // 첫번째 인덱스에 가장 작은 값을 담아둔 temp 를 대입함
-    arr[i] = temp;
+    arr[i] = temp
   }
 
-  return arr;
-};
+  return arr
+}
 
-console.log(selectionSort([5, 3, 6, 1]));
+console.log(selectionSort([5, 3, 6, 1]))
 // [ 1, 3, 5, 6 ]
 ```
 
