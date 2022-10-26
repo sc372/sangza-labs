@@ -6,26 +6,28 @@ const MenuDrawer = () => {
   const { isOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
     <nav
-      className={`${styles['menu-drawer-wrapper']} ${
+      className={`${styles['menu-drawer']} ${
         isOpenMenuDrawer && styles['open']
       }`}
     >
-      <h2 className={`${styles['profile-title']}`}>sangza</h2>
-      <div className={`${styles['profile-card-container']}`}>
-        <div className={`${styles['profile-card-image']}`}>
+      <h2 className={`${styles['menu-drawer__title']}`}>sangza</h2>
+      <div className={`${styles['menu-drawer__card']}`}>
+        <div className={`${styles['menu-drawer__card--image']}`}>
           <Image
             src="/static/images/profile.jpg"
             alt="profile"
             width={500}
             height={600}
           />
-          <div className={`${styles['profile-meta-wrapper']}`}>
-            <h3 className={`${styles['profile-meta-name']}`}>sangza</h3>
-            <p className={`${styles['profile-meta-description']}`}>
+          <div className={`${styles['menu-drawer__card--meta']}`}>
+            <h3 className={`${styles['menu-drawer__card--meta-name']}`}>
+              sangza
+            </h3>
+            <p className={`${styles['menu-drawer__card--meta-description']}`}>
               web engineer
             </p>
           </div>
-          <div className={`${styles['profile-wrapper']}`}></div>
+          {/* <div className={`${styles['profile-wrapper']}`}></div> */}
         </div>
       </div>
     </nav>

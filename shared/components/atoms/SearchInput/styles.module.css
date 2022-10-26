@@ -1,11 +1,11 @@
-.search-input-wrapper {
+.search-input {
   position: relative;
   width: 490px;
   display: block;
   margin: 0 auto;
 }
 
-.search-input {
+.search-input__input {
   margin: 0 auto;
   width: 100%;
   height: 45px;
@@ -16,28 +16,28 @@
   outline: none;
 }
 
-.search-input:focus {
+.search-input__input:focus {
   border: 1px solid #008abf;
   transition: 0.35s ease;
   color: #008abf;
 }
 
-.search-input:focus::-webkit-input-placeholder {
+.search-input__input:focus::-webkit-input-placeholder {
   transition: opacity 0.45s ease;
   opacity: 0;
 }
 
-.search-input:focus::-moz-placeholder {
+.search-input__input:focus::-moz-placeholder {
   transition: opacity 0.45s ease;
   opacity: 0;
 }
 
-.search-input:focus:-ms-placeholder {
+.search-input__input:focus:-ms-placeholder {
   transition: opacity 0.45s ease;
   opacity: 0;
 }
 
-.search-input-icon {
+.search-input__input--icon {
   position: absolute;
   width: 25px;
   height: 25px;

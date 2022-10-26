@@ -1,4 +1,4 @@
-.menu-drawer-wrapper {
+.menu-drawer {
   position: fixed;
   overflow: auto;
   height: 100%;
@@ -13,44 +13,40 @@
   transform: translateX(0);
   transition: transform 0.1s ease-out;
 }
-.menu-drawer-wrapper.open {
+.menu-drawer.open {
   transform: translateX(100%);
   box-shadow: 2px 0 8px rgb(0 0 0 / 15%);
 }
 
-.profile-title {
+.menu-drawer__title {
   font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 10px;
   color: black;
 }
 
-.profile-card-container {
+.menu-drawer__card {
   height: calc(12vw + 260px);
   position: relative;
   border: 1px solid #e8e8e8;
   box-sizing: border-box;
 }
 
-.profile-card-image {
+.menu-drawer__card--image {
   height: calc(12vw + 260px);
 }
 
-.profile-wrapper {
+.menu-drawer__card--meta {
   padding: calc(1vw);
 }
-.profile-meta {
-  color: black;
-}
-
-.profile-title {
+.menu-drawer__card--meta-name {
   font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 10px;
   color: black;
 }
 
-.profile-description {
+.menu-drawer__card--meta-description {
   color: rgb(129, 133, 137);
   font-style: italic;
 }
