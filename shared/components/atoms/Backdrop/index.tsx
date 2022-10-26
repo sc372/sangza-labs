@@ -5,7 +5,7 @@ const Backdrop = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
     <div
-      className={`${styles.backdrop}`}
+      className={`${styles['backdrop']}`}
       onClick={toggleIsOpenMenuDrawer}
     ></div>
   )

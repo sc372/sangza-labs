@@ -10,15 +10,15 @@ interface Props {
 
 const SearchInput: FC<Props> = ({ onChange, onClick, onKeyDown }) => {
   return (
-    <div className={`${styles.searchInputWrapper}`}>
+    <div className={`${styles['searchInputWrapper']}`}>
       <input
-        className={`${styles.searchInput}`}
+        className={`${styles['search-input']}`}
         placeholder="검색어를 입력하세요."
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
       <RiSearch2Line
-        className={`${styles.searchInputIcon}`}
+        className={`${styles['search-input-icon']}`}
         type="submit"
         onClick={onClick}
       />

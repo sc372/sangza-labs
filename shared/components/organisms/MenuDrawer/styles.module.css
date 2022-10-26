@@ -1,4 +1,4 @@
-.menuDrawer {
+.menu-drawer-wrapper {
   position: fixed;
   overflow: auto;
   height: 100%;
@@ -13,37 +13,44 @@
   transform: translateX(0);
   transition: transform 0.1s ease-out;
 }
-.menuDrawer.open {
+.menu-drawer-wrapper.open {
   transform: translateX(100%);
   box-shadow: 2px 0 8px rgb(0 0 0 / 15%);
 }
 
-.profileTitle {
+.profile-title {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-bottom: 10px;
   color: black;
 }
 
-.profileCardContainer {
+.profile-card-container {
   height: calc(12vw + 260px);
   position: relative;
   border: 1px solid #e8e8e8;
   box-sizing: border-box;
 }
 
-.profileCardImage {
+.profile-card-image {
   height: calc(12vw + 260px);
 }
 
-.profileWrapper {
+.profile-wrapper {
   padding: calc(1vw);
 }
-.profileMeta {
+.profile-meta {
   color: black;
 }
 
-.profileDescription {
+.profile-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.profile-description {
   color: rgb(129, 133, 137);
   font-style: italic;
 }
