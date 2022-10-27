@@ -1,6 +1,6 @@
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
-import Posts from '@components/organisms/Posts'
+import Timeline from '@components/molecules/Timeline'
 import { getAllProjectPosts } from '@utils/doc'
 import { GetStaticProps, NextPage } from 'next'
 
@@ -11,7 +11,8 @@ interface Props {
 const ProjectPage: NextPage<Props> = ({ posts }) => {
   return (
     <>
-      <Posts posts={posts} />
+      {/* <Posts posts={posts} /> */}
+      <Timeline />
     </>
   )
 }
