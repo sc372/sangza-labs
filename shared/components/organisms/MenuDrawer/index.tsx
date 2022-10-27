@@ -42,6 +42,9 @@ const MenuDrawer = () => {
             <Link href={'/'}>home</Link>
           </div>
           <div onClick={closeIsOpenMenuDrawer}>
+            <Link href={'/introduce'}>introduce</Link>
+          </div>
+          <div onClick={closeIsOpenMenuDrawer}>
             <Link href={'/project'}>project</Link>
           </div>
         </div>
