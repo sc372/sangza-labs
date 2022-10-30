@@ -10,12 +10,10 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
 
   return (
     <>
-      <main className="py-5 px-14">
-        <Header />
-        <MenuDrawer />
-        {isOpenMenuDrawer && <Backdrop />}
-        {children}
-      </main>
+      <Header />
+      <MenuDrawer />
+      {isOpenMenuDrawer && <Backdrop />}
+      <main className="py-24 px-14">{children}</main>
     </>
   )
 }

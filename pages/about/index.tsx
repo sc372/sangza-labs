@@ -9,7 +9,7 @@ interface Props {
   posts: Array<Post>
 }
 
-const IntroducePage: NextPage<Props> = ({ posts }) => {
+const AboutPage: NextPage<Props> = ({ posts }) => {
   return (
     <>
       {/* <Posts posts={posts} /> */}
@@ -27,8 +27,6 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default IntroducePage
+export default AboutPage
 // @ts-ignore
-IntroducePage.getLayout = (page: ReactElement) => (
-  <MainLayout>{page}</MainLayout>
-)
+AboutPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>

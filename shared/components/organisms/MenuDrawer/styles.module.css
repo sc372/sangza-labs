@@ -26,7 +26,6 @@
 }
 
 .menu-drawer__card {
-  height: calc(16vw + 220px);
   position: relative;
   border: 1px solid #e8e8e8;
   box-sizing: border-box;
@@ -53,11 +52,11 @@
   color: rgb(129, 133, 137);
   display: flex;
   justify-content: flex-end;
-  padding: 0 calc(0.5vw);
+  padding: calc(0.5vw) calc(0.2vw);
 }
 
 .menu-drawer__card--contact div {
-  margin: calc(1vw + 1px);
+  margin: calc(1vw);
   cursor: pointer;
 }
 .menu-drawer__card--contact div:hover {

@@ -37,16 +37,13 @@ const MenuDrawer = () => {
             <RiMailLine size={30} />
           </div>
         </div>
-        <div className={`${styles['menu-drawer__list']}`}>
-          <div onClick={closeIsOpenMenuDrawer}>
-            <Link href={'/'}>home</Link>
-          </div>
-          <div onClick={closeIsOpenMenuDrawer}>
-            <Link href={'/introduce'}>introduce</Link>
-          </div>
-          <div onClick={closeIsOpenMenuDrawer}>
-            <Link href={'/project'}>project</Link>
-          </div>
+      </div>
+      <div className={`${styles['menu-drawer__list']}`}>
+        <div onClick={closeIsOpenMenuDrawer}>
+          <Link href={'/'}>home</Link>
+        </div>
+        <div onClick={closeIsOpenMenuDrawer}>
+          <Link href={'/about'}>about</Link>
         </div>
       </div>
     </nav>

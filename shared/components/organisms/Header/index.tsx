@@ -5,22 +5,23 @@ import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 const Header = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
-    <>
-      <div className="min-h-full">
-        <div className="flex items-center justify-between h-16">
+    <nav className="px-14 py-2.5 h-18 w-full z-50 fixed bg-gray-100">
+      <div className="py-2.5">
+        {/* <div className="flex items-center justify-between h-16"> */}
+        <div className="flex">
+          <div className="flex items-center mr-5">
+            <MenuIconButton
+              onClick={toggleIsOpenMenuDrawer}
+              height="calc(0.7vw + 1rem)"
+              width="calc(0.7vw + 1rem)"
+            />
+          </div>
           <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <MenuIconButton onClick={toggleIsOpenMenuDrawer} />
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Title />
-              </div>
-            </div>
+            <Title fontSize="calc(0.7vw + 1.2rem)" />
           </div>
         </div>
       </div>
-    </>
+    </nav>
   )
 }
 

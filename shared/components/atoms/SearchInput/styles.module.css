@@ -1,6 +1,7 @@
 .search-input {
   position: relative;
-  width: 490px;
+  max-width: 490px;
+  /* min-width: 100px; */
   display: block;
   margin: 0 auto;
 }
