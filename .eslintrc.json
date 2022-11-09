@@ -1,5 +1,5 @@
 {
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "unused-imports", "import"],
   "env": {
     "browser": true,
     "es2021": true,
@@ -10,7 +10,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": 13,
     "sourceType": "module"
   },
   "extends": [
@@ -28,6 +28,58 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-var-requires": "off",
-    "import/no-anonymous-default-export": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "import/no-anonymous-default-export": "off",
+    "unused-imports/no-unused-imports": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["sibling", "parent", "index"],
+          "type",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react*,react*/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@saas-fe/**/*.style",
+            "group": "unknown"
+          },
+          {
+            "pattern": "@pages/**/*.style",
+            "group": "unknown"
+          },
+          {
+            "pattern": "@components/**/*.style",
+            "group": "unknown"
+          },
+          {
+            "pattern": "./**/*.style",
+            "group": "unknown"
+          },
+          {
+            "pattern": "../**/*.style",
+            "group": "unknown"
+          },
+          {
+            "pattern": "*.style",
+            "group": "unknown"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react", "unknown"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

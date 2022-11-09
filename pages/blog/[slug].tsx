@@ -1,7 +1,3 @@
-import { Post } from '@common/interfaces'
-import MainLayout from '@components/layouts/MainLayout'
-import { getAllPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
-import { markdownToHtml } from '@utils/markdown'
 import fp from 'lodash/fp'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import {
@@ -9,6 +5,11 @@ import {
   MDXRemoteProps,
   MDXRemoteSerializeResult,
 } from 'next-mdx-remote'
+
+import { Post } from '@common/interfaces'
+import MainLayout from '@components/layouts/MainLayout'
+import { getAllPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
+import { markdownToHtml } from '@utils/markdown'
 
 type Props = {
   slug: string

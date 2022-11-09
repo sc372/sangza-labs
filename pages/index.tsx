@@ -1,11 +1,13 @@
+import { ReactElement } from 'react'
+
 import { Post } from '@common/interfaces'
 import SearchInput from '@components/atoms/SearchInput'
 import MainLayout from '@components/layouts/MainLayout'
 import Posts from '@components/organisms/Posts'
 import { useSearchText } from '@hooks/useSearchText'
 import { getAllPosts } from '@utils/doc'
+
 import type { GetStaticProps, NextPage } from 'next'
-import { ReactElement } from 'react'
 
 interface Props {
   posts: Array<Post>

@@ -1,7 +1,8 @@
+import { GetStaticProps, NextPage } from 'next'
+
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
 import { getAllProjectPosts } from '@utils/doc'
-import { GetStaticProps, NextPage } from 'next'
 
 interface Props {
   posts: Array<Post>

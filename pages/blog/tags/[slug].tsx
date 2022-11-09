@@ -1,8 +1,9 @@
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
 import Posts from '@components/organisms/Posts'
 import { getAllTags, getPostsByTag } from '@utils/doc'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 type Props = {
   slug: string
