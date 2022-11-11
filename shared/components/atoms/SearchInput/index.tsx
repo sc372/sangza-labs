@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { RiSearch2Line } from 'react-icons/ri'
+
 import styles from './styles.module.css'
 
 interface Props {

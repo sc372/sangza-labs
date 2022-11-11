@@ -1,7 +1,10 @@
-import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
+import { RiGithubFill, RiMailLine } from 'react-icons/ri'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { RiGithubFill, RiMailLine } from 'react-icons/ri'
+
+import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
+
 import styles from './styles.module.css'
 
 const MenuDrawer = () => {
@@ -26,7 +29,7 @@ const MenuDrawer = () => {
             sangza
           </h3>
           <p className={`${styles['menu-drawer__card--meta-description']}`}>
-            web engineer
+            software engineer
           </p>
         </div>
         <div className={`${styles['menu-drawer__card--contact']}`}>
