@@ -1,9 +1,11 @@
+import { FC } from 'react'
+
 import { WrapperComponentProps } from '@common/interfaces'
 import Backdrop from '@components/atoms/Backdrop'
+import Footer from '@components/organisms/Footer'
 import Header from '@components/organisms/Header'
 import MenuDrawer from '@components/organisms/MenuDrawer'
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
-import { FC } from 'react'
 
 const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
   const { isOpenMenuDrawer } = useIsOpenMenuDrawerAction()
@@ -13,7 +15,8 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
       <Header />
       <MenuDrawer />
       {isOpenMenuDrawer && <Backdrop />}
-      <main className="py-24 px-14">{children}</main>
+      <main className="pt-24 pb-10 px-14">{children}</main>
+      <Footer />
     </>
   )
 }

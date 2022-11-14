@@ -13,7 +13,7 @@ type Props = {
 const TagPage: NextPage<Props> = ({ slug, posts }) => {
   return (
     <>
-      <div># {slug}</div>
+      <div className="text-3xl"># {slug}</div>
       <Posts posts={posts} />
     </>
   )

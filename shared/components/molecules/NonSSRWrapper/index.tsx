@@ -1,11 +1,13 @@
-import { WrapperComponentProps } from '@common/interfaces'
-import dynamic from 'next/dynamic'
 import { FC } from 'react'
 
-const NonSSRWrapper: FC<WrapperComponentProps> = ({ children }) => (
+import dynamic from 'next/dynamic'
+
+import { WrapperComponentProps } from '@common/interfaces'
+
+const NonSsrWrapper: FC<WrapperComponentProps> = ({ children }) => (
   <>{children}</>
 )
 
-export default dynamic(() => Promise.resolve(NonSSRWrapper), {
+export default dynamic(() => Promise.resolve(NonSsrWrapper), {
   ssr: false,
 })

@@ -1,23 +1,19 @@
-import fp from 'lodash/fp'
+import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import {
-  MDXRemote,
-  MDXRemoteProps,
-  MDXRemoteSerializeResult,
-} from 'next-mdx-remote'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { Post } from '@common/interfaces'
+import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
 import { getAllPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 type Props = {
   slug: string
+  frontMatter: Meta
   mdxContent: MDXRemoteSerializeResult
-} & MDXRemoteProps
+}
 
-const BlogDetailPage: NextPage<Props> = ({ slug, frontmatter, mdxContent }) => {
-  console.log(mdxContent)
+const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
       <MDXRemote {...mdxContent} />
@@ -49,8 +45,11 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     frontMatter: post.meta,
     mdxContent: await markdownToHtml(post.content),
   })
-  const props = await fp.flow([await getPost, await toResult])(
-    getBlogPath(slug)
+
+  const props = await fpFunction.pipe(
+    getBlogPath(slug),
+    await getPost,
+    await toResult
   )
 
   return {

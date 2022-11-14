@@ -17,6 +17,7 @@
     "change-case": "^4.1.2",
     "dayjs": "^1.11.5",
     "fenceparser": "^2.2.0",
+    "fp-ts": "^2.13.1",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "next": "12.2.5",
