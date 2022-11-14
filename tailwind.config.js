@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    colors: {
+    transparent: 'transparent',
+    primary: '#daa520',
+    secondary: '#e9ecef',
+    tertiary: '#808080',
+    success: '#4bb543',
+    warning: '#ffc409',
+    danger: '#eb445a',
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 }

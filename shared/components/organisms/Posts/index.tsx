@@ -28,11 +28,11 @@ const Posts: FC<Props> = ({ posts }) => {
     <div className="pt-5">
       <div>
         {dataForPage?.map((post: Post, i: number) => (
-          <PostThumbnail key={i} post={post} className="py-2" />
+          <PostThumbnail key={i} post={post} className="py-1" />
         ))}
       </div>
       <Pagination
-        className="pt-10"
+        className="fixed left-0 right-0 bottom-20"
         onPageChange={onPageChange}
         currentPage={currentPage}
         isPreview={isPreview}

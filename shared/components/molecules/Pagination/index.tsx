@@ -66,7 +66,11 @@ const Pagination: FC<Props> = ({
           </li>
           {pageNumbers.map((number, i) => (
             <li onClick={() => onPageChange(number)} key={i}>
-              <div className="relative block items-center px-4 py-2 rounded border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none cursor-pointer">
+              <div
+                className={`
+                ${number === currentPage && 'text-primary'}
+              relative block items-center px-4 py-2 rounded border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none cursor-pointer`}
+              >
                 {number}
               </div>
             </li>
