@@ -1,5 +1,5 @@
-import '@styles/reset.css'
-import '@styles/globals.css'
+import '@styles/reset.scss'
+import '@styles/globals.scss'
 import { ReactNode } from 'react'
 
 import dayjs from 'dayjs'

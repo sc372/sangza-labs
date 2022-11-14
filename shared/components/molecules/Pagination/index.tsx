@@ -6,6 +6,7 @@ interface Props {
   isPreview: boolean
   isNext: boolean
   pageNumbers: Array<number>
+  className?: string
 }
 
 const Pagination: FC<Props> = ({
@@ -14,9 +15,10 @@ const Pagination: FC<Props> = ({
   isPreview,
   isNext,
   pageNumbers,
+  className,
 }) => {
   return (
-    <div className="flex justify-center">
+    <div className={`${className} flex justify-center`}>
       <nav aria-label="Pagination">
         <ul className="flex list-style-none">
           <li

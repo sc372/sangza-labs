@@ -1,9 +1,10 @@
+import { FC } from 'react'
+
 import { PAGE_SIZE } from '@common/constants'
 import { Post } from '@common/interfaces'
 import Pagination from '@components/molecules/Pagination'
 import PostThumbnail from '@components/molecules/PostThumbnail'
 import { usePagination } from '@hooks/usePagination'
-import { FC } from 'react'
 
 interface Props {
   posts: Array<Post>
@@ -24,18 +25,19 @@ const Posts: FC<Props> = ({ posts }) => {
   })
 
   return (
-    <>
+    <div className="py-10">
       {dataForPage?.map((post: Post, i: number) => (
         <PostThumbnail key={i} post={post} />
       ))}
       <Pagination
+        className="py-10"
         onPageChange={onPageChange}
         currentPage={currentPage}
         isPreview={isPreview}
         isNext={isNext}
         pageNumbers={pageNumbers}
       />
-    </>
+    </div>
   )
 }
 

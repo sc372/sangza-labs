@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 const MenuDrawer = () => {
   const { isOpenMenuDrawer, closeIsOpenMenuDrawer } =
