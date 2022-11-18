@@ -9,15 +9,15 @@ import { RecoilRoot } from 'recoil'
 
 import type { AppProps } from 'next/app'
 
-type TPage<P = {}> = NextPage<P> & {
+type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode
 }
 
-type TProps = AppProps & {
-  Component: TPage
+type Props = AppProps & {
+  Component: Page
 }
 
-function MyApp({ Component, pageProps }: TProps) {
+function App({ Component, pageProps }: Props) {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
 
   dayjs.locale('ko')
@@ -31,4 +31,4 @@ function MyApp({ Component, pageProps }: TProps) {
   )
 }
 
-export default MyApp
+export default App
