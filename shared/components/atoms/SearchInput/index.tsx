@@ -18,7 +18,7 @@ const SearchInput: FC<Props> = ({ onChange, onClick, onKeyDown }) => {
         onKeyDown={onKeyDown}
       />
       <RiSearch2Line
-        className={`${styles['icon']}`}
+        className={`${styles['search-input__icon']}`}
         type="submit"
         onClick={onClick}
       />

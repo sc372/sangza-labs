@@ -13,7 +13,7 @@ const MenuDrawer = () => {
   return (
     <nav
       className={`${styles['menu-drawer']} ${
-        isOpenMenuDrawer && styles['open']
+        isOpenMenuDrawer && styles['menu-drawer__open']
       }`}
     >
       <h2 className={`${styles['menu-drawer__title']}`}>think</h2>
@@ -24,15 +24,15 @@ const MenuDrawer = () => {
           width={450}
           height={500}
         />
-        <div className={`${styles['menu-drawer__card--meta']}`}>
-          <h3 className={`${styles['menu-drawer__card--meta-name']}`}>
+        <div className={`${styles['menu-drawer__card__meta']}`}>
+          <h3 className={`${styles['menu-drawer__card__meta__name']}`}>
             sangza
           </h3>
-          <p className={`${styles['menu-drawer__card--meta-description']}`}>
+          <p className={`${styles['menu-drawer__card__meta__description']}`}>
             software engineer
           </p>
         </div>
-        <div className={`${styles['menu-drawer__card--contact']}`}>
+        <div className={`${styles['menu-drawer__card__contact']}`}>
           <div>
             <RiGithubFill size={30} />
           </div>

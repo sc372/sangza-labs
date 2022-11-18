@@ -2,78 +2,78 @@
   position: fixed;
   overflow: auto;
   height: 100%;
-  width: calc(10% + 180px);
-  background: #ffffff;
+  width: calc(10% + 10rem);
+  background: $background;
   top: 0;
   right: 100%;
   z-index: 200;
-  padding: 20px 30px;
+  padding: 1vw 2vw;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.5);
   transform: translateX(0);
   transition: transform 0.1s ease-out;
-}
-.menu-drawer.open {
-  transform: translateX(100%);
-  box-shadow: 2px 0 8px rgb(0 0 0 / 15%);
-}
 
-.menu-drawer__title {
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: black;
-}
+  &__open {
+    transform: translateX(100%);
+    box-shadow: 2px 0 8px rgb(0 0 0 / 15%);
+  }
 
-.menu-drawer__card {
-  position: relative;
-  border: 1px solid #e8e8e8;
-  box-sizing: border-box;
-}
+  &__title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
 
-.menu-drawer__card--meta {
-  padding: calc(1vw);
-}
+  &__card {
+    position: relative;
+    border: 1px solid $secondary;
+    box-sizing: border-box;
 
-.menu-drawer__card--meta-name {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: calc(0.5vw + 5px);
-  color: black;
-}
+    &__meta {
+      padding: calc(1vw);
 
-.menu-drawer__card--meta-description {
-  color: rgb(129, 133, 137);
-  font-style: italic;
-  margin-bottom: calc(0.3vw);
-}
+      &__name {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: calc(0.5vw + 5px);
+      }
 
-.menu-drawer__card--contact {
-  color: rgb(129, 133, 137);
-  display: flex;
-  justify-content: flex-end;
-  padding: calc(0.5vw) calc(0.2vw);
-}
+      &__description {
+        color: $tertiary;
+        font-style: italic;
+        margin-bottom: calc(0.3vw);
+      }
+    }
 
-.menu-drawer__card--contact div {
-  margin: calc(1vw);
-  cursor: pointer;
-}
-.menu-drawer__card--contact div:hover {
-  color: orange;
-}
+    &__contact {
+      color: $tertiary;
+      display: flex;
+      justify-content: flex-end;
+      padding: calc(0.5vw) calc(0.2vw);
 
-.menu-drawer__list {
-  color: rgb(129, 133, 137);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: calc(1vw + 10px);
-}
+      div {
+        margin: calc(1vw);
+        cursor: pointer;
 
-.menu-drawer__list div {
-  margin: calc(0.3vw) 0;
-}
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
 
-.menu-drawer__list div:hover {
-  color: orange;
+  &__list {
+    color: rgb(129, 133, 137);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: calc(1vw + 10px);
+
+    div {
+      margin: calc(0.3vw) 0;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
 }
