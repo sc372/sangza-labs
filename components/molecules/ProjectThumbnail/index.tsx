@@ -1,10 +1,12 @@
+import { FC } from 'react'
+import { RiPriceTag3Line } from 'react-icons/ri'
+
+import Link from 'next/link'
+
 import { Post } from '@common/interfaces'
 import Date from '@components/atoms/Date'
 import Tag from '@components/atoms/Tag'
 import { getSlug } from '@utils/doc'
-import Link from 'next/link'
-import { FC } from 'react'
-import { RiPriceTag3Line } from 'react-icons/ri'
 
 interface Props {
   project: Post

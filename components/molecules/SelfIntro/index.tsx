@@ -2,12 +2,10 @@ import { FC } from 'react'
 
 import Image from 'next/image'
 
-import styles from './styles.module.scss'
-
 const SelfIIntro: FC = () => {
   return (
-    <div className={`${styles['self-intro']}`}>
-      <div className={`${styles['self-intro__image']}`}>
+    <div className="flex flex-row flex-wrap items-center justify-center">
+      <div className="h-[calc(15vw_+_20px)] w-[calc(15vw_+_20px)] overflow-hidden rounded-full">
         <Image
           src="/static/images/about.jpg"
           alt="profile"
@@ -16,7 +14,7 @@ const SelfIIntro: FC = () => {
           height={250}
         />
       </div>
-      <div className={`${styles['self-intro__description']}`}>
+      <div className="">
         slkjfdlsldkjflsdkjflkjsdlfjsdlkfjlskdjflkjdsljffffffffkds
         slkjfdlsldkjflsdkjflkjsdlfjsdlkfjlskdjflkjdsljffffffffkds
       </div>

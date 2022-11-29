@@ -1,12 +1,10 @@
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
-import styles from './styles.module.scss'
-
 const Backdrop = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
     <div
-      className={`${styles['backdrop']}`}
+      className="fixed top-0 right-0 z-[100] h-full w-full bg-backdrop"
       onClick={toggleIsOpenMenuDrawer}
     ></div>
   )

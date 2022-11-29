@@ -2,15 +2,16 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@common/*": ["shared/common/*"],
-      "@constants/*": ["shared/common/constants/*"],
-      "@components/*": ["shared/components/*"],
-      "@styles/*": ["shared/styles/*"],
-      "@utils/*": ["shared/utils/*"],
+      "@common/*": ["common/*"],
+      "@constants/*": ["common/constants/*"],
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"],
       "@pages/*": ["pages/*"],
-      "@modules/*": ["shared/modules/*"],
-      "@hooks/*": ["shared/hooks/*"],
-      "@types/*": ["shared/@types/*"]
+      "@modules/*": ["modules/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types/*": ["common/types/*"],
+      "@interfaces/*": ["common/interfaces/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

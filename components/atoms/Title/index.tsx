@@ -6,17 +6,15 @@ import Link from 'next/link'
 
 import NonSsrWrapper from '@components/molecules/NonSsrWrapper'
 
-import styles from './styles.module.scss'
-
 const Title: FC = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
   return (
     <Link href="/">
-      <div className={`${styles['title']}`}>
+      <div className="cursor-point flex flex-row text-[calc(0.7vw_+_1.2rem)]">
         <NonSsrWrapper>
           {isTabletOrMobile ? (
-            <div className={`${styles['title__logo']}`}>
+            <div className="flex flex-col justify-center">
               <Image
                 src="/static/images/logo.png"
                 alt="logo"
@@ -25,10 +23,10 @@ const Title: FC = () => {
               />
             </div>
           ) : (
-            <div className={`${styles['title__text']}`}>sangza</div>
+            <div className="flex flex-col justify-items-center">sangza</div>
           )}
         </NonSsrWrapper>
-        <div className={`${styles['title__text']}`}>
+        <div className="flex items-center justify-center">
           <div>&nbsp;|&nbsp;scientific thinking</div>
         </div>
       </div>
