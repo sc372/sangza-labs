@@ -6,7 +6,6 @@ import * as fpOrd from 'fp-ts/Ord'
 import * as fpString from 'fp-ts/string'
 import { sync } from 'glob'
 import matter from 'gray-matter'
-// import fp from 'lodash/fp'
 
 import { Meta, Post } from '@common/interfaces'
 
@@ -16,6 +15,9 @@ const BLOG = 'blog'
 
 export const getBlogPath = (slug: string) =>
   `${process.cwd()}/data/blog/${slug}/index.md`
+
+export const getProjectPath = (slug: string) =>
+  `${process.cwd()}/data/project/${slug}/index.md`
 
 export const getSlug = (slug: string) =>
   slug.split('/data')[1].replace('/index.md', '')
@@ -29,14 +31,9 @@ export function getPost(slug: string): Post {
 }
 
 export function getAllPosts(): Array<Post> {
-  console.log(fpString.Ord)
   const updateDate = fpFunction.pipe(fpString.Ord, fpOrd.contramap((post: Post) => post.meta?.updatedDate?.replace('-', '')))
 
   return fpFunction.pipe(sync(POSTS_PATH), fpArray.map(getPost), fpArray.sortBy([updateDate]), fpArray.reverse)
-
-  // return fp.flow([fp.map(getPost), fp.sortBy(sortBy), fp.reverse])(
-  //   sync(POSTS_PATH)
-  // )
 }
 
 export function getAllBlogPosts(): Array<Post> {

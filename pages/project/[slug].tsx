@@ -1,23 +1,64 @@
-import { GetStaticProps, NextPage } from 'next'
+import * as fpFunction from 'fp-ts/function'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { Post } from '@common/interfaces'
+import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
-import { getAllProjectPosts } from '@utils/doc'
+import {
+  getAllProjectPosts,
+  getPost,
+  getProjectPath,
+  getSlug,
+} from '@utils/doc'
+import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
-  posts: Array<Post>
+  slug: string
+  frontMatter: Meta
+  mdxContent: MDXRemoteSerializeResult
 }
 
-const ProjectPage: NextPage<Props> = ({ posts }) => {
-  console.log(posts)
-  return <></>
+const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
+  return (
+    <>
+      <MDXRemote {...mdxContent} />
+    </>
+  )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getAllProjectPosts()
+  const paths = posts.map((post) => ({
+    params: { slug: getSlug(post.slug) },
+  }))
+
   return {
-    props: {
-      posts: await getAllProjectPosts(),
-    },
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+interface Params {
+  [key: string]: string | undefined
+  slug: string
+}
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const { slug } = params as Params
+  const toResult = async (post: Post) => ({
+    slug: post.slug,
+    frontMatter: post.meta,
+    mdxContent: await markdownToHtml(post.content),
+  })
+
+  const props = await fpFunction.pipe(
+    getProjectPath(slug),
+    await getPost,
+    await toResult
+  )
+
+  return {
+    props,
   }
 }
 

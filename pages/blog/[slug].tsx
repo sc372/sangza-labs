@@ -4,10 +4,10 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/MainLayout'
-import { getAllPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
+import { getAllBlogPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
-type Props = {
+interface Props {
   slug: string
   frontMatter: Meta
   mdxContent: MDXRemoteSerializeResult
@@ -22,7 +22,7 @@ const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllBlogPosts()
   const paths = posts.map((post) => ({
     params: { slug: getSlug(post.slug) },
   }))

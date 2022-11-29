@@ -5,7 +5,7 @@ import MainLayout from '@components/layouts/MainLayout'
 import Posts from '@components/organisms/Posts'
 import { getAllTags, getPostsByTag } from '@utils/doc'
 
-type Props = {
+interface Props {
   slug: string
   posts: Array<Post>
 }
