@@ -27,12 +27,16 @@ const MenuDrawer = () => {
           <p className="mb-[0.3vw] italic text-tertiary">software engineer</p>
         </div>
         <div className="flex justify-end py-[0.5vw] px-[0.2vw] text-tertiary">
-          <div className="m-[1vw] cursor-pointer hover:text-primary">
-            <RiGithubFill size={30} />
-          </div>
-          <div className="m-[1vw] cursor-pointer hover:text-primary">
-            <RiMailLine size={30} />
-          </div>
+          <Link href="https://github.com/sc372" target="_blank">
+            <div className="m-[1vw] cursor-pointer hover:text-primary">
+              <RiGithubFill size={30} />
+            </div>
+          </Link>
+          <Link href="mailto:372lsc@gmail.com">
+            <div className="m-[1vw] cursor-pointer hover:text-primary">
+              <RiMailLine size={30} />
+            </div>
+          </Link>
         </div>
       </div>
       <div className="mt-[calc(1vw_+_10px)] flex flex-col items-end text-tertiary">

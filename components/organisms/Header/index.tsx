@@ -7,9 +7,9 @@ import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 const Header = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
-    <nav className="flex flex-col justify-center px-14 py-2.5 h-20 w-full z-50 fixed bg-white">
+    <nav className="fixed z-50 flex h-20 w-full flex-col justify-center bg-background px-14 py-2.5">
       <div className="flex flex-row items-center">
-        <div className="flex flex-col justify-center mr-5">
+        <div className="mr-5 flex flex-col justify-center">
           <MenuIconButton
             onClick={toggleIsOpenMenuDrawer}
             height="100%"

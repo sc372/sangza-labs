@@ -15,7 +15,7 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
       <Header />
       <MenuDrawer />
       {isOpenMenuDrawer && <Backdrop />}
-      <main className="pt-20 pb-10 px-14">{children}</main>
+      <main className="px-14 py-24">{children}</main>
       <Footer />
     </>
   )

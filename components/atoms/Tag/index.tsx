@@ -11,7 +11,9 @@ interface Props {
 const Tag: FC<Props> = ({ name, href, className }) => {
   return (
     <Link href={href}>
-      <div className="cursor-pointer rounded bg-secondary py-[0.05rem] px-2 ring-0 hover:bg-primary">
+      <div
+        className={`${className} cursor-pointer rounded bg-secondary py-[0.05rem] px-2 ring-1 ring-transparent hover:ring-primary`}
+      >
         {name}
       </div>
     </Link>
