@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
-import MainLayout from '@components/layouts/MainLayout'
-import Posts from '@components/organisms/Posts'
+import MainLayout from '@components/layouts/main-layout'
+import Posts from '@components/organisms/posts'
 import { getAllTags, getPostsByTag } from '@utils/doc'
 
 interface Props {

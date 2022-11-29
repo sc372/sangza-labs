@@ -1,9 +1,9 @@
 import { GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
-import MainLayout from '@components/layouts/MainLayout'
-import SelfIIntro from '@components/molecules/SelfIntro'
-import Timeline from '@components/molecules/Timeline'
+import MainLayout from '@components/layouts/main-layout'
+import SelfIIntro from '@components/molecules/self-intro'
+import Timeline from '@components/molecules/timeline'
 import { getAllProjectPosts } from '@utils/doc'
 
 interface Props {

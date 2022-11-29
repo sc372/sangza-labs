@@ -1,7 +1,7 @@
 import React from 'react'
 
-import MenuIconButton from '@components/atoms/MenuDrawerButton'
-import Title from '@components/atoms/Title'
+import MenuIconButton from '@components/atoms/menu-drawer-button'
+import Title from '@components/atoms/title'
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
 const Header = () => {

@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
-import MainLayout from '@components/layouts/MainLayout'
+import MainLayout from '@components/layouts/main-layout'
 import { getAllBlogPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 

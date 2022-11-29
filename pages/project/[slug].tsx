@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
-import MainLayout from '@components/layouts/MainLayout'
+import MainLayout from '@components/layouts/main-layout'
 import {
   getAllProjectPosts,
   getPost,
@@ -21,7 +21,7 @@ interface Props {
 const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
-      <MDXRemote {...mdxContent} />
+      <MDXRemote {...mdxContent} components={}/>
     </>
   )
 }

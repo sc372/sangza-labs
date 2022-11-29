@@ -1,9 +1,9 @@
 import { ReactElement } from 'react'
 
 import { Post } from '@common/interfaces'
-import SearchInput from '@components/atoms/SearchInput'
-import MainLayout from '@components/layouts/MainLayout'
-import Posts from '@components/organisms/Posts'
+import SearchInput from '@components/atoms/search-input'
+import MainLayout from '@components/layouts/main-layout'
+import Posts from '@components/organisms/posts'
 import { useSearchText } from '@hooks/useSearchText'
 import { getAllPosts } from '@utils/doc'
 

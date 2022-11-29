@@ -4,8 +4,8 @@ import { RiPriceTag3Line } from 'react-icons/ri'
 import Link from 'next/link'
 
 import { Post } from '@common/interfaces'
-import Date from '@components/atoms/Date'
-import Tag from '@components/atoms/Tag'
+import Date from '@components/atoms/date'
+import Tag from '@components/atoms/tag'
 import { getSlug } from '@utils/doc'
 
 interface Props {

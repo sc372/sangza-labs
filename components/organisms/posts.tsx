@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import { PAGE_SIZE } from '@common/constants'
 import { Post } from '@common/interfaces'
-import Pagination from '@components/molecules/Pagination'
-import PostThumbnail from '@components/molecules/PostThumbnail'
+import Pagination from '@components/molecules/pagination'
+import PostThumbnail from '@components/molecules/post-thumbnail'
 import { usePagination } from '@hooks/usePagination'
 
 interface Props {
