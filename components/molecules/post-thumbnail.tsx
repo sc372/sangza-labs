@@ -17,7 +17,7 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
   return (
     <div className={`${className}`}>
       <Link href={`${getSlug(post.slug)}`}>
-        <div className="text-normal cursor-pointer hover:text-primary">
+        <div className="cursor-pointer text-lg hover:text-primary">
           {post.meta?.title}
         </div>
       </Link>
