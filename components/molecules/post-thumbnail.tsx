@@ -22,7 +22,7 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
         </div>
       </Link>
       <div className="flex flex-row items-center">
-        <Date className="mr-4" date={post.meta?.createdDate} />
+        <Date className="mr-4 text-tertiary" date={post.meta?.createdDate} />
         {post.meta?.tags?.map((tag, i) => (
           <div className="flex flex-row items-center" key={i}>
             {i === 0 && <RiPriceTag3Line />}

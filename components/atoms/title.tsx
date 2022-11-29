@@ -1,19 +1,19 @@
 import React, { FC } from 'react'
-import { useMediaQuery } from 'react-responsive'
 
 import Image from 'next/image'
 import Link from 'next/link'
 
 import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
+import { useResponsive } from '@hooks/useResponsive'
 
 const Title: FC = () => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+  const { isLg } = useResponsive()
 
   return (
     <Link href="/">
       <div className="cursor-point flex flex-row text-[calc(0.7vw_+_1.2rem)]">
         <NonSsrWrapper>
-          {isTabletOrMobile ? (
+          {isLg ? (
             <div className="flex flex-col justify-center hover:animate-spin">
               <Image
                 src="/static/images/logo.png"
