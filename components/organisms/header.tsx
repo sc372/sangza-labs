@@ -7,7 +7,7 @@ import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 const Header = () => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
-    <nav className="fixed z-50 flex h-20 w-full flex-col justify-center bg-background px-14 py-2.5">
+    <nav className="fixed z-50 flex h-[5.95rem] w-full flex-col justify-center bg-background px-14 py-2.5">
       <div className="flex flex-row items-center">
         <div className="mr-5 flex flex-col justify-center">
           <MenuIconButton

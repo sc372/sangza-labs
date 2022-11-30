@@ -30,11 +30,14 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
 
   return (
     <>
-      <SearchInput
-        onChange={onSearchInputChange}
-        onClick={onSearchInputClick}
-        onKeyDown={onSearchInputKeyDown}
-      />
+      <div className="sticky top-24">
+        <SearchInput
+          onChange={onSearchInputChange}
+          onClick={onSearchInputClick}
+          onKeyDown={onSearchInputKeyDown}
+          className="w-full max-w-[600px] bg-background"
+        />
+      </div>
       <Posts posts={filteredData} />
     </>
   )
