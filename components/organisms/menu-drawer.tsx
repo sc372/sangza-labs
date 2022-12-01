@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { RiGithubFill, RiMailLine } from 'react-icons/ri'
 
 import Image from 'next/image'
@@ -5,14 +6,18 @@ import Link from 'next/link'
 
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
-const MenuDrawer = () => {
+export interface Props {
+  className?: string
+}
+
+const MenuDrawer: FC<Props> = ({ className }) => {
   const { isOpenMenuDrawer, closeIsOpenMenuDrawer } =
     useIsOpenMenuDrawerAction()
   return (
     <nav
-      className={`fixed top-0 right-full z-[200] h-full w-[calc(10%_+_10rem)] translate-x-0 bg-background py-[1vw] px-[2vw] shadow-xl transition-all ${
+      className={`fixed top-0 right-full h-full translate-x-0 bg-background  shadow-xl transition-all ${
         isOpenMenuDrawer && 'translate-x-full shadow-lg'
-      }`}
+      } ${className}`}
     >
       <h2 className="mb-3 text-2xl font-bold">think</h2>
       <div className="relative box-border ring-1 ring-secondary">

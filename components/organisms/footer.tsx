@@ -6,7 +6,7 @@ const Footer = () => {
   const now = dayjs()
   return (
     <footer
-      className={`fixed left-0 right-0 bottom-0 h-14 bg-background px-14`}
+      className={`fixed left-0 right-0 bottom-0 h-16 bg-background px-5 pt-2 sm:px-14`}
     >
       <div className="border-t-2 border-solid text-primary"></div>
       <div className="text-center">

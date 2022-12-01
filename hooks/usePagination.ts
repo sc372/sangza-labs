@@ -18,7 +18,7 @@ export interface UsePagination<T> {
   pageNumbers: Array<number>
   totalCount: number
   dataForPage: Array<T>
-  onPageChange: () => void
+  onPageChange: (pageNum: number) => void
 }
 
 const makeArray = (length: number, addLength = 0) =>
@@ -27,7 +27,7 @@ const makeArray = (length: number, addLength = 0) =>
 export const usePagination = <T>({
   data,
   pageSize,
-}: UsePaginationParams<T>) => {
+}: UsePaginationParams<T>): UsePagination<T> => {
   const [currentPage, setCurrentPage] = useState(1)
   const [orgData] = useState<Array<T>>(data)
   const onPageChange = (pageNum: number) => setCurrentPage(pageNum)

@@ -21,14 +21,20 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
           {post.meta?.title}
         </div>
       </Link>
-      <div className="flex flex-row items-center">
+      <div className="flex flex-col md:flex-row md:items-center">
         <Date className="mr-4 text-tertiary" date={post.meta?.createdDate} />
-        {post.meta?.tags?.map((tag, i) => (
-          <div className="flex flex-row items-center" key={i}>
-            {i === 0 && <RiPriceTag3Line />}
-            <Tag name={tag} href={`/blog/tags/${tag}`} className="mx-1" />
-          </div>
-        ))}
+        <div className="flex flex-row items-center">
+          {post.meta?.tags?.map((tag, i) => (
+            <span className="flex flex-row" key={i}>
+              {i === 0 && (
+                <span className="flex flex-row items-center">
+                  <RiPriceTag3Line />
+                </span>
+              )}
+              <Tag name={tag} href={`/blog/tags/${tag}`} className="mx-1" />
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

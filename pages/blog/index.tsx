@@ -2,7 +2,9 @@ import { GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
+import MobilePosts from '@components/organisms/mobild-posts'
 import Posts from '@components/organisms/posts'
+import { useResponsive } from '@hooks/useResponsive'
 import { getAllBlogPosts } from '@utils/doc'
 
 interface Props {
@@ -10,11 +12,9 @@ interface Props {
 }
 
 const BlogPage: NextPage<Props> = ({ posts }) => {
-  return (
-    <>
-      <Posts posts={posts} />
-    </>
-  )
+  const { isMd } = useResponsive()
+
+  return <>{isMd ? <MobilePosts posts={posts} /> : <Posts posts={posts} />}</>
 }
 
 export const getStaticProps: GetStaticProps = async () => {

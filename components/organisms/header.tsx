@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import MenuIconButton from '@components/atoms/menu-drawer-button'
 import Title from '@components/atoms/title'
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
 
-const Header = () => {
+interface Props {
+  className?: string
+}
+
+const Header: FC<Props> = ({ className }) => {
   const { toggleIsOpenMenuDrawer } = useIsOpenMenuDrawerAction()
   return (
-    <nav className="fixed z-50 flex h-[5.95rem] w-full flex-col justify-center bg-background px-14 py-2.5">
+    <nav
+      className={`${className} fixed flex w-full flex-col justify-center`}
+    >
       <div className="flex flex-row items-center">
         <div className="mr-5 flex flex-col justify-center">
           <MenuIconButton

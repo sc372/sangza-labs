@@ -5,7 +5,7 @@ import { Post } from '@common/interfaces'
 import Pagination from '@components/molecules/pagination'
 import PostThumbnail from '@components/molecules/post-thumbnail'
 import { usePagination } from '@hooks/usePagination'
-import { useScrollBottomHit } from '@hooks/useScrollBottomHit'
+import { useResponsive } from '@hooks/useResponsive'
 
 interface Props {
   posts: Array<Post>
@@ -25,19 +25,13 @@ const Posts: FC<Props> = ({ posts }) => {
     pageSize: PAGE_SIZE,
   })
 
-  useScrollBottomHit({
-    onBodyBottomHit: () => console.log('111'),
-    // onContainerBottomHit: () => console.log('222'),
-  })
-
   return (
     <div className="pt-5">
       <div className="pb-16">
         {dataForPage?.map((post: Post, i: number) => (
-          <>
-            <PostThumbnail key={i} post={post} className="py-1" />
-            <PostThumbnail key={i + 10} post={post} className="py-1" />
-          </>
+          <div key={i}>
+            <PostThumbnail post={post} className="pt-1 pb-4" />
+          </div>
         ))}
       </div>
       <Pagination

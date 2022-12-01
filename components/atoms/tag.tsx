@@ -11,11 +11,11 @@ interface Props {
 const Tag: FC<Props> = ({ name, href, className }) => {
   return (
     <Link href={href}>
-      <div
+      <span
         className={`${className} cursor-pointer rounded bg-secondary px-2 ring-1 ring-tertiary hover:ring-primary`}
       >
         {name}
-      </div>
+      </span>
     </Link>
   )
 }
