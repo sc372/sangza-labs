@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
 
+import { ProjectType } from './types/project-type'
+
 export interface WrapperComponentProps {
   children: ReactNode
 }
@@ -19,4 +21,15 @@ export interface Post {
   meta: Meta
   content: string
   slug: string
+}
+
+export interface Project {
+  type: ProjectType
+  title: string
+  period: string
+  descriptionList: Array<string>
+  roleList: Array<string>
+  projectPageUrl: string
+  linkUrl: string
+  imageUrl: string
 }

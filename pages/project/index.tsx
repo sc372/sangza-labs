@@ -2,8 +2,6 @@ import { GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
-import SelfIIntro from '@components/molecules/self-intro'
-import Timeline from '@components/molecules/timeline'
 import { getAllProjectPosts } from '@utils/doc'
 
 interface Props {
@@ -11,13 +9,7 @@ interface Props {
 }
 
 const ProjectPage: NextPage<Props> = ({ posts }) => {
-  return (
-    <>
-      {/* <Posts posts={posts} /> */}
-      <SelfIIntro />
-      <Timeline />
-    </>
-  )
+  return <></>
 }
 
 export const getStaticProps: GetStaticProps = async () => {

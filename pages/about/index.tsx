@@ -13,9 +13,12 @@ interface Props {
 const AboutPage: NextPage<Props> = ({ posts }) => {
   return (
     <>
-      {/* <Posts posts={posts} /> */}
-      <SelfIIntro />
-      <Timeline />
+      <div className="px-5 pt-5 md:px-14">
+        <SelfIIntro />
+      </div>
+      <div className="px-5 pt-5 md:px-14">
+        <Timeline />
+      </div>
     </>
   )
 }

@@ -33,14 +33,14 @@ const MenuDrawer: FC<Props> = ({ className }) => {
         </div>
         <div className="flex justify-end py-[0.5vw] px-[0.2vw] text-tertiary">
           <Link href="https://github.com/sc372" target="_blank">
-            <div className="m-[1vw] cursor-pointer hover:text-primary">
+            <button className="m-[1vw] hover:text-primary">
               <RiGithubFill size={30} />
-            </div>
+            </button>
           </Link>
           <Link href="mailto:372lsc@gmail.com">
-            <div className="m-[1vw] cursor-pointer hover:text-primary">
+            <button className="m-[1vw] hover:text-primary">
               <RiMailLine size={30} />
-            </div>
+            </button>
           </Link>
         </div>
       </div>
