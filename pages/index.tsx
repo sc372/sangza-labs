@@ -3,7 +3,10 @@ import { ReactElement } from 'react'
 import { Post } from '@common/interfaces'
 import SearchInput from '@components/atoms/search-input'
 import MainLayout from '@components/layouts/main-layout'
+import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
+import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
+import { useResponsive } from '@hooks/useResponsive'
 import { useSearchText } from '@hooks/useSearchText'
 import { getAllPosts } from '@utils/doc'
 
@@ -14,6 +17,8 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
+  const { isMd } = useResponsive()
+
   const onSearchFilter = (searchText: string): Array<Post> =>
     posts.filter(
       (post) =>
@@ -38,7 +43,13 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
           className="w-full max-w-[600px] bg-background"
         />
       </div>
-      <Posts posts={filteredData} />
+      <NonSsrWrapper>
+        {isMd ? (
+          <MobilePosts posts={filteredData} />
+        ) : (
+          <Posts posts={filteredData} />
+        )}
+      </NonSsrWrapper>
     </>
   )
 }

@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
-import MobilePosts from '@components/organisms/mobild-posts'
+import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
 import { useResponsive } from '@hooks/useResponsive'
 import { getAllBlogPosts } from '@utils/doc'

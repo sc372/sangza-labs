@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { RefObject, useEffect, useState } from 'react'
 
 import { splitAt } from 'fp-ts/Array'
 
@@ -10,31 +10,35 @@ export interface UseInfiniteScrollParams<T> {
 }
 
 export interface UseInfiniteScroll<T> {
-  reduceData: Array<T>
-  ref:
+  addedData: Array<T>
+  infiniteScrollRef: RefObject<HTMLDivElement>
 }
 
 export const useInfiniteScroll = <T>({
   data,
   pageSize,
 }: UseInfiniteScrollParams<T>): UseInfiniteScroll<T> => {
-  const [reduceData, setReduceData] = useState<Array<T>>([])
-  const [restData, setRestData] = useState<Array<T>>(data)
+  const [initAddedData, initRestData] = splitAt(pageSize)(data)
+  const [addedData, setAddedData] = useState<Array<T>>(initAddedData)
+  const [restData, setRestData] = useState<Array<T>>(initRestData)
 
-  const ref = useIntersect(async (entry, observer) => {
+  const infiniteScrollRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
     if (restData.length > 0) {
-      // const willAddData = filterWithIndex((i, a) => i < pageSize)(restData)
       const [willAddData, willRestData] = splitAt(pageSize)(restData)
-      console.log(willAddData)
-      console.log(willRestData)
-      setReduceData([...reduceData, ...willAddData])
+
+      setAddedData([...addedData, ...willAddData])
       setRestData(willRestData)
     }
   })
 
+  useEffect(() => {
+    setAddedData(initAddedData)
+    setRestData(initRestData)
+  }, [data])
+
   return {
-    reduceData,
-    ref
+    addedData,
+    infiniteScrollRef
   }
 }
