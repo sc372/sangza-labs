@@ -8,6 +8,7 @@ import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
 import { useResponsive } from '@hooks/useResponsive'
 import { useSearchText } from '@hooks/useSearchText'
+import { useIsOpenSearchInputAction } from '@modules/search/action'
 import { getAllPosts } from '@utils/doc'
 
 import type { GetStaticProps, NextPage } from 'next'
@@ -18,6 +19,7 @@ interface Props {
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
   const { isMd } = useResponsive()
+  const { isOpenSearchInput } = useIsOpenSearchInputAction()
 
   const onSearchFilter = (searchText: string): Array<Post> =>
     posts.filter(
@@ -35,14 +37,16 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
 
   return (
     <>
-      <div className="sticky top-24">
-        <SearchInput
-          onChange={onSearchInputChange}
-          onClick={onSearchInputClick}
-          onKeyDown={onSearchInputKeyDown}
-          className="w-full max-w-[600px] bg-background"
-        />
-      </div>
+      {isOpenSearchInput && (
+        <div className="sticky z-[200]">
+          <SearchInput
+            onChange={onSearchInputChange}
+            onClick={onSearchInputClick}
+            onKeyDown={onSearchInputKeyDown}
+            className="w-full max-w-[600px] bg-background"
+          />
+        </div>
+      )}
       <NonSsrWrapper>
         {isMd ? (
           <MobilePosts posts={filteredData} />
