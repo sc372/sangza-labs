@@ -4,7 +4,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
+import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
+import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
+import { useResponsive } from '@hooks/useResponsive'
 import { getAllTags, getPostsByTag } from '@utils/doc'
 
 interface Props {
@@ -13,6 +16,8 @@ interface Props {
 }
 
 const TagPage: NextPage<Props> = ({ tag, posts }) => {
+  const { isMd } = useResponsive()
+
   return (
     <>
       <div className="flex flex-row items-center">
@@ -21,7 +26,9 @@ const TagPage: NextPage<Props> = ({ tag, posts }) => {
         </div>
         <div className="ml-3 text-3xl">{tag}</div>
       </div>
-      <Posts posts={posts} />
+      <NonSsrWrapper>
+        {isMd ? <MobilePosts posts={posts} /> : <Posts posts={posts} />}
+      </NonSsrWrapper>
     </>
   )
 }

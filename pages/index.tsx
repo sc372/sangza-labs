@@ -19,7 +19,6 @@ interface Props {
 
 const IndexPage: NextPage<Props> = ({ posts }) => {
   const { isMd } = useResponsive()
-  const { isOpenSearchInput } = useIsOpenSearchInputAction()
 
   const onSearchFilter = (searchText: string): Array<Post> =>
     posts.filter(
