@@ -16,11 +16,16 @@ const BLOG = 'blog'
 export const getBlogPath = (slug: string) =>
   `${process.cwd()}/data/blog/${slug}/index.md`
 
-export const getProjectPath = (slug: string) =>
-  `${process.cwd()}/data/project/${slug}/index.md`
+export const getProjectPath = (slug: string, title: string) =>
+  `${process.cwd()}/data/project/${title}/${slug}/index.md`
 
 export const getSlug = (slug: string) =>
   slug.split('/data')[1].replace('/index.md', '')
+
+export const getProjectSlug = (slug: string, projectTitle?: string) => {
+  console.log(projectTitle)
+  return slug.split(`/data${projectTitle}`)[1].replace('/index.md', '')
+}
 
 export function getPost(slug: string): Post {
   const contents = fs.readFileSync(slug, 'utf8')
@@ -46,13 +51,18 @@ export function getAllProjectPosts(): Array<Post> {
   return posts.filter((post) => post.meta?.category === PROJECT)
 }
 
+export function getFilteredProjectPosts(query: string): Array<Post> {
+  const posts = getAllProjectPosts()
+  return posts.filter((post) => post.meta.project === query)
+}
+
 export function getAllTags(): Array<string> {
   return getAllPosts()
     .flatMap((post) => post.meta?.tags)
     .filter((tag) => tag !== undefined)
 }
 
-export function getPostsByTag(slug: string): Array<Post> {
+export function getPostsByTag(tag: string): Array<Post> {
   const posts = getAllPosts()
-  return posts.filter((post) => post.meta?.tags?.includes(slug))
+  return posts.filter((post) => post.meta?.tags?.includes(tag))
 }

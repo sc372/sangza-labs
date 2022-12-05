@@ -11,11 +11,8 @@ interface Props {
 
 const SelfIIntro: FC<Props> = ({ className }) => {
   return (
-    <div
-      className={`${className} flex flex-row flex-wrap items-center justify-start`}
-    >
+    <div className={`${className} flex flex-row items-center justify-start`}>
       <div className="h-[13vw] min-h-[100px] w-[13vw] min-w-[100px] overflow-hidden rounded-full">
-        {/* <div className="h-20 w-20 overflow-hidden rounded-full"> */}
         <Image
           src="/static/images/about.jpg"
           alt="profile"

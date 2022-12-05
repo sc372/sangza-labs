@@ -12,22 +12,23 @@ interface Props {
 }
 
 const MobilePosts: FC<Props> = ({ posts }) => {
-  const { addedData, infiniteScrollRef } = useInfiniteScroll({
-    data: posts,
-    pageSize: PAGE_SIZE,
-  })
+  const { addedData, partialRef, containerRef, containerScrollToUp } =
+    useInfiniteScroll({
+      data: posts,
+      pageSize: PAGE_SIZE,
+    })
 
   return (
-    <div className="pt-5">
+    <div className="h-[65vh] overflow-y-auto pt-5" ref={containerRef}>
       <div className="pb-16">
         {addedData?.map((post: Post, i: number) => (
-          <div key={i} ref={infiniteScrollRef}>
+          <div key={i} ref={partialRef}>
             <PostThumbnail post={post} className="pt-1 pb-4" />
           </div>
         ))}
       </div>
       <FloatingButton
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={containerScrollToUp}
         className="bottom-16 right-8 z-50 h-10 w-10 bg-primary"
       >
         <RiArrowUpLine />

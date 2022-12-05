@@ -14,7 +14,7 @@ const FloatingButton: FC<PropsType> = ({ className, onClick, children }) => {
     <button
       onClick={onClick}
       className={`fixed flex items-center justify-center rounded-full
-      text-2xl drop-shadow-lg duration-300 hover:animate-bounce hover:drop-shadow-2xl
+      text-2xl drop-shadow-2xl duration-300 active:translate-y-2
       ${className}`}
     >
       {children}

@@ -29,7 +29,7 @@ export interface Project {
   period: string
   descriptionList: Array<string>
   roleList: Array<string>
-  projectPageUrl: string
+  projectPagePath: string
   linkUrl: string
   imageUrl: string
 }

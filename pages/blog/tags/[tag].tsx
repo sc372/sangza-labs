@@ -1,3 +1,5 @@
+import { RiHashtag } from 'react-icons/ri'
+
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
@@ -6,14 +8,19 @@ import Posts from '@components/organisms/posts'
 import { getAllTags, getPostsByTag } from '@utils/doc'
 
 interface Props {
-  slug: string
+  tag: string
   posts: Array<Post>
 }
 
-const TagPage: NextPage<Props> = ({ slug, posts }) => {
+const TagPage: NextPage<Props> = ({ tag, posts }) => {
   return (
     <>
-      <div className="text-3xl"># {slug}</div>
+      <div className="flex flex-row items-center">
+        <div>
+          <RiHashtag style={{ height: '100%', width: 'calc(0.7vw + 1rem)' }} />
+        </div>
+        <div className="ml-3 text-3xl">{tag}</div>
+      </div>
       <Posts posts={posts} />
     </>
   )
@@ -22,7 +29,7 @@ const TagPage: NextPage<Props> = ({ slug, posts }) => {
 export const getStaticPaths: GetStaticPaths = () => {
   const tags = getAllTags()
   const paths = tags.map((tag) => ({
-    params: { slug: tag },
+    params: { tag },
   }))
 
   return {
@@ -33,15 +40,15 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 interface Params {
   [key: string]: string | undefined
-  slug: string
+  tag: string
 }
 
-export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const { slug } = params as Params
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const { tag } = params as Params
   return {
     props: {
-      slug,
-      posts: getPostsByTag(slug),
+      tag,
+      posts: getPostsByTag(tag),
     },
   }
 }

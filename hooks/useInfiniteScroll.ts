@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 
 import { splitAt } from 'fp-ts/Array'
 
@@ -11,7 +11,9 @@ export interface UseInfiniteScrollParams<T> {
 
 export interface UseInfiniteScroll<T> {
   addedData: Array<T>
-  infiniteScrollRef: RefObject<HTMLDivElement>
+  partialRef: RefObject<HTMLDivElement>
+  containerRef: RefObject<HTMLDivElement>
+  containerScrollToUp: () => void
 }
 
 export const useInfiniteScroll = <T>({
@@ -21,8 +23,9 @@ export const useInfiniteScroll = <T>({
   const [initAddedData, initRestData] = splitAt(pageSize)(data)
   const [addedData, setAddedData] = useState<Array<T>>(initAddedData)
   const [restData, setRestData] = useState<Array<T>>(initRestData)
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const infiniteScrollRef = useIntersect(async (entry, observer) => {
+  const partialRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
     if (restData.length > 0) {
       const [willAddData, willRestData] = splitAt(pageSize)(restData)
@@ -32,6 +35,10 @@ export const useInfiniteScroll = <T>({
     }
   })
 
+  const containerScrollToUp = () => {
+    containerRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   useEffect(() => {
     setAddedData(initAddedData)
     setRestData(initRestData)
@@ -39,6 +46,8 @@ export const useInfiniteScroll = <T>({
 
   return {
     addedData,
-    infiniteScrollRef
+    partialRef,
+    containerRef,
+    containerScrollToUp
   }
 }

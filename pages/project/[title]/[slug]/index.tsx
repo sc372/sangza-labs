@@ -6,9 +6,9 @@ import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
 import {
   getAllProjectPosts,
+  getSlug,
   getPost,
   getProjectPath,
-  getSlug,
 } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
@@ -21,15 +21,19 @@ interface Props {
 const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
-      <MDXRemote {...mdxContent} components={}/>
+      <MDXRemote {...mdxContent} />
     </>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllProjectPosts()
+
   const paths = posts.map((post) => ({
-    params: { slug: getSlug(post.slug) },
+    params: {
+      slug: getSlug(post.slug),
+      title: post.meta.project,
+    },
   }))
 
   return {
@@ -41,10 +45,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 interface Params {
   [key: string]: string | undefined
   slug: string
+  title: string
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const { slug } = params as Params
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug, title } = params as Params
   const toResult = async (post: Post) => ({
     slug: post.slug,
     frontMatter: post.meta,
@@ -52,7 +57,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   })
 
   const props = await fpFunction.pipe(
-    getProjectPath(slug),
+    getProjectPath(slug, title),
     await getPost,
     await toResult
   )

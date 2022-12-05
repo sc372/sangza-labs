@@ -37,16 +37,14 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
 
   return (
     <>
-      {isOpenSearchInput && (
-        <div className="sticky z-[200]">
-          <SearchInput
-            onChange={onSearchInputChange}
-            onClick={onSearchInputClick}
-            onKeyDown={onSearchInputKeyDown}
-            className="w-full max-w-[600px] bg-background"
-          />
-        </div>
-      )}
+      <div>
+        <SearchInput
+          onChange={onSearchInputChange}
+          onClick={onSearchInputClick}
+          onKeyDown={onSearchInputKeyDown}
+          className="w-full max-w-[600px] bg-background"
+        />
+      </div>
       <NonSsrWrapper>
         {isMd ? (
           <MobilePosts posts={filteredData} />
@@ -59,7 +57,6 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context)
   return {
     props: {
       posts: await getAllPosts(),
