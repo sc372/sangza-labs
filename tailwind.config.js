@@ -10,9 +10,9 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       primary: '#daa520',
-      secondary: '#e9ecef',
+      secondary: '#fbfbfb',
       tertiary: '#808080',
-      success: '#4bb543',
+      success: '#595959',
       warning: '#ffc409',
       danger: '#eb445a',
       background: '#ffffff',

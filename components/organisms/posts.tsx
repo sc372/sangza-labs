@@ -5,7 +5,6 @@ import { Post } from '@common/interfaces'
 import Pagination from '@components/molecules/pagination'
 import PostThumbnail from '@components/molecules/post-thumbnail'
 import { usePagination } from '@hooks/usePagination'
-import { useResponsive } from '@hooks/useResponsive'
 
 interface Props {
   posts: Array<Post>

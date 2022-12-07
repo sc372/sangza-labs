@@ -22,9 +22,15 @@ const TagPage: NextPage<Props> = ({ tag, posts }) => {
     <>
       <div className="flex flex-row items-center">
         <div>
-          <RiHashtag style={{ height: '100%', width: 'calc(0.7vw + 1rem)' }} />
+          <RiHashtag
+            style={{
+              height: '100%',
+              width: 'calc(0.7vw + 1rem)',
+              fontWeight: '600',
+            }}
+          />
         </div>
-        <div className="ml-3 text-3xl">{tag}</div>
+        <div className="ml-3 text-3xl font-semibold">{tag}</div>
       </div>
       <NonSsrWrapper>
         {isMd ? <MobilePosts posts={posts} /> : <Posts posts={posts} />}

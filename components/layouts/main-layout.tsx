@@ -15,7 +15,7 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
       <Header className="z-50 h-[5.95rem] bg-background px-5 md:px-14" />
       <MenuDrawer className="z-[200] w-[calc(10%_+_10rem)] py-[1vw] px-[2vw]" />
       {isOpenMenuDrawer && <Backdrop />}
-      <main className="py-24 px-5 md:px-14">{children}</main>
+      <main className="py-24 px-5 md:px-32">{children}</main>
       <Footer />
     </>
   )

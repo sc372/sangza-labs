@@ -11,7 +11,7 @@ const Title: FC = () => {
 
   return (
     <Link href="/">
-      <div className="cursor-point flex flex-row text-[calc(0.7vw_+_1.2rem)]">
+      <div className="cursor-point flex flex-row text-[calc(0.7vw_+_1rem)]">
         <NonSsrWrapper>
           {isLg ? (
             <div className="flex flex-col justify-center hover:animate-spin">
@@ -27,7 +27,10 @@ const Title: FC = () => {
           )}
         </NonSsrWrapper>
         <div className="flex items-center justify-center">
-          <div>&nbsp;|&nbsp;scientific thinking</div>
+          <div>
+            <span className="text-primary">&nbsp;|&nbsp;</span>scientific
+            thinking
+          </div>
         </div>
       </div>
     </Link>

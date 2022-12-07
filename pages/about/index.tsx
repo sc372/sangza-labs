@@ -11,14 +11,13 @@ interface Props {
 }
 
 const AboutPage: NextPage<Props> = ({ posts }) => {
-  console.log(posts)
   return (
-    <div className="flex flex-col xl:flex-row">
+    <div className="flex flex-col items-center justify-center xl:flex-row">
       <div className="mx-5 flex justify-center pt-5 md:mx-14">
         <SelfIIntro />
       </div>
       <div className="mt-10 flex h-[55vh] justify-center overflow-y-auto px-5 md:px-14 xl:h-[75vh]">
-        <Timeline list={posts}/>
+        <Timeline list={posts} />
       </div>
     </div>
   )

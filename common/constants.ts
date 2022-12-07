@@ -38,8 +38,8 @@ export const PROJECT_LIST: Array<Project> = [
     imageUrl: ""
   },
   {
-    type: projectType.allixVan,
-    title: "Allix 베트남 결제 중계 시스템 구축",
+    type: projectType.alliexVan,
+    title: "Alliex 베트남 결제 중계 시스템 구축",
     period: "2020.02 ~ 2021.03",
     descriptionList: [
       "Infra: On - Premise(CentOS)",

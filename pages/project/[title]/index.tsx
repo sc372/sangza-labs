@@ -23,10 +23,14 @@ const ProjectPage: NextPage<Props> = ({ title, posts }) => {
       <div className="flex flex-row items-center">
         <div>
           <RiFlashlightFill
-            style={{ height: '100%', width: 'calc(0.7vw + 1rem)' }}
+            style={{
+              height: '100%',
+              width: 'calc(0.7vw + 1rem)',
+              fontWeight: '600',
+            }}
           />
         </div>
-        <div className="ml-3 text-3xl">{title}</div>
+        <div className="ml-3 text-3xl font-semibold">{title}</div>
       </div>
       <NonSsrWrapper>
         {isMd ? <MobilePosts posts={posts} /> : <Posts posts={posts} />}

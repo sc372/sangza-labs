@@ -21,7 +21,9 @@ const Header: FC<Props> = ({ className }) => {
             width="calc(0.7vw + 1rem)"
           />
         </div>
-        <Title />
+        <div className="md:ml-5">
+          <Title />
+        </div>
       </div>
     </nav>
   )

@@ -7,8 +7,7 @@ import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
 import { useResponsive } from '@hooks/useResponsive'
-import { useSearchText } from '@hooks/useSearchText'
-import { useIsOpenSearchInputAction } from '@modules/search/action'
+import { useSearchTextDebounce } from '@hooks/useSearchTextDebounce'
 import { getAllPosts } from '@utils/doc'
 
 import type { GetStaticProps, NextPage } from 'next'
@@ -27,20 +26,18 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
         post.meta.title.includes(searchText)
     )
 
-  const {
-    filteredData,
-    onSearchInputChange,
-    onSearchInputClick,
-    onSearchInputKeyDown,
-  } = useSearchText({ data: posts, onSearchFilter })
+  const { filteredData, onSearchInputChange } = useSearchTextDebounce({
+    data: posts,
+    onSearchFilter,
+  })
 
   return (
     <>
       <div>
         <SearchInput
           onChange={onSearchInputChange}
-          onClick={onSearchInputClick}
-          onKeyDown={onSearchInputKeyDown}
+          // onClick={onSearchInputClick}
+          // onKeyDown={onSearchInputKeyDown}
           className="w-full max-w-[600px] bg-background"
         />
       </div>

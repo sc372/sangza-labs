@@ -4,7 +4,7 @@ export const projectType = {
   smartroConpay: "smartro-conpay",
   cjOnePay: "cj-one-pay",
   jtnetVanCms: "jtnet-van-cms",
-  allixVan: "allix-van",
+  alliexVan: "allix-van",
   vCommerce: "v-commerce",
   bglam: "bglam",
   sangza: "sangza",

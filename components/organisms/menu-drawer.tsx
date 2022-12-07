@@ -20,7 +20,7 @@ const MenuDrawer: FC<Props> = ({ className }) => {
       } ${className}`}
     >
       <h2 className="mb-3 text-2xl font-bold">think</h2>
-      <div className="relative box-border ring-1 ring-secondary">
+      <div className="relative box-border ring-[0.5px] ring-tertiary">
         <Image
           src="/static/images/profile.jpg"
           alt="profile"
@@ -44,9 +44,9 @@ const MenuDrawer: FC<Props> = ({ className }) => {
           </Link>
         </div>
       </div>
-      <div className="mt-[calc(1vw_+_10px)] flex flex-col items-end text-tertiary">
+      <div className="mt-[calc(1vw_+_10px)] flex flex-col items-end text-lg text-tertiary">
         <div
-          className="my-[0.3vw] hover:text-primary"
+          className="my-[0.4vw] hover:text-primary"
           onClick={closeIsOpenMenuDrawer}
         >
           <Link href={'/'}>home</Link>

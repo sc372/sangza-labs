@@ -17,7 +17,7 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
   return (
     <div className={`${className}`}>
       <Link href={`${getSlug(post.slug)}`}>
-        <div className="cursor-pointer text-lg hover:text-primary">
+        <div className="cursor-pointer hover:text-primary">
           {post.meta?.title}
         </div>
       </Link>
@@ -31,7 +31,7 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
                   <RiPriceTag3Line />
                 </span>
               )}
-              <Tag name={tag} href={`/blog/tags/${tag}`} className="mx-1" />
+              <Tag name={tag} href={`/blog/tags/${tag}`} className="ml-2" />
             </span>
           ))}
         </div>

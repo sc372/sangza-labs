@@ -50,6 +50,8 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug, title } = params as Params
+  console.log(slug)
+  console.log(title)
   const toResult = async (post: Post) => ({
     slug: post.slug,
     frontMatter: post.meta,

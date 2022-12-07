@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import { useDebounce } from './useDebounce'
-import { useSearchText } from './useSearchText'
+
 
 export interface UseSearchTextDebounceParams<T> {
   data: Array<T>
@@ -12,15 +12,25 @@ export const useSearchTextDebounce = <T>({
   data,
   onSearchFilter,
 }: UseSearchTextDebounceParams<T>) => {
-  const resultUseSearchText = useSearchText({ data, onSearchFilter })
+  const [filteredData, setFilteredData] = useState<Array<T>>(data)
+  const [searchText, setSearchText] = useState('')
+
+  const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setSearchText(e.target.value)
+
   const debouncedSearchText = useDebounce<string>(
-    resultUseSearchText.searchText,
+    searchText,
     500
   )
 
-  useEffect(resultUseSearchText.onSearchInputClick, [debouncedSearchText])
+  useEffect(() => {
+    setFilteredData(onSearchFilter(searchText))
+  }, [debouncedSearchText])
+
 
   return {
-    ...resultUseSearchText,
+    filteredData,
+    onSearchInputChange
   }
+
 }
