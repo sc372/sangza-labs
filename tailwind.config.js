@@ -12,6 +12,7 @@ module.exports = {
       primary: '#daa520',
       secondary: '#fbfbfb',
       tertiary: '#808080',
+      divider: '#c8c8c8',
       success: '#595959',
       warning: '#ffc409',
       danger: '#eb445a',

@@ -13,17 +13,20 @@ const POSTS_PATH = `${process.cwd()}/data/**/*.md`
 const PROJECT = 'project'
 const BLOG = 'blog'
 
-export const getBlogPath = (slug: string) =>
-  `${process.cwd()}/data/blog/${slug}/index.md`
 
-export const getProjectPath = (slug: string, title: string) =>
-  `${process.cwd()}/data/project/${title}/${slug}/index.md`
+export function getBlogPath(slug: string) {
+  return `${process.cwd()}/data/blog/${slug}/index.md`
+}
 
-export const getSlug = (slug: string) =>
-  slug.split('/data')[1].replace('/index.md', '')
+export function getProjectPath(slug: string, title: string) {
+  return `${process.cwd()}/data/project/${title}/${slug}/index.md`
+}
 
-export const getProjectSlug = (slug: string, projectTitle?: string) => {
-  console.log(projectTitle)
+export function getSlug(slug: string) {
+  return slug.split('/data')[1].replace('/index.md', '')
+}
+
+export function getProjectSlug(slug: string, projectTitle?: string) {
   return slug.split(`/data${projectTitle}`)[1].replace('/index.md', '')
 }
 
@@ -37,8 +40,9 @@ export function getPost(slug: string): Post {
 
 export function getAllPosts(): Array<Post> {
   const updateDate = fpFunction.pipe(fpString.Ord, fpOrd.contramap((post: Post) => post.meta?.updatedDate?.replace('-', '')))
+  const filteredNotDraft = (post: Post) => !post.meta.draft
 
-  return fpFunction.pipe(sync(POSTS_PATH), fpArray.map(getPost), fpArray.sortBy([updateDate]), fpArray.reverse)
+  return fpFunction.pipe(sync(POSTS_PATH), fpArray.map(getPost), fpArray.filter(filteredNotDraft), fpArray.sortBy([updateDate]), fpArray.reverse)
 }
 
 export function getAllBlogPosts(): Array<Post> {

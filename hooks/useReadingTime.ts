@@ -14,7 +14,7 @@ export const useReadingTime = () => {
     const words = text.trim().split(/\s+/).length;
     const time = Math.ceil(words / wpm);
     console.log('%cuseReadingTime.ts line:11 time', 'color: #007acc;', time);
-    return ""
+    return `${time} min`
   }
 
   useEffect(() => {

@@ -9,6 +9,10 @@ interface Props {
   className?: string
 }
 
+const itemClass = `mx-0.5 relative inline-flex cursor-pointer items-center justify-center
+                   rounded border-0 bg-transparent h-10 w-10 outline-none transition-all
+                   duration-300 hover:ring-1 hover:ring-tertiary`
+
 const Pagination: FC<Props> = ({
   onPageChange,
   currentPage,
@@ -23,7 +27,7 @@ const Pagination: FC<Props> = ({
         <ul className="list-style-none flex">
           <li
             onClick={() => isPreview && onPageChange(pageNumbers[0])}
-            className="text-gray-800 hover:text-gray-800 hover:bg-gray-200 relative inline-flex cursor-pointer items-center rounded border-0 bg-transparent py-2 pl-1.5 pr-2.5 outline-none transition-all duration-300 focus:shadow-none"
+            className={itemClass}
           >
             <span className="sr-only">Previous</span>
             <svg
@@ -47,7 +51,7 @@ const Pagination: FC<Props> = ({
           </li>
           <li
             onClick={() => isPreview && onPageChange(currentPage - 1)}
-            className="text-gray-800 hover:text-gray-800 hover:bg-gray-200 relative inline-flex cursor-pointer items-center rounded border-0 bg-transparent px-2 py-2 outline-none transition-all duration-300 focus:shadow-none"
+            className={itemClass}
           >
             <span className="sr-only">Previous</span>
             <svg
@@ -68,8 +72,9 @@ const Pagination: FC<Props> = ({
             <li onClick={() => onPageChange(number)} key={i}>
               <div
                 className={`
-                ${number === currentPage && 'text-primary ring-1 ring-tertiary'}
-              text-gray-800 hover:text-gray-800 hover:bg-gray-200 relative block cursor-pointer items-center rounded border-0 bg-transparent px-4 py-2 outline-none transition-all duration-300 focus:shadow-none`}
+                ${
+                  number === currentPage && 'text-primary ring-1 ring-tertiary'
+                } ${itemClass}`}
               >
                 {number}
               </div>
@@ -77,7 +82,7 @@ const Pagination: FC<Props> = ({
           ))}
           <li
             onClick={() => isNext && onPageChange(currentPage + 1)}
-            className="text-gray-800 hover:text-gray-800 hover:bg-gray-200 relative inline-flex cursor-pointer items-center rounded border-0 bg-transparent px-2 py-2 outline-none transition-all duration-300 focus:shadow-none"
+            className={itemClass}
           >
             <span className="sr-only">Next</span>
             <svg
@@ -98,7 +103,7 @@ const Pagination: FC<Props> = ({
             onClick={() =>
               isNext && onPageChange(pageNumbers[pageNumbers.length - 1])
             }
-            className="text-gray-800 hover:text-gray-800 hover:bg-gray-200 relative inline-flex cursor-pointer items-center rounded border-0 bg-transparent py-2 pl-2.5 pr-1.5 outline-none transition-all duration-300 focus:shadow-none"
+            className={itemClass}
           >
             <span className="sr-only">Double Next</span>
             <svg

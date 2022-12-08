@@ -1,9 +1,10 @@
 import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
+import MdxProvider from '@components/organisms/mdx-provider'
 import { getAllBlogPosts, getBlogPath, getPost, getSlug } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
@@ -16,7 +17,11 @@ interface Props {
 const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
-      <MDXRemote {...mdxContent} />
+      <MdxProvider
+        slug={slug}
+        frontMatter={frontMatter}
+        mdxContent={mdxContent}
+      />
     </>
   )
 }

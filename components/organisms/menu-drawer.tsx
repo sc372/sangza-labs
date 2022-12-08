@@ -20,7 +20,7 @@ const MenuDrawer: FC<Props> = ({ className }) => {
       } ${className}`}
     >
       <h2 className="mb-3 text-2xl font-bold">think</h2>
-      <div className="relative box-border ring-[0.5px] ring-tertiary">
+      <div className="relative box-border ring-[0.5px] ring-divider">
         <Image
           src="/static/images/profile.jpg"
           alt="profile"

@@ -9,7 +9,7 @@ tags:
   - guessing-game
 category: blog
 
-draft: false
+draft: true
 ---
 
 ## 그렇다 (that's right)
