@@ -1,6 +1,9 @@
 import { FC } from 'react'
 import { RiArrowUpLine } from 'react-icons/ri'
 
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
+
 import { PAGE_SIZE } from '@common/constants'
 import { Post } from '@common/interfaces'
 import FloatingButton from '@components/atoms/floating-button'
@@ -21,11 +24,15 @@ const MobilePosts: FC<Props> = ({ posts }) => {
   return (
     <div className="h-[65vh] overflow-y-auto pt-5" ref={containerRef}>
       <div className="pb-16">
-        {addedData?.map((post: Post, i: number) => (
-          <div key={i} ref={partialRef}>
-            <PostThumbnail post={post} className="pt-1 pb-4" />
-          </div>
-        ))}
+        {!fpArray.isEmpty(addedData) &&
+          fpFunction.pipe(
+            addedData,
+            fpArray.mapWithIndex((i, a) => (
+              <div key={i} ref={partialRef}>
+                <PostThumbnail post={a} className="pt-1 pb-4" />
+              </div>
+            ))
+          )}
       </div>
       <FloatingButton
         onClick={containerScrollToUp}

@@ -39,34 +39,46 @@ export function getPost(slug: string): Post {
 }
 
 export function getAllPosts(): Array<Post> {
-  const updateDate = fpFunction.pipe(fpString.Ord, fpOrd.contramap((post: Post) => post.meta?.updatedDate?.replace('-', '')))
+  const updateDate = fpFunction.pipe(fpString.Ord, fpOrd.contramap((post: Post) => post.meta.updatedDate?.replace('-', '')))
   const filteredNotDraft = (post: Post) => !post.meta.draft
 
   return fpFunction.pipe(sync(POSTS_PATH), fpArray.map(getPost), fpArray.filter(filteredNotDraft), fpArray.sortBy([updateDate]), fpArray.reverse)
 }
 
 export function getAllBlogPosts(): Array<Post> {
-  const posts = getAllPosts()
-  return posts.filter((post) => post.meta?.category === BLOG)
+  return fpFunction.pipe(
+    getAllPosts(),
+    fpArray.filter((a) => a.meta.category === BLOG)
+  )
 }
 
 export function getAllProjectPosts(): Array<Post> {
-  const posts = getAllPosts()
-  return posts.filter((post) => post.meta?.category === PROJECT)
+  return fpFunction.pipe(
+    getAllPosts(),
+    fpArray.filter((a) => a.meta.category === PROJECT)
+  )
 }
 
 export function getFilteredProjectPosts(query: string): Array<Post> {
-  const posts = getAllProjectPosts()
-  return posts.filter((post) => post.meta.project === query)
+  return fpFunction.pipe(
+    getAllProjectPosts(),
+    fpArray.filter((a) => a.meta.project === query)
+  )
 }
 
 export function getAllTags(): Array<string> {
-  return getAllPosts()
-    .flatMap((post) => post.meta?.tags)
-    .filter((tag) => tag !== undefined)
+  return fpFunction.pipe(
+    getAllPosts(),
+    fpArray.map((a) => a.meta.tags),
+    fpArray.flatten,
+    fpArray.filter((a) => a !== undefined)
+  )
+  // return getAllPosts()
+  //   .flatMap((post) => post.meta.tags)
+  //   .filter((tag) => tag !== undefined)
 }
 
 export function getPostsByTag(tag: string): Array<Post> {
   const posts = getAllPosts()
-  return posts.filter((post) => post.meta?.tags?.includes(tag))
+  return posts.filter((post) => post.meta.tags?.includes(tag))
 }

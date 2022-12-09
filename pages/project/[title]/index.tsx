@@ -1,5 +1,7 @@
 import { RiFlashlightFill } from 'react-icons/ri'
 
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
@@ -40,11 +42,14 @@ const ProjectPage: NextPage<Props> = ({ title, posts }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = Object.values(projectType).map((a) => ({
-    params: {
-      title: a,
-    },
-  }))
+  const paths = fpFunction.pipe(
+    Object.values(projectType),
+    fpArray.mapWithIndex((i, a) => ({
+      params: {
+        title: a,
+      },
+    }))
+  )
 
   return {
     paths,

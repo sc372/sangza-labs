@@ -1,3 +1,4 @@
+import * as fpArray from 'fp-ts/array'
 import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
@@ -28,9 +29,12 @@ const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllBlogPosts()
-  const paths = posts.map((post) => ({
-    params: { slug: getSlug(post.slug) },
-  }))
+  const paths = fpFunction.pipe(
+    posts,
+    fpArray.mapWithIndex((i, a) => ({
+      params: { slug: getSlug(a.slug) },
+    }))
+  )
 
   return {
     paths,

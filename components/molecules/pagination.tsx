@@ -1,5 +1,8 @@
 import { FC } from 'react'
 
+import * as fpArray from 'fp-ts/Array'
+import * as fpFunction from 'fp-ts/function'
+
 interface Props {
   onPageChange: (pageNum: number) => void
   currentPage: number
@@ -68,18 +71,21 @@ const Pagination: FC<Props> = ({
               />
             </svg>
           </li>
-          {pageNumbers.map((number, i) => (
-            <li onClick={() => onPageChange(number)} key={i}>
-              <div
-                className={`
+          {fpFunction.pipe(
+            pageNumbers,
+            fpArray.mapWithIndex((i, a) => (
+              <li onClick={() => onPageChange(a)} key={i}>
+                <div
+                  className={`
                 ${
-                  number === currentPage && 'text-primary ring-1 ring-tertiary'
+                  a === currentPage && 'text-primary ring-1 ring-tertiary'
                 } ${itemClass}`}
-              >
-                {number}
-              </div>
-            </li>
-          ))}
+                >
+                  {a}
+                </div>
+              </li>
+            ))
+          )}
           <li
             onClick={() => isNext && onPageChange(currentPage + 1)}
             className={itemClass}

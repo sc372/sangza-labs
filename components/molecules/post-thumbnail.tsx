@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { RiPriceTag3Line } from 'react-icons/ri'
 
+import * as fpArray from 'fp-ts/Array'
+import * as fpFunction from 'fp-ts/function'
 import Link from 'next/link'
 
 import { Post } from '@common/interfaces'
@@ -18,22 +20,27 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
     <div className={`${className}`}>
       <Link href={`${getSlug(post.slug)}`}>
         <div className="cursor-pointer hover:text-primary">
-          {post.meta?.title}
+          {post.meta.title}
         </div>
       </Link>
-      <div className="flex flex-col md:flex-row md:items-center">
-        <Date className="mr-4 text-tertiary" date={post.meta?.createdDate} />
+      <div className="flex flex-col text-tertiary md:flex-row md:items-center">
+        <Date className="mr-4" date={post.meta.createdDate} />
         <div className="flex flex-row items-center">
-          {post.meta?.tags?.map((tag, i) => (
-            <span className="flex flex-row" key={i}>
-              {i === 0 && (
-                <span className="flex flex-row items-center">
-                  <RiPriceTag3Line />
+          {post.meta.tags !== undefined &&
+            !fpArray.isEmpty(post.meta.tags) &&
+            fpFunction.pipe(
+              post.meta.tags,
+              fpArray.mapWithIndex((i, a) => (
+                <span className="flex flex-row" key={i}>
+                  {i === 0 && (
+                    <span className="flex flex-row items-center">
+                      <RiPriceTag3Line />
+                    </span>
+                  )}
+                  <Tag name={a} href={`/blog/tags/${a}`} className="ml-2" />
                 </span>
-              )}
-              <Tag name={tag} href={`/blog/tags/${tag}`} className="ml-2" />
-            </span>
-          ))}
+              ))
+            )}
         </div>
       </div>
     </div>

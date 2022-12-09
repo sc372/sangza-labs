@@ -1,5 +1,7 @@
 import { RiHashtag } from 'react-icons/ri'
 
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
@@ -41,9 +43,12 @@ const TagPage: NextPage<Props> = ({ tag, posts }) => {
 
 export const getStaticPaths: GetStaticPaths = () => {
   const tags = getAllTags()
-  const paths = tags.map((tag) => ({
-    params: { tag },
-  }))
+  const paths = fpFunction.pipe(
+    tags,
+    fpArray.mapWithIndex((i, a) => ({
+      params: { tag: a },
+    }))
+  )
 
   return {
     paths,

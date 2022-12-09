@@ -1,5 +1,8 @@
 import { ReactElement } from 'react'
 
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
+
 import { Post } from '@common/interfaces'
 import SearchInput from '@components/atoms/search-input'
 import MainLayout from '@components/layouts/main-layout'
@@ -20,10 +23,12 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
   const { isMd } = useResponsive()
 
   const onSearchFilter = (searchText: string): Array<Post> =>
-    posts.filter(
-      (post) =>
-        post.content.includes(searchText) ||
-        post.meta.title.includes(searchText)
+    fpFunction.pipe(
+      posts,
+      fpArray.filter(
+        (a) =>
+          a.content.includes(searchText) || a.meta.title.includes(searchText)
+      )
     )
 
   const { filteredData, onSearchInputChange } = useSearchTextDebounce({

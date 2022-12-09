@@ -22,21 +22,13 @@ const MDXComponents = {
   image: Image,
 }
 
-function getRedingTime(text: string): string {
-  const wpm = 225
-  const words = text.trim().split(/\s+/).length
-  const time = Math.ceil(words / wpm)
-  console.log('%cuseReadingTime.ts line:11 time', 'color: #007acc;', time)
-  return `${time} min`
-}
-
 const MdxProvider: FC<Props> = ({ slug, frontMatter, mdxContent }) => {
   const { docRef, readingTime } = useReadingTime()
 
   return (
     <div className="lg:px-24 xl:px-48">
-      <div className="mb-5 text-2xl">{frontMatter.title}</div>
-      <div className="mb-2 flex flex-col items-end">
+      <div className="mb-5 text-3xl">{frontMatter.title}</div>
+      <div className="mb-2 flex flex-col items-end text-tertiary">
         <div>
           <span></span> create: {frontMatter.createdDate}
         </div>
@@ -47,15 +39,17 @@ const MdxProvider: FC<Props> = ({ slug, frontMatter, mdxContent }) => {
         </div>
         {/* </div> */}
         <div className="mb-10 flex flex-row">
-          {fpFunction.pipe(
-            frontMatter.tags,
-            fpArray.mapWithIndex((i, a) => (
-              <span className="flex items-center" key={i}>
-                {i === 0 && <RiPriceTag3Line />}
-                <Tag name={a} href={`/blog/tags/${a}`} className="ml-2" />
-              </span>
-            ))
-          )}
+          {frontMatter.tags !== undefined &&
+            !fpArray.isEmpty(frontMatter.tags) &&
+            fpFunction.pipe(
+              frontMatter.tags,
+              fpArray.mapWithIndex((i, a) => (
+                <span className="flex items-center" key={i}>
+                  {i === 0 && <RiPriceTag3Line />}
+                  <Tag name={a} href={`/blog/tags/${a}`} className="ml-2" />
+                </span>
+              ))
+            )}
         </div>
       </div>
       <div className="mb-10 border-t-[0.5px] border-solid text-divider"></div>

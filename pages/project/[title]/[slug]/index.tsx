@@ -1,9 +1,12 @@
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
 import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
+import MdxProvider from '@components/organisms/mdx-provider'
 import {
   getAllProjectPosts,
   getSlug,
@@ -21,7 +24,11 @@ interface Props {
 const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
-      <MDXRemote {...mdxContent} />
+      <MdxProvider
+        slug={slug}
+        frontMatter={frontMatter}
+        mdxContent={mdxContent}
+      />
     </>
   )
 }
@@ -29,12 +36,15 @@ const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllProjectPosts()
 
-  const paths = posts.map((post) => ({
-    params: {
-      slug: getSlug(post.slug),
-      title: post.meta.project,
-    },
-  }))
+  const paths = fpFunction.pipe(
+    posts,
+    fpArray.mapWithIndex((i, a) => ({
+      params: {
+        slug: getSlug(a.slug),
+        title: a.meta.project,
+      },
+    }))
+  )
 
   return {
     paths,
@@ -50,8 +60,6 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug, title } = params as Params
-  console.log(slug)
-  console.log(title)
   const toResult = async (post: Post) => ({
     slug: post.slug,
     frontMatter: post.meta,

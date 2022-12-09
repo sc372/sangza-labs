@@ -1,5 +1,8 @@
 import { FC } from 'react'
 
+import * as fpArray from 'fp-ts/array'
+import * as fpFunction from 'fp-ts/function'
+
 import { PAGE_SIZE } from '@common/constants'
 import { Post } from '@common/interfaces'
 import Pagination from '@components/molecules/pagination'
@@ -27,11 +30,15 @@ const Posts: FC<Props> = ({ posts }) => {
   return (
     <div className="pt-5">
       <div className="pb-16">
-        {dataForPage?.map((post: Post, i: number) => (
-          <div key={i}>
-            <PostThumbnail post={post} className="pt-1 pb-4" />
-          </div>
-        ))}
+        {!fpArray.isEmpty(dataForPage) &&
+          fpFunction.pipe(
+            dataForPage,
+            fpArray.mapWithIndex((i, a) => (
+              <div key={i}>
+                <PostThumbnail post={a} className="pt-1 pb-4" />
+              </div>
+            ))
+          )}
       </div>
       <Pagination
         className="fixed left-0 right-0 bottom-10 h-20 bg-background"
