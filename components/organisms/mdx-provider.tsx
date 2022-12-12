@@ -9,6 +9,7 @@ import Link from 'next/link'
 
 import { Meta } from '@common/interfaces'
 import MdxCodeBlock from '@components/atoms/mdx-code-block'
+import { getAnchor, H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
 import Tag from '@components/atoms/tag'
 import { AnchorElement, useAnchor } from '@hooks/useAnchor'
 import { useReadingTime } from '@hooks/useReadingTime'
@@ -23,6 +24,11 @@ interface Props {
 const MDXComponents = {
   code: MdxCodeBlock,
   image: Image,
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
 }
 
 const MdxProvider: FC<Props> = ({
@@ -33,6 +39,8 @@ const MdxProvider: FC<Props> = ({
 }) => {
   const { docRef, readingTime } = useReadingTime()
   const { docRef: docRefForAnchor, anchorElementList } = useAnchor()
+
+  console.log(anchorElementList)
 
   return (
     <div className={`${className}`}>
@@ -81,9 +89,12 @@ const MdxProvider: FC<Props> = ({
             {fpFunction.pipe(
               anchorElementList,
               fpArray.mapWithIndex((i, a: AnchorElement) => (
-                <Link className="hover:text-primary" href={`#${a[0]}`}>
+                <Link
+                  className="flex flex-row hover:text-primary"
+                  href={`#${getAnchor(a[2])}`}
+                >
                   <span dangerouslySetInnerHTML={{ __html: a[0] }}></span>
-                  {a[2]}
+                  <div dangerouslySetInnerHTML={{ __html: a[2] }}></div>
                 </Link>
               ))
             )}
