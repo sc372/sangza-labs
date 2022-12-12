@@ -10,7 +10,7 @@ export const useReadingTime = () => {
   const [readingTime, setReadingTime] = useState("")
 
   function getRedingTime(text: string): string {
-    const wpm = 225;
+    const wpm = 125;
     const words = text.trim().split(/\s+/).length;
     const time = Math.ceil(words / wpm);
     return `${time} min`

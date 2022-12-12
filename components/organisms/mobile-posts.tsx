@@ -40,7 +40,6 @@ const MobilePosts: FC<Props> = ({ posts }) => {
       >
         <RiArrowUpLine />
       </FloatingButton>
-      <button></button>
     </div>
   )
 }
