@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import {
   RiCloseLine,
-  RiHashtag,
+  RiLinksLine,
   RiPriceTag3Line,
   RiTimerLine,
 } from 'react-icons/ri'
@@ -102,9 +102,9 @@ const MdxProvider: FC<Props> = ({
             <div>
               <FloatingButton
                 onClick={() => toggleIsOpenAnchor()}
-                className="top-7 right-8 z-50 h-10 w-10 bg-primary"
+                className="top-8 right-8 z-50 h-8 w-8 bg-primary"
               >
-                {isOpenAnchor ? <RiCloseLine /> : <RiHashtag />}
+                {isOpenAnchor ? <RiCloseLine /> : <RiLinksLine />}
               </FloatingButton>
               {isOpenAnchor && (
                 <div className="fixed top-20 right-8 z-50 h-10 w-64">
