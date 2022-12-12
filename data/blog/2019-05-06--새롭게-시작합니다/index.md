@@ -10,7 +10,7 @@ category: blog
 draft: true
 ---
 
-## 봄과 함께 (with spring)
+## 봄과 함께
 
 ![Alt text](yellow.JPG)
 
@@ -29,31 +29,3 @@ gatsbyjs 는 react와 함께 [graphql](https://graphql.org/) 을 활용한 프�
 개인적으로는 세련된 기술이라는 느낌이다. 섹시함(?) 이 느껴졌다.
 봐야할 기술 문서가 산더미인데 하나가 더 추가 된 느낌이다. 에공..
 
-이번 사이트는 영어공부와 함께 하기 위해서 좀 부끄럽지만 한글/영문을 함께 작성해보려고 한다.
-
-(대부분의 기술 문서나 커뮤니티는 영문으로 표현 하고 있기때문에 스스로 영어와 친근해지지 않으면 안되는 것 같다.)
-
----
-
-May.
-
-Recently I was able to use my time because I left the company.
-
-I have a [hexo](https://hexo.io/ko/index.html) blog that I made two years ago.
-Hexo is a static site generator framework that makes blog sites relatively easy.
-
-This time, made by utilizing [gatsbyjs](https://www.gatsbyjs.org/).
-Gatsbyjs is static site generator framework based on [react](https://reactjs.org).
-It is because it is a technology that is mainly used.
-
-Gatsbyjs uses [graphql](https://graphql.org/) with reactjs.
-I used graphql for the first time.
-I have heard that it is a very useful technology,
-but I personally feel it is a sharp technology.
-Besides it is so sexy. One more was added my learn list. hmm..
-
-I'm so shy but I will use English / Korean on this site.
-I want to study English together.
-
-(Most technical articles and communities are written in English,
-so should be familiar with English)

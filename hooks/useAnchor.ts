@@ -25,12 +25,7 @@ export const useAnchor = (): UseAnchor => {
   function makeAnchorElementList(ref: HTMLDivElement): Array<AnchorElement> {
     return Array.from(ref.children)
       .filter(a => isHeadElement(a.tagName as HeadElement))
-      .map(a => {
-        console.log(a.tagName)
-        console.log(a.getElementsByTagName('a'))
-        a.getElementsByTagName('a').remove()
-        return [getPrefix(a.tagName.split("")[1]), a.tagName, a.innerHTML]
-      })
+      .map(a => [getPrefix(a.tagName.split("")[1]), a.tagName, a.innerHTML])
   }
 
   useEffect(() => {

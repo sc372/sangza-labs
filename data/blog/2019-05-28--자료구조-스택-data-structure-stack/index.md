@@ -20,7 +20,7 @@ draft: false
 
 ![stack](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Data_stack.svg/300px-Data_stack.svg.png)
 
-### 코드 적용 (example code)
+### 코드 적용
 
 ```javascript
 const Stack = (() => {
@@ -83,6 +83,6 @@ const Stack = (() => {
 })()
 ```
 
-## 참고자료 (Resources)
+## 참고자료
 
 - [WeakMap을 사용하는 이유](https://github.com/Functional-JavaScript/blog/wiki/ES6-WeakMap%EA%B3%BC-memoize)

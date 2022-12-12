@@ -27,7 +27,7 @@ N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 �
 
 ---
 
-## 작업 순서 (work procedure)
+## 작업 순서
 
 - selectionSort(arr)을 정의한다.
 
@@ -37,9 +37,9 @@ N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 �
 
 - 첫번째 인덱스의 값을 제외한 배열을 가지고 마지막 인덱스 - 1 까지 반복한다.
 
-### 코드 적용 (example code)
+### 코드 적용
 
-```js
+```javascript
 const selectionSort = (arr = []) => {
   if (!arr.length) return console.log('oops!')
 
@@ -70,6 +70,6 @@ console.log(selectionSort([5, 3, 6, 1]))
 // [ 1, 3, 5, 6 ]
 ```
 
-## 참고자료 (Resources)
+## 참고자료
 
 - [정렬 알고리즘 속도 비교](https://www.toptal.com/developers/sorting-algorithms)

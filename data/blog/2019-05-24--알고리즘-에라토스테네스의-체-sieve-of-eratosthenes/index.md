@@ -24,7 +24,7 @@ draft: false
 
 ![에라토스테네스의 체](https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif)
 
-### 코드 적용 (example code)
+### 코드 적용
 
 ```javascript
 const sieveOfEratosthenes = (num) => {

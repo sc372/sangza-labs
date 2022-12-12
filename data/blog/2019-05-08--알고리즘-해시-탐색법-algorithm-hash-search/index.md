@@ -34,13 +34,13 @@ division method 는 해시 테이블 크기 m 으로 나눈 나머지 값을 해
 
 ---
 
-## 자바스크립트 적용 (with javascript)
+## 자바스크립트 적용
 
 - 해시 함수는 division method
 
-### 배열을 이용해서 충돌을 피하는 방법 (with array)
+### 배열을 이용해서 충돌을 피하는 방법
 
-```js
+```javascript
 class HashSearchArr {
   constructor(size) {
     this.buckets = new Array(size)
@@ -79,9 +79,9 @@ class HashSearchArr {
 }
 ```
 
-### open addressing (with linear Probing)
+### open addressing
 
-```js
+```javascript
 class HashSearchAddIndex {
   constructor(size) {
     this.buckets = new Array(size)

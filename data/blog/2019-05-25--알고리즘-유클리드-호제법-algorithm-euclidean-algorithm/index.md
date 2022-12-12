@@ -23,7 +23,7 @@ draft: false
   - 자연수 12 와 자연수 18의 약수: 1, 2, 3, 6
   - 자연수 12 와 자연수 18의 최대 공약수: 6
 
-## 원리 (core mechanism)
+## 원리
 
 - 두개의 자연수(x = 1071, y = 1029) 가 있다.
 - 큰 수(y = 1071) 를 작은 수(x = 1071) 로 나눈 나머지를 r 이라고 하자.(y % x = r)
@@ -37,7 +37,7 @@ draft: false
 [최대공약수 = 21]
 ```
 
-### 코드 적용 (example code)
+### 코드 적용
 
 ```javascript
 const euclideanAlgorithm = (x, y) => {

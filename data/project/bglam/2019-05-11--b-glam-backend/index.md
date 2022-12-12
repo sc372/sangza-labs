@@ -13,7 +13,7 @@ draft: false
 
 - version 2.0 : 2018.01 ~
 
-## 요구사항 (requirements)
+## 요구사항
 
 - 적은 인적 자원으로 많은 기술적 요구와 효율을 충족 시켜야 함
 - 애자일 방법으로 빠른 개발/배포가 이루어져야하며, 급격하게 변화하는 비지니스 전략에 대응이 기민해야함
@@ -31,7 +31,7 @@ draft: false
 - 사용자 포인트 기능
 - 채팅 기능
 
-## 기술 스택 (technical stack)
+## 기술 스택
 
 - Node.js Express
 
@@ -88,7 +88,7 @@ draft: false
   - 웹소켓통신 서버에 대한 안정성 및 확장성, 채팅 데이터 관리의 용이성, 유틸들이 있어
     chakit 라이브러리를 활용하였다.
 
-## 프로젝트 설계도 (project architect)
+## 프로젝트 설계도
 
 scv2.0의 프로젝트에서 담당 로직은 다음과 같다.
 
@@ -134,9 +134,9 @@ scv2.0
 └── app.js : express app 초기화
 ```
 
-### 라우터 (routes)
+### 라우터
 
-#### 라우터 설계원칙 (routes rules)
+#### 라우터 설계원칙
 
 - RESTful API 설계 원칙 준수
 - ES8 async/await 를 활용하여 비동기 처리 작성
@@ -175,7 +175,7 @@ router.get('/:businessId/shops', errorHandler(async (req, res, next) => {
 module.exports = router
 ```
 
-#### 서비스 (services)
+#### 서비스
 
 ORM을 활용하여 DB에 질의를 한다. es6의 Destructuring을 활용하여,
 여러 `related`(join table)들을 해올 수 있게 구성하였다.
@@ -193,7 +193,7 @@ exports.selectBusiness = async (param = {}, [...relate] = []) => {
 }
 ```
 
-#### 모델 (models)
+#### 모델
 
 ```javascript
 // tb-business.js
@@ -208,9 +208,9 @@ $m.Business = $bs.Model.extend({
 })
 ```
 
-## 핵심 모듈 (modules)
+## 핵심 모듈
 
-### 오픈소스 (open sources)
+### 오픈소스
 
 - express : nodejs 환경에서 가장 많이 사용되는 web framework
 - express-jwt : user access 보안을 위한 jwt 라이브러리
@@ -226,11 +226,11 @@ $m.Business = $bs.Model.extend({
 - node-mailer : 메일을 보내기 위한 라이브러리
 - morgan : dev 환경에서의 logging 을 위한 라이브러리
 
-### 외부 SDK (external SDK)
+### 외부 SDK
 
 - aws elasticsearch : 빠른 검색을 위한 aws 서비스
 
-## 데이터베이스 설계원칙 (database rules)
+## 데이터베이스 설계원칙
 
 - 테이블에 "타입"을 두기 보다는 구체적인 새로운 테이블을 만든다.
 
@@ -241,26 +241,26 @@ $m.Business = $bs.Model.extend({
 - Default 값과 Not Null 값을 두어, 값이 잘못 입력되는 것을
   데이터베이스 제약조건 레이어에서 차단한다.
 
-## 백엔드 구성에 대한 고민 (how to consist of backend)
+## 백엔드 구성에 대한 고민
 
-### 공통화 및 추상화 (how to commonization and abstraction)
+### 공통화 및 추상화
 
 공통화를 통해, 코드를 더욱 짧고 간결하게 하며 동일한 수정을 막는 장점이 있었지만
 요구사항이 빈번하게 수정될 경우 오히려 다른 코드까지 영향을 주는 경우가 생겼다.
 이런 지점에서 어떻게 코드를 작성해나가면 좋을지에 대한 고민을 했다.
 
-#### 함수형 프로그래밍 (functional programming)
+#### 함수형 프로그래밍
 
 최대한 함수 단위를 세밀하게 쪼개서 프로그래밍 함으로써, 중복되는 코드 작성을 막으면서도
 의존성으로 인한 사이드 이펙트를 최소화한다. 또산 주석 없이도 더 간결한 코드 이해가 가능해진다.
 
-#### 공통화는 가능하면 나중에 (do commonization after)
+#### 공통화는 가능하면 나중에
 
 중복되는 코드가 생길때 바로 공통화를 해나가기 보다는 어느 정도 시간적 여유를 두고
 공통화시켜도 되겠다는 판단이 되는 시점에서 작업하는 것이 요구사항 변경에 따른 불필요한 작업을 최소화
 시킬 수 있을 거라는 판단이 들었다.
 
-#### 라우터 구조 (rescue of router)
+#### 라우터 구조
 
 라우터에서의 함수형 프로그래밍을 잘 활용하기 위해서, "라우터" 폴더에
 'helper 함수'를 두는 것이 좋다고 논의하였다. 예를 들어 일반 로그인과/카카오 로그인이 있다면,
@@ -272,21 +272,21 @@ access-normal-route.js
 access-helper.js
 ```
 
-### 마이크로 서비스 아키텍쳐 (micro service architecture)
+### 마이크로 서비스 아키텍쳐
 
 고객용 앱/웹, 업체용 앱/웹, 관리자용웹 과 같이 서비스가 커지고,
 웹과 앱의 배포 방식 또한 다르다 보니 모놀리틱 아키텍쳐 방식에는 한계가 있음이 느껴졌다.
 코드가 중복되는 지점이 있더라도, 하나의 백엔드 서버였던 것을 분리하며 일차적으로 서버를 분리하며,
 향후에는 더욱 기능들을 모듈화하여 마이크로 서비스 아키텍쳐를 지향해야할 필요성을 절실히 느꼈다.
 
-### 타입 시스템 (type system)
+### 타입 시스템
 
 요구사항 변경이 빈번하여 코드 수정이 많기 때문에, request와 response의 데이터 타입을
 명시화해두지 않으면 작업은 빠르게 되겠지만 안정성이 심각하게 무너졌다.
 또한 직접 호출해보지 않으면 어떤 데이터들이 오가는지 파악하기도 어려웠다.
 그래서 타입을 명시화해주기로 하였으며, 향후 typescript 적용을 고민해보았다.
 
-## 향후 발전 방향 (improvement)
+## 향후 발전 방향
 
 - typescript 적용을 통해서 type safe 한 코드 작성
 - 함수형 프로그래밍을 통해서 읽기 쉽고 짧은 코드 작성

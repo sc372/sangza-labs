@@ -9,15 +9,15 @@ project: sangza
 draft: false
 ---
 
-## 프로젝트 기간 (project period)
+## 프로젝트 기간
 
 - 2018.05.29 ~ 2018.06.06
 
-## 원격 저장소 (remote repository)
+## 원격 저장소
 
 - [github](https://github.com/sc372/simple-blog-app-react-node)
 
-## 요구사항 (requirements)
+## 요구사항
 
 - 댓글 기능이 있는 간단한 블로그 웹 애플리케이션
 - 회원 가입
@@ -26,7 +26,7 @@ draft: false
 - 블로그 게시물 댓글에 대한 CRUD
 - 블로그 게시물 댓글의 댓글에 대한 CRUD
 
-## 개발 일정 (schedule)
+## 개발 일정
 
 - 1 day : (front) page, layout ui 작성, router 적용
 - 2 day : (front) ui에 필요한 component 작성(1)
@@ -36,11 +36,11 @@ draft: false
 - 6 day : (back) 블로그 CRUD, 블로그 댓글 CRUD
 - 7 day : (back) 페이지 별로 요청 데이터 응답해주기
 
-## 프론트엔드 (frontend)
+## 프론트엔드
 
-### 기술 스택 (tech stack)
+### 기술 스택
 
-#### 핵심 모듈 (core lib)
+#### 핵심 모듈
 
 - [react.js (v.16.8.6)](https://reactjs.org/)
 - [CRA (v.3.0.1)](https://github.com/facebook/create-react-app) : 커뮤니티 공식 react app starter
@@ -55,13 +55,13 @@ draft: false
 - [moment (v.2.24.0)](https://momentjs.com/) : 시간 관련 포맷 도구
 - [axios (v.0.19.0)](https://github.com/axios/axios) : http 통신을 위한 도구
 
-#### 정적 분석 (static analysis)
+#### 정적 분석
 
 - [typescript (v.3.4.5)](https://www.typescriptlang.org/)
 - [eslint with typescript (v.5.16.0)](https://eslint.org/) : 문법 검사 도구(js + ts)
 - [prettier (v.1.17.1)](https://prettier.io/) : 코드 포매터
 
-#### 컴포넌트 라이브러리 (component lib)
+#### 컴포넌트 라이브러리
 
 - [antd](https://ant.design/) : ui component
 - [react-cropper (v.1.2.0)](https://github.com/roadmanfong/react-cropper) : 이미지 사이즈 조절
@@ -70,7 +70,7 @@ draft: false
 - [react-quill (v.1.3.3)](https://github.com/zenoamaro/react-quill) : 텍스트 에디터
 - [react-responsive (v.6.1.2)](https://github.com/contra/react-responsive) : css 없이 screen size 핸들링 도구
 
-### 프로젝트 설계도 (project tree)
+### 프로젝트 설계도
 
 ```
 ├── build                                     : build 된 파일 모음
@@ -102,7 +102,7 @@ draft: false
 └── tsconfig.json			      : 타입스크립트 complie 설정
 ```
 
-### 주요 특징 및 회고 (feature & retrospective)
+### 주요 특징 및 회고
 
 - 정적분석도구(typescript, eslint, prettier) 의 강력한 정적 분석으로 실수를 줄일 수 있었다.
 
@@ -123,14 +123,14 @@ draft: false
 
 - any 타입을 사용하지 않을 수 있도록 타입 정의를 꼼꼼하게 하는 것은 중요하나 시간이 많이 걸리는 작업이라서 적절한 타협을 했다.
 
-## 백엔드 (backend)
+## 백엔드
 
-### 기술 스택 (tech stack)
+### 기술 스택
 
 - OOP (object oriented programming)
 - [Mango framework](https://github.com/MrARC/Mango)
 
-#### 핵심 모듈 (core lib)
+#### 핵심 모듈
 
 - [node.js (v.10.1.5.3)]()
 - [express.js (4.16.4)](https://expressjs.com/ko) : nodejs micro 웹 프레임워크
@@ -146,13 +146,13 @@ draft: false
 - [moment (v.2.24.0)](https://momentjs.com/) : 시간 관련 포맷 도구
 - [axios (v.0.19.0)](https://github.com/axios/axios) : http 통신을 위한 도구
 
-#### 정적 분석 (static analysis)
+#### 정적 분석
 
 - [typescript (v.3.4.5)](https://www.typescriptlang.org/)
 - [tslint (v.5.12.0)](https://palantir.github.io/tslint/) : 문법 검사 도구
 - [prettier (v.1.17.1)](https://prettier.io/) : 코드 포매터
 
-### 프로젝트 설계도 (project tree)
+### 프로젝트 설계도
 
 ```
 ├── dist                                      : build 된 파일 모음
@@ -197,7 +197,7 @@ draft: false
 └── tsconfig.json			      : 타입스크립트 complie 설정
 ```
 
-### 주요 특징 및 회고 (feature retrospective)
+### 주요 특징 및 회고
 
 - [Mango framework](https://github.com/MrARC/Mango) 를 활용하여 작업하였는데 java의
   spring framework 장점인 DI 기반으로 디자인이 되어 있어서 node.js 환경에서 spring 과 비슷한 작업이 가능하였다

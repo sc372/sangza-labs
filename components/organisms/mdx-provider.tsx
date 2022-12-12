@@ -5,11 +5,17 @@ import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Meta } from '@common/interfaces'
 import MdxCodeBlock from '@components/atoms/mdx-code-block'
-import { getAnchor, H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
+import {
+  getAnchorInnerComponent,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+} from '@components/atoms/mdx-heading'
 import Tag from '@components/atoms/tag'
 import { AnchorElement, useAnchor } from '@hooks/useAnchor'
 import { useReadingTime } from '@hooks/useReadingTime'
@@ -40,12 +46,10 @@ const MdxProvider: FC<Props> = ({
   const { docRef, readingTime } = useReadingTime()
   const { docRef: docRefForAnchor, anchorElementList } = useAnchor()
 
-  console.log(anchorElementList)
-
   return (
     <div className={`${className}`}>
       {/* <div className="flex flex-row"> */}
-      <div className="flex flex-row lg:px-24">
+      <div className="flex flex-row">
         <div className="grow" ref={docRef}>
           <div>
             <div className="mb-5 text-3xl">{frontMatter.title}</div>
@@ -83,19 +87,23 @@ const MdxProvider: FC<Props> = ({
             <MDXRemote {...mdxContent} components={MDXComponents} />
           </div>
         </div>
-        <div className="relative w-1/4 grow-0">
+        <div className="relative w-1/3 grow-0">
           <div className="absolute left-10 -ml-0.5 h-full w-0.5 bg-secondary"></div>
-          <div className="sticky top-28 p-12">
+          <div className="sticky top-28 ml-16">
+            <div className="mb-2 hover:text-primary">
+              {getAnchorInnerComponent({
+                children: frontMatter.title,
+                link: '#',
+                onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+              })}
+            </div>
             {fpFunction.pipe(
               anchorElementList,
-              fpArray.mapWithIndex((i, a: AnchorElement) => (
-                <Link
-                  className="flex flex-row hover:text-primary"
-                  href={`#${getAnchor(a[2])}`}
-                >
+              fpArray.mapWithIndex((i: number, a: AnchorElement) => (
+                <div key={i} className="hover:text-primary">
                   <span dangerouslySetInnerHTML={{ __html: a[0] }}></span>
-                  <div dangerouslySetInnerHTML={{ __html: a[2] }}></div>
-                </Link>
+                  <span dangerouslySetInnerHTML={{ __html: a[2] }}></span>
+                </div>
               ))
             )}
           </div>

@@ -9,11 +9,11 @@ project: bglam
 draft: false
 ---
 
-## 프로젝트 기간 (project period)
+## 프로젝트 기간
 
 - 2019.01 ~
 
-## 요구사항 (requirements)
+## 요구사항
 
 - 모바일 앱의 주요 기능 구현
 - 모바일 프로그램의 한계인 SEO 를 보완하기 위해서 web 애플리케이션이 필요함
@@ -21,7 +21,7 @@ draft: false
 - 잠재적 파트너 의 접근성(입점 신청)이 필요
 - 비교적 관심도가 낮은 사용자의 행동을 분석하고 데이터화 하여 플랫폼의 전략에 필요한 자료로 활용 되는 것이 목적
 
-## 프로젝트 설계도 (project architect)
+## 프로젝트 설계도
 
 SSR 을 위한 react 의 next.js 프로젝트로서, next.js의 기본 구조를 따르되 그 외 구조는
 `mobile-b2c`과 유사하게 작성되었다.
@@ -133,6 +133,6 @@ web-b2c
   - `b2b/b2c/common` 으로 구분된다.
   - `rematch` 를 통해 state 값이 컴포넌트에 매핑되는 형식의 컴포넌트 들이 위치한다.
 
-## 시연영상 (rehearse)
+## 시연영상
 
 [![bGlam B2C web](https://img.youtube.com/vi/wVIrlDs1w_8/0.jpg)](http://www.youtube.com/watch?v=wVIrlDs1w_8 'bGlam B2C web')
