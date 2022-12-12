@@ -30,7 +30,7 @@ const MdxCodeBlock = ({ children, className }: Props): JSX.Element => {
                 {fpFunction.pipe(
                   a,
                   fpArray.mapWithIndex((ii, aa) => (
-                    <span key={ii} {...getTokenProps({ token: aa, key: i })} />
+                    <span key={ii} {...getTokenProps({ token: aa, key: ii })} />
                   ))
                 )}
               </div>

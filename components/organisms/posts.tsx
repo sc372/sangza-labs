@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import * as fpArray from 'fp-ts/array'
+import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 
 import { PAGE_SIZE } from '@common/constants'

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import * as fpArray from 'fp-ts/array'
+import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 
 import { Post } from '@common/interfaces'

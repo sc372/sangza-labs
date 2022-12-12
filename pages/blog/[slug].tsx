@@ -1,4 +1,4 @@
-import * as fpArray from 'fp-ts/array'
+import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'

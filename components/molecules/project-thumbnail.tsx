@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { RiPriceTag3Line } from 'react-icons/ri'
 
-import * as fpArray from 'fp-ts/array'
+import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 import * as fpString from 'fp-ts/string'
 import Link from 'next/link'
