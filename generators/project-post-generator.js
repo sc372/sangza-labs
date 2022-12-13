@@ -1,4 +1,5 @@
 const fs = require('fs')
+
 const { inputRequired } = require('./utils')
 
 const authors = JSON.parse(fs.readFileSync('./data/author.json'))
@@ -9,13 +10,13 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'title',
-        message: 'Project post title?',
+        message: '프로젝트 포스트의 제목을 입력해주세요.',
         validate: inputRequired('title'),
       },
       {
         type: 'list',
         name: 'author',
-        message: 'The author of project post?',
+        message: '프로젝트 포스트의 작성자를 입력해주세요.',
         choices: authors.map((author) => ({
           name: author.id,
           value: author.id,
@@ -24,12 +25,12 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'project',
-        message: 'project name?',
+        message: '프로젝트명을 입력해주세요.',
       },
       {
         type: 'confirm',
         name: 'draft',
-        message: "It's a draft?",
+        message: 'draft 버전 인가요?',
       },
     ],
     actions: (data) => {

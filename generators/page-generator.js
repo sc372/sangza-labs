@@ -6,14 +6,14 @@ module.exports = (plop) => {
       {
         type: 'input',
         name: 'name',
-        message: 'Page name?',
+        message: '페이지명을 입력하세요.',
         validate: inputRequired('name'),
       },
     ],
     actions: [
       {
         type: 'add',
-        path: '../src/pages/{{camelCase name}}.tsx',
+        path: '../src/pages/{{dashCase name}}/index.tsx',
         templateFile: 'templates/page-tsx.template',
       },
     ],
