@@ -9,6 +9,12 @@ module.exports = (plop) => {
     prompts: [
       {
         type: 'input',
+        name: 'project',
+        message: '프로젝트명을 입력해주세요.',
+        validate: inputRequired('project'),
+      },
+      {
+        type: 'input',
         name: 'title',
         message: '프로젝트 포스트의 제목을 입력해주세요.',
         validate: inputRequired('title'),
@@ -24,8 +30,8 @@ module.exports = (plop) => {
       },
       {
         type: 'input',
-        name: 'project',
-        message: '프로젝트명을 입력해주세요.',
+        name: 'tags',
+        message: '태그를 입력해주세요.(separate with coma)',
       },
       {
         type: 'confirm',
@@ -38,14 +44,14 @@ module.exports = (plop) => {
       data.createdDate = new Date().toISOString().split('T')[0]
 
       // Parse tags as yaml array
-      if (data.project) {
-        data.project = `\nproject:\n  - ${data.project}`
+      if (data.tags) {
+        data.tags = `\n  - ${data.tags.split(',').join('\n  - ')}`
       }
 
       return [
         {
           type: 'add',
-          path: '../data/project/{{createdDate}}--{{dashCase title}}/index.md',
+          path: '../data/project/{{dashCase title}}/{{createdDate}}--{{dashCase title}}/index.md',
           templateFile: 'templates/project-post-md.template',
         },
       ]

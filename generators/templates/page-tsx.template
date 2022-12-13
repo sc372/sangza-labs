@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { NextPage } from 'next'
 
 import MainLayout from '@components/layouts/main-layout'
 
@@ -12,7 +12,6 @@ const {{pascalCase name}}Page: NextPage<Props> = ({  }) => {
     </div>
   )
 }
-
 
 export default {{pascalCase name}}Page
 // @ts-ignore

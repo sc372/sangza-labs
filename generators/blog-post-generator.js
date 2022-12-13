@@ -39,7 +39,7 @@ module.exports = (plop) => {
 
       // Parse tags as yaml array
       if (data.tags) {
-        data.tags = `\ntags:\n  - ${data.tags.split(',').join('\n  - ')}`
+        data.tags = `\n  - ${data.tags.split(',').join('\n  - ')}`
       }
 
       return [

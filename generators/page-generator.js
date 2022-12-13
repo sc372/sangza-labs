@@ -13,7 +13,7 @@ module.exports = (plop) => {
     actions: [
       {
         type: 'add',
-        path: '../src/pages/{{dashCase name}}/index.tsx',
+        path: '../pages/{{dashCase name}}/index.tsx',
         templateFile: 'templates/page-tsx.template',
       },
     ],
