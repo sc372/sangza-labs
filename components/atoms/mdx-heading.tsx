@@ -59,6 +59,8 @@ export const getHashLinkInnerComponent: FC<InnerProps> = ({
     >
       <RiLinksLine />
     </span>
-    {children}
+    <span className="text-primaryText dark:text-darkPrimaryText">
+      {children}
+    </span>
   </a>
 )

@@ -28,13 +28,13 @@ const HashLinkPane: FC<Props> = ({ frontMatter, hashLinkElementList }) => {
         <div>
           <FloatingButton
             onClick={() => toggleIsOpenHashLink()}
-            className="dark:text-darkTertiary top-8 right-16 z-50 h-8 w-8 text-tertiary"
+            className="top-8 right-16 z-50 h-8 w-8 text-tertiary dark:text-darkTertiary"
           >
             {isOpenHashLink ? <RiCloseLine /> : <RiLinksLine />}
           </FloatingButton>
           {isOpenHashLink && (
             <div className="fixed top-20 right-8 z-50 h-10">
-              <div className="dark:bg-darkSecondary rounded-lg bg-secondary bg-opacity-95 px-6 py-2 dark:bg-opacity-95">
+              <div className="rounded-lg bg-secondary bg-opacity-95 px-6 py-2 dark:bg-opacity-95">
                 <div className="mb-2 hover:text-primary">
                   {getHashLinkInnerComponent({
                     children: frontMatter.title,
@@ -64,7 +64,7 @@ const HashLinkPane: FC<Props> = ({ frontMatter, hashLinkElementList }) => {
         </div>
       ) : (
         <div className="relative w-1/3 grow-0">
-          <div className="dark:bg-darkDivider absolute left-10 -ml-0.5 h-full w-0.5 bg-divider"></div>
+          <div className="absolute left-10 -ml-0.5 h-full w-0.5 bg-divider dark:bg-darkDivider"></div>
           <div className="sticky top-28 ml-16">
             <div className="mb-2 hover:text-primary">
               {getHashLinkInnerComponent({

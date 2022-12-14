@@ -7,8 +7,12 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Image from 'next/image'
 
 import { Meta } from '@common/interfaces'
+import A from '@components/atoms/mdx-anchor'
 import MdxCodeBlock from '@components/atoms/mdx-code-block'
 import { H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
+import Li from '@components/atoms/mdx-list'
+import P from '@components/atoms/mdx-paragraph'
+import Strong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
 import HashLinkPane from '@components/molecules/hash-link-pane'
 import { useHashLink } from '@hooks/useHashLink'
@@ -29,6 +33,10 @@ const MDXComponents = {
   h3: H3,
   h4: H4,
   h5: H5,
+  p: P,
+  a: A,
+  li: Li,
+  strong: Strong,
 }
 
 const MdxProvider: FC<Props> = ({
@@ -46,7 +54,7 @@ const MdxProvider: FC<Props> = ({
         <div className="grow" ref={docRef}>
           <div>
             <div className="mb-5 text-3xl">{frontMatter.title}</div>
-            <div className="dark:text-darkTertiary mb-2 flex flex-col items-end text-tertiary">
+            <div className="mb-2 flex flex-col items-end text-tertiary dark:text-darkTertiary">
               <div>
                 <span></span> create: {frontMatter.createdDate}
               </div>
@@ -74,7 +82,7 @@ const MdxProvider: FC<Props> = ({
                   )}
               </div>
             </div>
-            <div className="dark:text-darkDivider mb-10 border-t-[0.5px] border-solid text-divider"></div>
+            <div className="mb-10 border-t-[0.5px] border-solid text-divider dark:text-darkDivider"></div>
           </div>
           <div className="prose min-w-full" ref={docRefForHashLink}>
             <MDXRemote {...mdxContent} components={MDXComponents} />
