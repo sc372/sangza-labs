@@ -1,3 +1,4 @@
+import siteConfig from "../../site.config"
 import { Union } from "./common-type"
 
 export const projectType = {
@@ -7,7 +8,7 @@ export const projectType = {
   alliexVan: "allix-van",
   vCommerce: "v-commerce",
   bglam: "bglam",
-  sangza: "sangza",
+  sangza: siteConfig.authors[0].id,
 } as const
 
 export type ProjectType = Union<typeof projectType>

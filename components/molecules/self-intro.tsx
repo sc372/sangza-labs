@@ -5,6 +5,8 @@ import { RiGithubFill, RiMailLine } from 'react-icons/ri'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import siteConfig from '../../site.config'
+
 interface Props {
   className?: string
 }
@@ -22,10 +24,14 @@ const SelfIIntro: FC<Props> = ({ className }) => {
         />
       </div>
       <div className="pl-10">
-        <h3 className="text-[calc(0.5vw_+_20px)] font-semibold">sangza</h3>
-        <p className="mb-[0.3vw] italic text-tertiary">software engineer</p>
+        <h3 className="text-[calc(0.5vw_+_20px)] font-semibold">
+          {siteConfig.authors[0].id}
+        </h3>
+        <p className="mb-[0.3vw] italic text-tertiary">
+          {siteConfig.authors[0].bio}
+        </p>
         <div className="flex justify-start text-tertiary">
-          <Link href="https://github.com/sc372" target="_blank">
+          <Link href={siteConfig.authors[0].contacts.github} target="_blank">
             <button className="hover:text-primary">
               <IconContext.Provider
                 value={{ className: 'text-[calc(0.5vw_+_1.5rem)]' }}
@@ -34,7 +40,7 @@ const SelfIIntro: FC<Props> = ({ className }) => {
               </IconContext.Provider>
             </button>
           </Link>
-          <Link href="mailto:372lsc@gmail.com">
+          <Link href={`mailto:${siteConfig.authors[0].contacts.email}`}>
             <button className="ml-[1vw] cursor-pointer hover:text-primary">
               <IconContext.Provider
                 value={{ className: 'text-[calc(0.5vw_+_1.5rem)]' }}

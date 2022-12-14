@@ -5,6 +5,7 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
+import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
 import {
   getAllProjectPosts,
@@ -23,6 +24,15 @@ interface Props {
 const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
   return (
     <>
+      <PostSeo
+        author={frontMatter.author}
+        title={frontMatter.title}
+        description={frontMatter.title}
+        tags={frontMatter.tags}
+        createdDate={frontMatter.createdDate}
+        updatedDate={frontMatter.updatedDate}
+        uri={`/blog/${slug}`}
+      />
       <MdxProvider
         slug={slug}
         frontMatter={frontMatter}

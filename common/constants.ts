@@ -1,7 +1,8 @@
+import siteConfig from "../site.config"
 import { Project } from "./interfaces"
 import { projectType } from "./types/project-type"
 
-export const PAGE_SIZE = 8
+export const PAGE_SIZE = siteConfig.pageSize
 
 export const PROJECT_LIST: Array<Project> = [
   {
@@ -105,7 +106,7 @@ export const PROJECT_LIST: Array<Project> = [
   },
   {
     type: projectType.sangza,
-    title: "sangza",
+    title: siteConfig.authors[0].id,
     period: "",
     descriptionList: ["개인 프로젝트"],
     roleList: [],

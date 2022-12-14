@@ -1,10 +1,14 @@
 import { FC } from 'react'
 import { RiGithubFill, RiMailLine } from 'react-icons/ri'
 
+import * as fpArray from 'fp-ts/Array'
+import * as fpFunction from 'fp-ts/function'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { useIsOpenMenuDrawerAction } from '@modules/drawer/action'
+
+import siteConfig from '../../site.config'
 
 export interface Props {
   className?: string
@@ -28,16 +32,20 @@ const MenuDrawer: FC<Props> = ({ className }) => {
           height={500}
         />
         <div className="p-[1vw]">
-          <h3 className="mb-[calc(0.5vw_+_5px)] text-base font-bold">sangza</h3>
-          <p className="mb-[0.3vw] italic text-tertiary">software engineer</p>
+          <h3 className="mb-[calc(0.5vw_+_5px)] text-base font-bold">
+            {siteConfig.authors[0].id}
+          </h3>
+          <p className="mb-[0.3vw] italic text-tertiary">
+            {siteConfig.authors[0].bio}
+          </p>
         </div>
         <div className="flex justify-end py-[0.5vw] px-[0.2vw] text-tertiary">
-          <Link href="https://github.com/sc372" target="_blank">
+          <Link href={siteConfig.authors[0].contacts.github} target="_blank">
             <button className="m-[1vw] hover:text-primary">
               <RiGithubFill size={30} />
             </button>
           </Link>
-          <Link href="mailto:372lsc@gmail.com">
+          <Link href={`mailto:${siteConfig.authors[0].contacts.email}`}>
             <button className="m-[1vw] hover:text-primary">
               <RiMailLine size={30} />
             </button>
@@ -45,7 +53,19 @@ const MenuDrawer: FC<Props> = ({ className }) => {
         </div>
       </div>
       <div className="mt-[calc(1vw_+_10px)] flex flex-col items-end text-lg text-tertiary">
-        <div
+        {fpFunction.pipe(
+          siteConfig.menuDrawer,
+          fpArray.mapWithIndex((i, a) => (
+            <div
+              key={i}
+              className="my-[0.4vw] hover:text-primary"
+              onClick={closeIsOpenMenuDrawer}
+            >
+              <Link href={a.path}>{a.name}</Link>
+            </div>
+          ))
+        )}
+        {/* <div
           className="my-[0.4vw] hover:text-primary"
           onClick={closeIsOpenMenuDrawer}
         >
@@ -56,7 +76,7 @@ const MenuDrawer: FC<Props> = ({ className }) => {
           onClick={closeIsOpenMenuDrawer}
         >
           <Link href={'/about'}>about</Link>
-        </div>
+        </div> */}
       </div>
     </nav>
   )

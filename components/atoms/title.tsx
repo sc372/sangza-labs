@@ -6,6 +6,8 @@ import Link from 'next/link'
 import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import { useResponsive } from '@hooks/useResponsive'
 
+import siteConfig from '../../site.config'
+
 const Title: FC = () => {
   const { isLg } = useResponsive()
 
@@ -23,7 +25,9 @@ const Title: FC = () => {
               />
             </div>
           ) : (
-            <div className="flex flex-col justify-items-center">sangza</div>
+            <div className="flex flex-col justify-items-center">
+              {siteConfig.authors[0].id}
+            </div>
           )}
         </NonSsrWrapper>
         <div className="flex items-center justify-center">

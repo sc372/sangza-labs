@@ -1,8 +1,9 @@
 const fs = require('fs')
 
+const siteConfig = require('../site.config')
 const { inputRequired } = require('./utils')
 
-const authors = JSON.parse(fs.readFileSync('./data/author.json'))
+// const authors = JSON.parse(fs.readFileSync('./data/author.json'))
 
 module.exports = (plop) => {
   plop.setGenerator('blog post', {
@@ -17,9 +18,9 @@ module.exports = (plop) => {
         type: 'list',
         name: 'author',
         message: '블로그의 작성자를 입력해주세요.',
-        choices: authors.map((author) => ({
-          name: author.id,
-          value: author.id,
+        choices: siteConfig.authors.map((a) => ({
+          name: a.id,
+          value: a.id,
         })),
       },
       {

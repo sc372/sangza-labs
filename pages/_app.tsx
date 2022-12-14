@@ -6,6 +6,8 @@ import { NextPage } from 'next'
 import { ThemeProvider } from 'next-themes'
 import { RecoilRoot } from 'recoil'
 
+import { AppSeo } from '@components/molecules/seo'
+
 import type { AppProps } from 'next/app'
 
 type Page<P = {}> = NextPage<P> & {
@@ -24,6 +26,7 @@ function App({ Component, pageProps }: Props) {
   return (
     <RecoilRoot>
       <ThemeProvider defaultTheme="light" attribute="class">
+        <AppSeo />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
     </RecoilRoot>
