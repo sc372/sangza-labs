@@ -28,7 +28,7 @@ const Posts: FC<Props> = ({ posts }) => {
   })
 
   return (
-    <div className="pt-5">
+    <div className="h-[65vh] pt-5">
       <div className="pb-16">
         {!fpArray.isEmpty(dataForPage) &&
           fpFunction.pipe(
@@ -41,7 +41,7 @@ const Posts: FC<Props> = ({ posts }) => {
           )}
       </div>
       <Pagination
-        className="fixed left-0 right-0 bottom-10 h-20 bg-background"
+        className="dark:bg-darkBackground fixed left-0 right-0 bottom-10 h-20 bg-background"
         onPageChange={onPageChange}
         currentPage={currentPage}
         isPreview={isPreview}

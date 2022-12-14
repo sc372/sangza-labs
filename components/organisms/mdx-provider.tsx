@@ -46,7 +46,7 @@ const MdxProvider: FC<Props> = ({
         <div className="grow" ref={docRef}>
           <div>
             <div className="mb-5 text-3xl">{frontMatter.title}</div>
-            <div className="mb-2 flex flex-col items-end text-tertiary">
+            <div className="dark:text-darkTertiary mb-2 flex flex-col items-end text-tertiary">
               <div>
                 <span></span> create: {frontMatter.createdDate}
               </div>
@@ -74,7 +74,7 @@ const MdxProvider: FC<Props> = ({
                   )}
               </div>
             </div>
-            <div className="mb-10 border-t-[0.5px] border-solid text-divider"></div>
+            <div className="dark:text-darkDivider mb-10 border-t-[0.5px] border-solid text-divider"></div>
           </div>
           <div className="prose min-w-full" ref={docRefForHashLink}>
             <MDXRemote {...mdxContent} components={MDXComponents} />

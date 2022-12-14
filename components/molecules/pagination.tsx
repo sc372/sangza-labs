@@ -14,7 +14,7 @@ interface Props {
 
 const itemClass = `mx-0.5 relative inline-flex cursor-pointer items-center justify-center
                    rounded border-0 bg-transparent h-10 w-10 outline-none transition-all
-                   duration-300 hover:ring-1 hover:ring-tertiary`
+                   duration-300 hover:ring-1 dark:hover:ring-1 hover:ring-tertiary dark:hover:ring-darkTertiary`
 
 const Pagination: FC<Props> = ({
   onPageChange,
@@ -78,7 +78,8 @@ const Pagination: FC<Props> = ({
                 <div
                   className={`
                 ${
-                  a === currentPage && 'text-primary ring-1 ring-tertiary'
+                  a === currentPage &&
+                  'dark:ring-darkTertiary text-primary ring-1 ring-tertiary dark:ring-1'
                 } ${itemClass}`}
                 >
                   {a}

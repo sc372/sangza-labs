@@ -20,7 +20,7 @@ draft: false
 
 ![stack](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Data_stack.svg/300px-Data_stack.svg.png)
 
-### 코드 적용
+## 코드 적용
 
 ```javascript
 const Stack = (() => {

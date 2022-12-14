@@ -25,7 +25,7 @@ function App({ Component, pageProps }: Props) {
 
   return (
     <RecoilRoot>
-      <ThemeProvider defaultTheme="light" attribute="class">
+      <ThemeProvider attribute="class">
         <AppSeo />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>

@@ -31,7 +31,7 @@ const Timeline: FC<Props> = ({ className, list }) => {
                 <Tag name="more" href={a.projectPagePath} className="ml-3" />
               )}
             </div>
-            <time className="mb-2 block text-sm font-normal leading-none text-tertiary">
+            <time className="dark:text-darkTertiary mb-2 block text-sm font-normal leading-none text-tertiary">
               {a.period}
             </time>
             <p className="mb-4">

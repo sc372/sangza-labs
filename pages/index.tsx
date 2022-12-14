@@ -37,13 +37,11 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
   })
 
   return (
-    <>
+    <div className="h-[75vh]">
       <div>
         <SearchInput
           onChange={onSearchInputChange}
-          // onClick={onSearchInputClick}
-          // onKeyDown={onSearchInputKeyDown}
-          className="w-full max-w-[600px] bg-background"
+          className="w-full max-w-[600px]"
         />
       </div>
       <NonSsrWrapper>
@@ -53,7 +51,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
           <Posts posts={filteredData} />
         )}
       </NonSsrWrapper>
-    </>
+    </div>
   )
 }
 

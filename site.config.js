@@ -14,7 +14,7 @@ module.exports = {
     { path: '/', name: 'home' },
     { path: '/about', name: 'about' },
   ],
-  copyright: `&copy; ${now.format('YYYY')} sangza - All Right Reserved`,
+  copyright: `${now.format('YYYY')} sangza - All Right Reserved`,
   images: [
     {
       url: '',
@@ -36,18 +36,34 @@ module.exports = {
       './pages/**/**/*.{js,ts,jsx,tsx}',
       './components/**/**/*.{js,ts,jsx,tsx}',
     ],
+    purge: {
+      enabled: true,
+      content: [
+        './pages/**/**/*.{js,ts,jsx,tsx}',
+        './components/**/**/*.{js,ts,jsx,tsx}',
+      ],
+      options: {
+        safelist: ['dark'], //specific classes
+      },
+    },
+    darkMode: 'class',
     theme: {
       extend: {},
       colors: {
         transparent: 'transparent',
         primary: '#daa520',
+        darkPrimary: '#daa520',
         secondary: '#fbfbfb',
+        darkSecondary: '#282A3A',
         tertiary: '#808080',
+        darkTertiary: '#a0a0a0',
         divider: '#c8c8c8',
+        darkDivider: '#064663',
         success: '#595959',
         warning: '#ffc409',
         danger: '#eb445a',
         background: '#ffffff',
+        darkBackground: '#041C32',
         backdrop: 'rgba(0, 0, 0, 0.5)',
       },
     },

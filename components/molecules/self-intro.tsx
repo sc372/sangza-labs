@@ -27,10 +27,10 @@ const SelfIIntro: FC<Props> = ({ className }) => {
         <h3 className="text-[calc(0.5vw_+_20px)] font-semibold">
           {siteConfig.authors[0].id}
         </h3>
-        <p className="mb-[0.3vw] italic text-tertiary">
+        <p className="dark:text-darkTertiary mb-[0.3vw] italic text-tertiary">
           {siteConfig.authors[0].bio}
         </p>
-        <div className="flex justify-start text-tertiary">
+        <div className="dark:text-darkTertiary flex justify-start text-tertiary">
           <Link href={siteConfig.authors[0].contacts.github} target="_blank">
             <button className="hover:text-primary">
               <IconContext.Provider

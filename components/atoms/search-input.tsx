@@ -17,13 +17,13 @@ const SearchInput: FC<Props> = ({
   return (
     <div className={`${className} relative mx-auto block`}>
       <input
-        className=" mx-auto my-0 h-10 w-full rounded p-4 outline-none ring-[0.5px] ring-tertiary focus:ring-primary"
+        className=" dark:ring-darkDivider dark:bg-darkSecondary mx-auto my-0 h-10 w-full rounded bg-secondary p-4 outline-none ring-[0.5px] ring-divider focus:ring-primary dark:focus:ring-primary"
         placeholder="검색어를 입력하세요."
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
       <RiSearch2Line
-        className="absolute top-2 left-auto right-4 h-6 w-6 cursor-pointer"
+        className="absolute top-2 left-auto right-4 h-6 w-6 cursor-pointer dark:text-primary"
         type="submit"
         onClick={onClick}
       />

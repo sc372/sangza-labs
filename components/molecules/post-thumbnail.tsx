@@ -19,11 +19,11 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
   return (
     <div className={`${className}`}>
       <Link href={`${getSlug(post.slug)}`}>
-        <div className="cursor-pointer hover:text-primary">
+        <div className="inline cursor-pointer hover:text-primary">
           {post.meta.title}
         </div>
       </Link>
-      <div className="flex flex-col text-tertiary md:flex-row md:items-center">
+      <div className="flex flex-col text-tertiary dark:text-darkTertiary md:flex-row md:items-center">
         <Date className="mr-4" date={post.meta.createdDate} />
         <div className="flex flex-row items-center">
           {post.meta.tags !== undefined &&
