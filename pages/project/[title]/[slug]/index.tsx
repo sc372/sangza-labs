@@ -7,12 +7,7 @@ import { Meta, Post } from '@common/interfaces'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import {
-  getAllProjectPosts,
-  getSlug,
-  getPost,
-  getProjectPath,
-} from '@utils/doc'
+import { getAllProjectPosts, getPost } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
@@ -47,9 +42,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = fpFunction.pipe(
     posts,
-    fpArray.mapWithIndex((i, a) => ({
+    fpArray.map((a) => ({
       params: {
-        slug: getSlug(a.slug),
+        slug: a.slug,
         title: a.meta.project,
       },
     }))
@@ -68,17 +63,19 @@ interface Params {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug, title } = params as Params
-  const toResult = async (post: Post) => ({
-    slug: post.slug,
-    frontMatter: post.meta,
-    mdxContent: await markdownToHtml(post.content),
+  const makeFullPath = (params: Params) =>
+    `${process.cwd()}/data/project/${params.title}/${params.slug}/index.md`
+  const makeResult = async (a: Post) => ({
+    slug: a.slug,
+    frontMatter: a.meta,
+    mdxContent: await markdownToHtml(a.content),
   })
 
   const props = await fpFunction.pipe(
-    getProjectPath(slug, title),
+    params as Params,
+    makeFullPath,
     await getPost,
-    await toResult
+    await makeResult
   )
 
   return {

@@ -72,7 +72,7 @@ draft: false
 
 ### 프로젝트 설계도
 
-```
+```markdown
 ├── build                                     : build 된 파일 모음
 ├── node_modules                              : npm 모듈 모음
 ├── public                                    : 정적 리소스 모음
@@ -154,7 +154,7 @@ draft: false
 
 ### 프로젝트 설계도
 
-```
+```markdown
 ├── dist                                      : build 된 파일 모음
 ├── node_modules                              : npm 모듈 모음
 ├── public                                    : 정적 리소스 모음

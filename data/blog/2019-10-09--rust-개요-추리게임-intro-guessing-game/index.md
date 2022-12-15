@@ -77,7 +77,7 @@ _**여러모로 간지나는 언어임에 틀림이 없는 것 같다.**_
 문서에 나온 추리게임(guessing game) 앱의 코드를 보면서 읽어나가려고 한다.
 <br /><br /><br />
 
-```rust
+```typescript
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;

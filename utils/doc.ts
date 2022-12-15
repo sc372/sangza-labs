@@ -8,26 +8,24 @@ import { sync } from 'glob'
 import matter from 'gray-matter'
 
 import { Meta, Post } from '@common/interfaces'
+import { docCategoryType } from '@common/types/doc-category-type'
 
 const POSTS_PATH = `${process.cwd()}/data/**/*.md`
-const PROJECT = 'project'
-const BLOG = 'blog'
 
-
-export function getBlogPath(slug: string) {
-  return `${process.cwd()}/data/blog/${slug}/index.md`
+export function getTitleForPath(post: Post) {
+  if (post.meta.category === docCategoryType.project) {
+    return post.slug.split(`/data/project/${post.meta.project}`)[1].replace('/index.md', '')
+  } else if (post.meta.category === docCategoryType.blog) {
+    return post.slug.split(`/data/blog/`)[1].replace('/index.md', '')
+  }
 }
 
-export function getProjectPath(slug: string, title: string) {
-  return `${process.cwd()}/data/project/${title}/${slug}/index.md`
-}
-
-export function getSlug(slug: string) {
-  return slug.split('/data')[1].replace('/index.md', '')
-}
-
-export function getProjectSlug(slug: string, projectTitle?: string) {
-  return slug.split(`/data${projectTitle}`)[1].replace('/index.md', '')
+export function getUriByPost(post: Post) {
+  if (post.meta.category === docCategoryType.project) {
+    return `project/${post.meta.project}${getTitleForPath(post)}`
+  } else if (post.meta.category === docCategoryType.blog) {
+    return `blog/${getTitleForPath(post)}`
+  }
 }
 
 export function getPost(slug: string): Post {
@@ -48,14 +46,14 @@ export function getAllPosts(): Array<Post> {
 export function getAllBlogPosts(): Array<Post> {
   return fpFunction.pipe(
     getAllPosts(),
-    fpArray.filter((a) => a.meta.category === BLOG)
+    fpArray.filter((a) => a.meta.category === docCategoryType.blog)
   )
 }
 
 export function getAllProjectPosts(): Array<Post> {
   return fpFunction.pipe(
     getAllPosts(),
-    fpArray.filter((a) => a.meta.category === PROJECT)
+    fpArray.filter((a) => a.meta.category === docCategoryType.project)
   )
 }
 
@@ -73,12 +71,11 @@ export function getAllTags(): Array<string> {
     fpArray.flatten,
     fpArray.filter((a) => a !== undefined)
   )
-  // return getAllPosts()
-  //   .flatMap((post) => post.meta.tags)
-  //   .filter((tag) => tag !== undefined)
 }
 
 export function getPostsByTag(tag: string): Array<Post> {
   const posts = getAllPosts()
   return posts.filter((post) => post.meta.tags?.includes(tag))
 }
+
+

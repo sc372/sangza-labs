@@ -9,16 +9,16 @@ import Link from 'next/link'
 import { Post } from '@common/interfaces'
 import Date from '@components/atoms/date'
 import Tag from '@components/atoms/tag'
-import { getSlug } from '@utils/doc'
+import { getUriByPost } from '@utils/doc'
 
 interface Props {
-  project: Post
+  post: Post
 }
 
 const ProjectThumbnail: FC<Props> = ({ post }) => {
   return (
     <div>
-      <Link href={`${getSlug(post.slug)}`}>
+      <Link href={`${getUriByPost(post)}`}>
         <h2 className="cursor-pointer">{post.meta.title}</h2>
         <div className="flex items-start">
           {!fpString.isEmpty(post.meta.updatedDate) && (

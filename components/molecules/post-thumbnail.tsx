@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { Post } from '@common/interfaces'
 import Date from '@components/atoms/date'
 import Tag from '@components/atoms/tag'
-import { getSlug } from '@utils/doc'
+import { getUriByPost } from '@utils/doc'
 
 interface Props {
   post: Post
@@ -18,7 +18,7 @@ interface Props {
 const PostThumbnail: FC<Props> = ({ post, className }) => {
   return (
     <div className={`${className}`}>
-      <Link href={`${getSlug(post.slug)}`}>
+      <Link href={`${getUriByPost(post)}`}>
         <div className="inline cursor-pointer hover:text-primary">
           {post.meta.title}
         </div>

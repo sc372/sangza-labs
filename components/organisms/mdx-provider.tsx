@@ -12,6 +12,7 @@ import MdxCodeBlock from '@components/atoms/mdx-code-block'
 import { H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
 import Li from '@components/atoms/mdx-list'
 import P from '@components/atoms/mdx-paragraph'
+import Pre from '@components/atoms/mdx-pre'
 import Strong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
 import HashLinkPane from '@components/molecules/hash-link-pane'
@@ -34,6 +35,7 @@ const MDXComponents = {
   h4: H4,
   h5: H5,
   p: P,
+  pre: Pre,
   a: A,
   li: Li,
   strong: Strong,
