@@ -44,7 +44,7 @@ const ProjectPage: NextPage<Props> = ({ title, posts }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fpFunction.pipe(
     Object.values(projectType),
-    fpArray.mapWithIndex((a) => ({
+    fpArray.map((a) => ({
       params: {
         title: a,
       },
@@ -62,8 +62,9 @@ interface Params {
   title: string
 }
 
-export const getStaticProps: GetStaticProps = async (asdf) => {
-  const { title } = asdf.params as Params
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { title } = params as Params
+
   return {
     props: {
       title,

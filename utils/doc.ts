@@ -22,9 +22,9 @@ export function getTitleForPath(post: Post) {
 
 export function getUriByPost(post: Post) {
   if (post.meta.category === docCategoryType.project) {
-    return `project/${post.meta.project}${getTitleForPath(post)}`
+    return `/project/${post.meta.project}${getTitleForPath(post)}`
   } else if (post.meta.category === docCategoryType.blog) {
-    return `blog/${getTitleForPath(post)}`
+    return `/blog/${getTitleForPath(post)}`
   }
 }
 

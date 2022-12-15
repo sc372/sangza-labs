@@ -45,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   const tags = getAllTags()
   const paths = fpFunction.pipe(
     tags,
-    fpArray.mapWithIndex((a) => ({
+    fpArray.map((a) => ({
       params: { tag: a },
     }))
   )

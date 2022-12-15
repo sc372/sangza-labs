@@ -47,7 +47,7 @@ const HashLinkPane: FC<Props> = ({ frontMatter, hashLinkElementList }) => {
                 </div>
                 {fpFunction.pipe(
                   hashLinkElementList,
-                  fpArray.mapWithIndex((i: number, a: HashLinkElement) => (
+                  fpArray.mapWithIndex((i, a) => (
                     <div
                       key={i}
                       className="hover:text-primary"
@@ -75,7 +75,7 @@ const HashLinkPane: FC<Props> = ({ frontMatter, hashLinkElementList }) => {
             </div>
             {fpFunction.pipe(
               hashLinkElementList,
-              fpArray.mapWithIndex((i: number, a: HashLinkElement) => (
+              fpArray.mapWithIndex((i, a) => (
                 <div key={i} className="hover:text-primary">
                   <span dangerouslySetInnerHTML={{ __html: a[0] }}></span>
                   <span dangerouslySetInnerHTML={{ __html: a[2] }}></span>

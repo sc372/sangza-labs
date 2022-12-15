@@ -37,7 +37,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
   })
 
   return (
-    <div className="h-[75vh]">
+    <>
       <div>
         <SearchInput
           onChange={onSearchInputChange}
@@ -51,7 +51,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
           <Posts posts={filteredData} />
         )}
       </NonSsrWrapper>
-    </div>
+    </>
   )
 }
 

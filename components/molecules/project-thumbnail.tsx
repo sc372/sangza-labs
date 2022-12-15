@@ -16,6 +16,10 @@ interface Props {
 }
 
 const ProjectThumbnail: FC<Props> = ({ post }) => {
+  console.log(getUriByPost(post))
+  console.log(getUriByPost(post))
+  console.log(getUriByPost(post))
+  console.log(getUriByPost(post))
   return (
     <div>
       <Link href={`${getUriByPost(post)}`}>
@@ -32,7 +36,7 @@ const ProjectThumbnail: FC<Props> = ({ post }) => {
             !fpArray.isEmpty(post.meta.tags) &&
             fpFunction.pipe(
               post.meta.tags,
-              fpArray.mapWithIndex((i, a: string) => (
+              fpArray.mapWithIndex((i, a) => (
                 <Tag key={i} name={a} href={`/blog/tags/${a}`} />
               ))
             )}

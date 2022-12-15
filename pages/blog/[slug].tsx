@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
+import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
@@ -47,6 +48,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }))
   )
 
+  console.log(paths)
+
   return {
     paths,
     fallback: 'blocking',
@@ -60,7 +63,13 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
-  const makeFullPath = (a: string) => `${process.cwd()}/data/blog/${a}/index.md`
+  const makeFullPath = (a: string) => {
+    if (process.env.NODE_ENV === envType.development) {
+      return `${process.cwd()}/data/blog/${a}/index.md`
+    } else if (process.env.NODE_ENV === envType.production) {
+      return a
+    }
+  }
   const makeResult = async (a: Post) => ({
     slug: a.slug,
     frontMatter: a.meta,
