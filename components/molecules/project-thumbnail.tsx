@@ -16,10 +16,6 @@ interface Props {
 }
 
 const ProjectThumbnail: FC<Props> = ({ post }) => {
-  console.log(getUriByPost(post))
-  console.log(getUriByPost(post))
-  console.log(getUriByPost(post))
-  console.log(getUriByPost(post))
   return (
     <div>
       <Link href={`${getUriByPost(post)}`}>
