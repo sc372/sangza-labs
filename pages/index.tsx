@@ -10,7 +10,7 @@ import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
 import { useResponsive } from '@hooks/useResponsive'
-import { useSearchTextDebounce } from '@hooks/useSearchTextDebounce'
+import { useSearchTextAction } from '@modules/search-text/action'
 import { getAllPosts } from '@utils/doc'
 
 import type { GetStaticProps, NextPage } from 'next'
@@ -31,10 +31,12 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
       )
     )
 
-  const { filteredData, onSearchInputChange } = useSearchTextDebounce({
-    data: posts,
-    onSearchFilter,
-  })
+  const { filteredData, onSearchInputChange, searchText } = useSearchTextAction(
+    {
+      data: posts,
+      onSearchFilter,
+    }
+  )
 
   return (
     <>
@@ -42,6 +44,7 @@ const IndexPage: NextPage<Props> = ({ posts }) => {
         <SearchInput
           onChange={onSearchInputChange}
           className="w-full max-w-[600px]"
+          value={searchText}
         />
       </div>
       <NonSsrWrapper>
