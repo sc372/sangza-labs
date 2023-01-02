@@ -3,10 +3,11 @@ title: 알고리즘 | 퀵 정렬 (algorithm | quick sort)
 createdDate: '2019-05-23'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - sort
-category: blog
+description: 퀵 정렬(quick sort)이란 무작위로 정렬되어 있는 N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 하나이다. 알고리즘은 비교적 복잡한 수준이지만 sort 알고리즘 중에 가장 빠른 속도이다. 분할 정복 알고리즘(divide and conquer)을 활용한 정렬 기법이다.
 draft: false
 ---
 

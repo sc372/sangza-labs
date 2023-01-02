@@ -3,9 +3,10 @@ title: 알고리즘 | 이진 탐색법 (algorithm | binary search)
 createdDate: '2019-05-07'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
-category: blog
+description: 이진 탐색법(binary search)이란 N개의 원소로 이루어진 배열에서 원소를 찾는 방식 중에서 범위를 절반으로 줄여가면서 찾는 방식이다.
 draft: false
 ---
 

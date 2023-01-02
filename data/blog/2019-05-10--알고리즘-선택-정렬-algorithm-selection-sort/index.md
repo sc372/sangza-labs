@@ -3,10 +3,11 @@ title: 알고리즘 | 선택 정렬 (algorithm | selection sort)
 createdDate: '2019-05-10'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - sort
-category: blog
+description: 선택 정렬(selection sort)이란 무작위로 정렬되어 있는 N개의 배열을 오름차순/내림차순으로 정렬하는 방법중의 하나로 제자리 정렬 알고리즘 중 하나이다. 오름차순을 기준으로 무작위로 정렬되어 있는 배열에서 가장 최소값을 찾고 찾은 값을 가장 첫번째 인덱스의 값과 교환한다.
 draft: false
 ---
 

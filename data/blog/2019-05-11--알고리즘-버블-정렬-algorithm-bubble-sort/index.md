@@ -3,15 +3,16 @@ title: 알고리즘 | 버블 정렬 (algorithm | bubble sort)
 createdDate: '2019-05-11'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - sort
-category: blog
+description: 버블 정렬(bubble sort)이란 무작위로 정렬되어 있는 N개의 배열을 오름차순/내림차순으로 정렬하는 방법 중의 하나이다. 서로 붙어 있는 두 값을 순차적으로 비교해나가면서 마지막 값까지 비교하여 정렬하는 방법이다.
 draft: false
 ---
 
 [버블 정렬](https://ko.wikipedia.org/wiki/거품_정렬) 이란 무작위로 정렬되어 있는
-N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 하나다.
+N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 하나이다.
 
 서로 붙어 있는 두 값을 순차적으로 비교해나가면서 마지막 값까지 비교하여 정렬하는 방법이다.
 

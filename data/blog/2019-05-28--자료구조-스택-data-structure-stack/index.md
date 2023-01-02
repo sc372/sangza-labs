@@ -3,11 +3,12 @@ title: 자료구조 | 스택 (data structure  | stack)
 createdDate: '2019-05-28'
 updatedDate: '2019-10-09'
 author: sangza
+category: blog
 tags:
   - datastructure
   - stack
   - ADT
-category: blog
+description: 스택(stack) 이란 자료구조의 한 종류로서 추상 자료형(abstract data type) 에 속하는 나열구조이다. 스택은 일시적으로 데이터를 저장하기 위한 하나의 방법으로 가장 나중에 들어온 데이터를 가장 먼저 빼내는 후입 선출(LIFO | last in first out) 의 순서로 작동한다.
 draft: false
 ---
 

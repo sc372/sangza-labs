@@ -18,12 +18,13 @@ interface Props {
 }
 
 const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
+  console.log(mdxContent)
   return (
     <>
       <PostSeo
         author={frontMatter.author}
         title={frontMatter.title}
-        description={frontMatter.title}
+        description={frontMatter.description}
         tags={frontMatter.tags}
         createdDate={frontMatter.createdDate}
         updatedDate={frontMatter.updatedDate}

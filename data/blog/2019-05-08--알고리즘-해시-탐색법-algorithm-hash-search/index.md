@@ -3,9 +3,10 @@ title: 알고리즘 | 해시 탐색법 (algorithm | hash search)
 createdDate: '2019-05-08'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
-category: blog
+description: 해시 탐색법(hash search)은 key에 value를 저장하는 데이터 구조인 해시 테이블(hash table)에 해시함수(hash function)를 활용하여 데이터를 저장하고 탐색시 한번에 데이터를 찾아낼 수 있다.
 draft: false
 ---
 

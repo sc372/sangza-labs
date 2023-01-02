@@ -5,7 +5,7 @@ updatedDate: '2019-06-07'
 author: sangza
 category: project
 project: sangza
-
+description:
 draft: false
 ---
 
@@ -73,33 +73,33 @@ draft: false
 ### 프로젝트 설계도
 
 ```markdown
-├── build                                     : build 된 파일 모음
-├── node_modules                              : npm 모듈 모음
-├── public                                    : 정적 리소스 모음
-├── src                                       : 정적 리소스 모음
-│ 	├── api 			      : api 통신을 위한 파일들
-│ 	├── components			      : ui component 파일들
-│ 	├── models 			      : model 파일들
-│ 	├── pages 			      : page 파일들
-│ 	├── redux 			      : react-redux 파일들(sagas 포함)
-│ 	├── styles 			      : styles 파일들
-│ 	├── test 			      : test 파일들
-│ 	├── utils 			      : 유틸리티 파일들
-│ 	├── App.tsx 			      : 라우트, helmet 정의
-│ 	├── index.tsx 			      : app 시작 지점
-│ 	├── PrivateGuard.tsx 		      : route guard 핸들러
-│ 	├── react-app-env.d.ts 		      : CRA 를 통해 만들어진 환경변수 정의 하는 파일로 추측됨(미사용)
-│ 	├── Root.tsx 			      : redux store wrapping
-│ 	└── serviceWorker.ts 		      : 브라우저 외부에서 다양한 기능들을 활용할 수 있도록 돕는 기능
-├── typings                                   : type 정의
-├── .env				      : 환경 변수 정의
-├── .eslintrc.js			      : eslint 설정
-├── .gitignore				      : git 제외 설정
-├── .prettierrc 			      : prettierrc 설정
-├── config-overrides.js			      : react-app-rewired 설정
-├── package.json			      : npm 정보
-├── README.md  				      : read me
-└── tsconfig.json			      : 타입스크립트 complie 설정
+├── build : build 된 파일 모음
+├── node_modules : npm 모듈 모음
+├── public : 정적 리소스 모음
+├── src : 정적 리소스 모음
+│  ├── api : api 통신을 위한 파일들
+│  ├── components : ui component 파일들
+│  ├── models : model 파일들
+│  ├── pages : page 파일들
+│  ├── redux : react-redux 파일들(sagas 포함)
+│  ├── styles : styles 파일들
+│  ├── test : test 파일들
+│  ├── utils : 유틸리티 파일들
+│  ├── App.tsx : 라우트, helmet 정의
+│  ├── index.tsx : app 시작 지점
+│  ├── PrivateGuard.tsx : route guard 핸들러
+│  ├── react-app-env.d.ts : CRA 를 통해 만들어진 환경변수 정의 하는 파일로 추측됨(미사용)
+│  ├── Root.tsx : redux store wrapping
+│  └── serviceWorker.ts : 브라우저 외부에서 다양한 기능들을 활용할 수 있도록 돕는 기능
+├── typings : type 정의
+├── .env : 환경 변수 정의
+├── .eslintrc.js : eslint 설정
+├── .gitignore : git 제외 설정
+├── .prettierrc : prettierrc 설정
+├── config-overrides.js : react-app-rewired 설정
+├── package.json : npm 정보
+├── README.md : read me
+└── tsconfig.json : 타입스크립트 complie 설정
 ```
 
 ### 주요 특징 및 회고
@@ -155,46 +155,46 @@ draft: false
 ### 프로젝트 설계도
 
 ```markdown
-├── dist                                      : build 된 파일 모음
-├── node_modules                              : npm 모듈 모음
-├── public                                    : 정적 리소스 모음
+├── dist : build 된 파일 모음
+├── node_modules : npm 모듈 모음
+├── public : 정적 리소스 모음
 ├── src
-│ 	├── api.v1 			      : api ver.1
-│ 	│ 	├── auth                      : auth (jwt)
-│ 	│ 	├── blog                      : blog CRUD
-│ 	│ 	├── blog-comment              : blog-comment CRUD
-│ 	│ 	├── blog-comment-comment      : blog-comment-comment CRUD
-│ 	│ 	├── common                    : 공통 사용 객체
-│ 	│ 	└── user                      : user CRUD
-│ 	├── database
-│ 	│ 	└── database.ts               : database 세팅 및 연결 기능
-│ 	├── handlers
-│ 	│ 	├── api_error.handler.ts      : api error 핸들링 객체
-│ 	│ 	└── api_response.handler.ts   : api 응답 핸들링 객체
-│ 	├── helpers 			      : page 파일들
-│ 	│ 	├── authorization_check...    : auth 체크 객체
-│ 	│ 	└── current_user_check...     : jwt decoding 을 통해 사용자 확인 객체
-│ 	├── logger 			      :
-│ 	│ 	└── logger.service.ts         : winston logger 객체
-│ 	├── middleware
-│ 	│ 	├── error.middleware.ts       : error 미들 웨어
-│ 	│ 	├── http_logging.middleware.ts: http logging 미들웨어
-│ 	│ 	└── not_found.middleware.ts   : 찾을 없는 요청에 대한 처리 미들웨어
-│ 	├── migration 			      : database migration
-│ 	├── utils
-│ 	│ 	└── json.utils.ts             : json wrapper util 객체
-│ 	├── app.ts 			      : application init 객체
-│ 	└── www.ts 		              : 서버 동작에 대한 객체
+│  ├── api.v1 : api ver.1
+│  │  ├── auth : auth (jwt)
+│  │  ├── blog : blog CRUD
+│  │  ├── blog-comment : blog-comment CRUD
+│  │  ├── blog-comment-comment : blog-comment-comment CRUD
+│  │  ├── common : 공통 사용 객체
+│  │  └── user : user CRUD
+│  ├── database
+│  │  └── database.ts : database 세팅 및 연결 기능
+│  ├── handlers
+│  │  ├── api_error.handler.ts : api error 핸들링 객체
+│  │  └── api_response.handler.ts : api 응답 핸들링 객체
+│  ├── helpers : page 파일들
+│  │  ├── authorization_check... : auth 체크 객체
+│  │  └── current_user_check... : jwt decoding 을 통해 사용자 확인 객체
+│  ├── logger :
+│  │  └── logger.service.ts : winston logger 객체
+│  ├── middleware
+│  │  ├── error.middleware.ts : error 미들 웨어
+│  │  ├── http_logging.middleware.ts: http logging 미들웨어
+│  │  └── not_found.middleware.ts : 찾을 없는 요청에 대한 처리 미들웨어
+│  ├── migration : database migration
+│  ├── utils
+│  │  └── json.utils.ts : json wrapper util 객체
+│  ├── app.ts : application init 객체
+│  └── www.ts : 서버 동작에 대한 객체
 ├── tests
-├── .env				      : 환경 변수 정의
-├── .tslint.json			      : tslint 설정
-├── .gitignore				      : git 제외 설정
-├── .prettierrc 			      : prettierrc 설정
-├── ecosystem.config.js			      : [pm2](https://massivcode.com/5) 를 활용한 배포 동작 세팅
-├── ormconfig.json			      : typeorm 설정
-├── nodemon.json			      : dev 모드에서 watch를 위한 [nodemon](https://nodemon.io/) 설정
-├── package.json			      : npm 정보
-└── tsconfig.json			      : 타입스크립트 complie 설정
+├── .env : 환경 변수 정의
+├── .tslint.json : tslint 설정
+├── .gitignore : git 제외 설정
+├── .prettierrc : prettierrc 설정
+├── ecosystem.config.js : [pm2](https://massivcode.com/5) 를 활용한 배포 동작 세팅
+├── ormconfig.json : typeorm 설정
+├── nodemon.json : dev 모드에서 watch를 위한 [nodemon](https://nodemon.io/) 설정
+├── package.json : npm 정보
+└── tsconfig.json : 타입스크립트 complie 설정
 ```
 
 ### 주요 특징 및 회고

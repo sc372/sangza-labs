@@ -122,7 +122,7 @@ export default function Document() {
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="msapplication-TileImage" content="icons/icon-144x144.png" />
       </Head>
-      <body>
+      <body className="transition-colors duration-500">
         <Main />
         <NextScript />
       </body>

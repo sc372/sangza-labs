@@ -1,13 +1,14 @@
 ---
-title: 알고리즘 | 에라토스테네스의 체 (Sieve of Eratosthenes)
+title: 알고리즘 | 에라토스테네스의 체 (sieve of eratosthenes)
 createdDate: '2019-05-24'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - prime
   - 소수
-category: blog
+description: 에라토스테네스의 체(sieve of eratosthenes) 란 정해진 정수 안에서 소수를 구하는 방식으로 모든 수를 확인하지 않고 2부터 수의 배수들을 모두 제외시켜 가면서 소수를 구하는 방식이다.
 draft: false
 ---
 

@@ -14,6 +14,7 @@ export interface Meta {
   updatedDate: string
   draft: boolean
   tags: Array<string>
+  description: string
   title: string
 }
 

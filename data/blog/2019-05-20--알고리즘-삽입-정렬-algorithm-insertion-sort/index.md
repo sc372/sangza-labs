@@ -3,10 +3,11 @@ title: 알고리즘 | 삽입 정렬 (algorithm | insertion sort)
 createdDate: '2019-05-20'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - sort
-category: blog
+description: 삽입 정렬(insertion sort)이란 무작위로 정렬되어 있는 N개의 배열을 오름차순 / 내림차순으로 정렬하는 방법 중의 하나다. 배열의 각 원소들을 원소 자신 앞에 위치한 원소들과 비교하여 자신의 위치를 찾아서 삽입되면서 정렬된다.
 draft: false
 ---
 

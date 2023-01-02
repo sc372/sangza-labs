@@ -3,10 +3,11 @@ title: 알고리즘 | 유클리드 호제법 (algorithm | euclidean algorithm)
 createdDate: '2019-05-25'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - algorithm
   - 최대공약수
-category: blog
+description: 유클리드 호제법(euclidean algorithm)은 두개의 자연수의 최대 공약수를 구하는 알고리즘이다.
 draft: false
 ---
 

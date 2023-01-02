@@ -3,11 +3,11 @@ title: 알고리즘 | 개구리 점프 [코딜리티] (algorithm | FrogJmp [codi
 createdDate: '2019-06-12'
 updatedDate: '2019-06-12'
 author: sangza
+category: blog
 tags:
   - algorithm
   - codility
-category: blog
-
+description:
 draft: false
 ---
 

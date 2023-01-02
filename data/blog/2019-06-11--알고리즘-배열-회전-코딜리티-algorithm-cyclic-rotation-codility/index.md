@@ -3,11 +3,11 @@ title: 알고리즘 | 배열 회전 [코딜리티] (algorithm | CyclicRotation [
 createdDate: '2019-06-11'
 updatedDate: '2019-06-11'
 author: sangza
+category: blog
 tags:
   - algorithm
   - codility
-category: blog
-
+description:
 draft: false
 ---
 

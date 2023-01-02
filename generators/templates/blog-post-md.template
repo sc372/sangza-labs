@@ -5,6 +5,7 @@ updatedDate: "{{createdDate}}"
 author: {{author}}
 category: blog
 tags: {{tags}}
+description: 
 
 draft: {{draft}}
 

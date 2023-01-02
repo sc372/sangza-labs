@@ -3,10 +3,11 @@ title: 새롭게 시작합니다
 createdDate: '2019-05-06'
 updatedDate: '2019-06-07'
 author: sangza
+category: blog
 tags:
   - sangza
   - etc
-category: blog
+description:
 draft: true
 ---
 
@@ -28,4 +29,3 @@ gatsbyjs 는 react와 함께 [graphql](https://graphql.org/) 을 활용한 프�
 이번에 처음으로 graphql를 활용해봤다. 굉장히 유용한 기술이라는 이야기만 들었는데
 개인적으로는 세련된 기술이라는 느낌이다. 섹시함(?) 이 느껴졌다.
 봐야할 기술 문서가 산더미인데 하나가 더 추가 된 느낌이다. 에공..
-

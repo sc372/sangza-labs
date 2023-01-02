@@ -6,6 +6,7 @@ author: {{author}}
 category: project
 project: {{project}}
 tags: {{tags}}
+description:
 
 draft: {{draft}}
 

@@ -3,11 +3,11 @@ title: 알고리즘 | 배열 중 쌍이 없는 값 찾기 [코딜리티] (algori
 createdDate: '2019-06-10'
 updatedDate: '2019-06-10'
 author: sangza
+category: blog
 tags:
   - algorithm
   - codility
-category: blog
-
+description:
 draft: false
 ---
 

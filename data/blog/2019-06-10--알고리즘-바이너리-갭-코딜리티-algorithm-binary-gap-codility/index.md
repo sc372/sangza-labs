@@ -3,10 +3,11 @@ title: '알고리즘 | 바이너리 갭 [코딜리티]  (algorithm  | binary gap
 createdDate: '2019-06-10'
 updatedDate: '2019-06-10'
 author: sangza
+category: blog
 tags:
   - algorithm
   - codility
-category: blog
+description:
 draft: false
 ---
 

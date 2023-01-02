@@ -23,7 +23,7 @@ const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
       <PostSeo
         author={frontMatter.author}
         title={frontMatter.title}
-        description={frontMatter.title}
+        description={frontMatter.description}
         tags={frontMatter.tags}
         createdDate={frontMatter.createdDate}
         updatedDate={frontMatter.updatedDate}
