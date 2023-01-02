@@ -5,13 +5,14 @@ import * as fpFunction from 'fp-ts/function'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
+import { docCategoryType } from '@common/types/doc-category-type'
 import { projectType } from '@common/types/project-type'
 import MainLayout from '@components/layouts/main-layout'
 import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import MobilePosts from '@components/organisms/mobile-posts'
 import Posts from '@components/organisms/posts'
 import { useResponsive } from '@hooks/useResponsive'
-import { getFilteredProjectPosts } from '@utils/doc'
+import { getFilteredPostsByTitleAndCategoryType } from '@utils/doc'
 
 interface Props {
   title: string
@@ -68,7 +69,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       title,
-      posts: await getFilteredProjectPosts(title),
+      posts: await getFilteredPostsByTitleAndCategoryType(
+        title,
+        docCategoryType.project
+      ),
     },
   }
 }

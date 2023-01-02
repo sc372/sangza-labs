@@ -8,8 +8,9 @@ import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getAllBlogPosts, getPost } from '@utils/doc'
+import { getPostsByCategoryType, getPost } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
+import { docCategoryType } from '@common/types/doc-category-type'
 
 interface Props {
   slug: string
@@ -40,7 +41,7 @@ const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllBlogPosts()
+  const posts = await getPostsByCategoryType(docCategoryType.blog)
 
   const paths = fpFunction.pipe(
     posts,

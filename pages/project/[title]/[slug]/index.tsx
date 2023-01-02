@@ -4,11 +4,12 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
+import { docCategoryType } from '@common/types/doc-category-type'
 import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getAllProjectPosts, getPost } from '@utils/doc'
+import { getPost, getPostsByCategoryType } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
@@ -39,14 +40,14 @@ const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllProjectPosts()
+  const posts = await getPostsByCategoryType(docCategoryType.project)
 
   const paths = fpFunction.pipe(
     posts,
     fpArray.map((a) => ({
       params: {
         slug: a.slug,
-        title: a.meta.project,
+        title: a.meta.categoryTitle,
       },
     }))
   )

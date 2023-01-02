@@ -6,24 +6,24 @@ const { inputRequired } = require('./utils')
 // const authors = JSON.parse(fs.readFileSync('./data/author.json'))
 
 module.exports = (plop) => {
-  plop.setGenerator('project post', {
+  plop.setGenerator('series post', {
     prompts: [
       {
         type: 'input',
         name: 'categoryTitle',
-        message: '프로젝트명을 입력해주세요.',
+        message: '시리즈명을 입력해주세요.',
         validate: inputRequired('categoryTitle'),
       },
       {
         type: 'input',
         name: 'title',
-        message: '프로젝트 포스트의 제목을 입력해주세요.',
+        message: '시리즈 포스트의 제목을 입력해주세요.',
         validate: inputRequired('title'),
       },
       {
         type: 'list',
         name: 'author',
-        message: '프로젝트 포스트의 작성자를 입력해주세요.',
+        message: '시리즈 포스트의 작성자를 입력해주세요.',
         choices: siteConfig.authors.map((a) => ({
           name: a.id,
           value: a.id,
@@ -52,8 +52,8 @@ module.exports = (plop) => {
       return [
         {
           type: 'add',
-          path: '../data/project/{{dashCase title}}/{{createdDate}}--{{dashCase title}}/index.md',
-          templateFile: 'templates/project-post-md.template',
+          path: '../data/series/{{dashCase title}}/{{createdDate}}--{{dashCase title}}/index.md',
+          templateFile: 'templates/series-post-md.template',
         },
       ]
     },

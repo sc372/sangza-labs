@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { DocCategoryType } from './types/doc-category-type'
 import { ProjectType } from './types/project-type'
 
 export interface WrapperComponentProps {
@@ -8,8 +9,8 @@ export interface WrapperComponentProps {
 
 export interface Meta {
   author: string
-  category: string
-  project?: string
+  category: DocCategoryType
+  categoryTitle?: string
   createdDate: string
   updatedDate: string
   draft: boolean

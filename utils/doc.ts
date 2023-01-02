@@ -8,13 +8,13 @@ import { sync } from 'glob'
 import matter from 'gray-matter'
 
 import { Meta, Post } from '@common/interfaces'
-import { docCategoryType } from '@common/types/doc-category-type'
+import { DocCategoryType, docCategoryType } from '@common/types/doc-category-type'
 
 const POSTS_PATH = `${process.cwd()}/data/**/*.md`
 
 export function getTitleForPath(post: Post) {
   if (post.meta.category === docCategoryType.project) {
-    return post.slug.split(`/data/project/${post.meta.project}`)[1].replace('/index.md', '')
+    return post.slug.split(`/data/project/${post.meta.categoryTitle}`)[1].replace('/index.md', '')
   } else if (post.meta.category === docCategoryType.blog) {
     return post.slug.split(`/data/blog/`)[1].replace('/index.md', '')
   }
@@ -22,7 +22,7 @@ export function getTitleForPath(post: Post) {
 
 export function getUriByPost(post: Post) {
   if (post.meta.category === docCategoryType.project) {
-    return `/project/${post.meta.project}${getTitleForPath(post)}`
+    return `/project/${post.meta.categoryTitle}${getTitleForPath(post)}`
   } else if (post.meta.category === docCategoryType.blog) {
     return `/blog/${getTitleForPath(post)}`
   }
@@ -43,24 +43,17 @@ export function getAllPosts(): Array<Post> {
   return fpFunction.pipe(sync(POSTS_PATH), fpArray.map(getPost), fpArray.filter(filteredNotDraft), fpArray.sortBy([updateDate]), fpArray.reverse)
 }
 
-export function getAllBlogPosts(): Array<Post> {
+export function getPostsByCategoryType(type: DocCategoryType): Array<Post> {
   return fpFunction.pipe(
     getAllPosts(),
-    fpArray.filter((a) => a.meta.category === docCategoryType.blog)
+    fpArray.filter((a) => a.meta.category === type)
   )
 }
 
-export function getAllProjectPosts(): Array<Post> {
+export function getFilteredPostsByTitleAndCategoryType(title: string, type: DocCategoryType): Array<Post> {
   return fpFunction.pipe(
-    getAllPosts(),
-    fpArray.filter((a) => a.meta.category === docCategoryType.project)
-  )
-}
-
-export function getFilteredProjectPosts(query: string): Array<Post> {
-  return fpFunction.pipe(
-    getAllProjectPosts(),
-    fpArray.filter((a) => a.meta.project === query)
+    getPostsByCategoryType(type),
+    fpArray.filter((a) => a.meta.categoryTitle === title)
   )
 }
 

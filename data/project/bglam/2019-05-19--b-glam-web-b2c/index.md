@@ -4,7 +4,7 @@ createdDate: '2019-05-19'
 updatedDate: '2019-05-19'
 author: sangza
 category: project
-project: bglam
+categoryTitle: bglam
 description:
 draft: false
 ---

@@ -1,10 +1,11 @@
 import { GetStaticProps, NextPage } from 'next'
 
 import { Post } from '@common/interfaces'
+import { docCategoryType } from '@common/types/doc-category-type'
 import MainLayout from '@components/layouts/main-layout'
 import SelfIIntro from '@components/molecules/self-intro'
 import Timeline from '@components/molecules/timeline'
-import { getAllProjectPosts } from '@utils/doc'
+import { getPostsByCategoryType } from '@utils/doc'
 
 interface Props {
   posts: Array<Post>
@@ -26,7 +27,7 @@ const AboutPage: NextPage<Props> = ({ posts }) => {
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      posts: await getAllProjectPosts(),
+      posts: await getPostsByCategoryType(docCategoryType.project),
     },
   }
 }

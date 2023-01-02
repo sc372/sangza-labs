@@ -1,7 +1,8 @@
 const path = require('path')
 
-const withPlugins = require('next-compose-plugins')
-const withPWA = require('next-pwa')
+const withPWA = require('next-pwa')({
+  dest: 'public',
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,7 +19,8 @@ const nextConfig = {
   },
 }
 
-module.exports = withPlugins(
-  [[withPWA, { pwa: { dest: 'public' } }]],
-  nextConfig
-)
+module.exports = () => {
+  const plugins = [withPWA]
+
+  return plugins.reduce((acc, next) => next(acc), nextConfig)
+}
