@@ -30,7 +30,7 @@ const Posts: FC<Props> = ({ posts }) => {
 
   return (
     <>
-      <div className="h-[65vh] overflow-y-auto pt-5">
+      <div className="h-[67vh] overflow-y-auto pt-5">
         <div className="pb-16">
           {!fpArray.isEmpty(dataForPage) &&
             fpFunction.pipe(

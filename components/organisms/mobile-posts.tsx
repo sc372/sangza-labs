@@ -24,7 +24,7 @@ const MobilePosts: FC<Props> = ({ posts }) => {
 
   return (
     <>
-      <div className="h-[65vh] overflow-y-auto pt-5" ref={containerRef}>
+      <div className="h-[67vh] overflow-y-auto pt-5" ref={containerRef}>
         <div className="pb-16">
           {!fpArray.isEmpty(addedData) &&
             fpFunction.pipe(
