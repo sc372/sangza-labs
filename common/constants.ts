@@ -7,10 +7,14 @@ export const PAGE_SIZE = siteConfig.pageSize
 export const PROJECT_LIST: Array<Project> = [
   {
     type: projectType.smartroConpay,
-    title: "스마트로 선불 충전 시스템 구축",
+    title: "스마트로 선불 충전(White label) 시스템 구축",
     period: "2022.11 ~ 2022.12",
-    descriptionList: [],
-    roleList: [],
+    descriptionList: [
+      "Language: Vanilla Javascript",
+      "Packaging: Flutter(IOS/Android) Webview",
+      "Deploy: AWS Cloud front"
+    ],
+    roleList: ["SDK 프론트엔드(UI) 공통 개발"],
     projectPagePath: "",
     linkUrl: "",
     imageUrl: ""
