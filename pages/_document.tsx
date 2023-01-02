@@ -121,10 +121,6 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#daa520" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="msapplication-TileImage" content="icons/icon-144x144.png" />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
-        />
       </Head>
       <body className="transition-colors duration-500">
         <Main />

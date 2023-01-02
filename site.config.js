@@ -32,11 +32,7 @@ module.exports = {
     },
   ],
   tailwind: {
-    content: [
-      './pages/**/**/*.{js,ts,jsx,tsx}',
-      './components/**/**/*.{js,ts,jsx,tsx}',
-    ],
-    purge: {
+    content: {
       enabled: true,
       content: [
         './pages/**/**/*.{js,ts,jsx,tsx}',
