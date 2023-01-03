@@ -33,7 +33,7 @@ const ProjectThumbnail: FC<Props> = ({ post }) => {
             fpFunction.pipe(
               post.meta.tags,
               fpArray.mapWithIndex((i, a) => (
-                <Tag key={i} name={a} href={`/blog/tags/${a}`} />
+                <Tag key={i} name={a} href={`/tags/${a}`} />
               ))
             )}
         </div>

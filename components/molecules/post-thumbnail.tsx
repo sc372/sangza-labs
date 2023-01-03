@@ -37,7 +37,7 @@ const PostThumbnail: FC<Props> = ({ post, className }) => {
                       <RiPriceTag3Line />
                     </span>
                   )}
-                  <Tag name={a} href={`/blog/tags/${a}`} className="ml-2" />
+                  <Tag name={a} href={`/tags/${a}`} className="ml-2" />
                 </span>
               ))
             )}

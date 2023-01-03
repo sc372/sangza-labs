@@ -76,7 +76,7 @@ const MdxProvider: FC<Props> = ({
                         {i === 0 && <RiPriceTag3Line />}
                         <Tag
                           name={a}
-                          href={`/blog/tags/${a}`}
+                          href={`/tags/${a}`}
                           className="ml-2"
                         />
                       </span>
