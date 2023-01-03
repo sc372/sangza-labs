@@ -32,16 +32,16 @@ module.exports = {
     },
   ],
   tailwind: {
-    content: {
-      enabled: true,
-      content: [
-        './pages/**/**/*.{js,ts,jsx,tsx}',
-        './components/**/**/*.{js,ts,jsx,tsx}',
-      ],
-      options: {
-        safelist: ['dark'], //specific classes
-      },
+    // content: {
+    enabled: true,
+    content: [
+      './pages/**/**/*.{js,ts,jsx,tsx}',
+      './components/**/**/*.{js,ts,jsx,tsx}',
+    ],
+    options: {
+      safelist: ['dark'], //specific classes
     },
+    // },
     darkMode: 'class',
     theme: {
       extend: {},
