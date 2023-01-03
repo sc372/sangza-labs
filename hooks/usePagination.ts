@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 
 import { PAGE_SIZE } from '@common/constants'
+import { useCurrentPageAction } from '@modules/current-page/action'
 
 export const DOTS = 0
 const PAGE_RANGE_COUNT = 3
@@ -28,9 +29,10 @@ export const usePagination = <T>({
   data,
   pageSize,
 }: UsePaginationParams<T>): UsePagination<T> => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const { currentPage, onCurrentPageChange } = useCurrentPageAction()
+  // const [currentPage, setCurrentPage] = useState(1)
   const [orgData] = useState<Array<T>>(data)
-  const onPageChange = (pageNum: number) => setCurrentPage(pageNum)
+  const onPageChange = (pageNum: number) => onCurrentPageChange(pageNum)
   const totalCount = data.length
   const totalPageCount = useMemo(() => {
     return Math.ceil(totalCount / pageSize)
