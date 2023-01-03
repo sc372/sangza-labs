@@ -10,7 +10,7 @@ description:
 draft: false
 ---
 
-## 프로젝트 기간 (project period)
+## 프로젝트 기간
 
 - version 2.0 : 2018.01 ~
 

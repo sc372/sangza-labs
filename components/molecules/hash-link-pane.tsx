@@ -34,7 +34,7 @@ const HashLinkPane: FC<Props> = ({ frontMatter, hashLinkElementList }) => {
           </FloatingButton>
           {isOpenHashLink && (
             <div className="fixed top-20 right-8 z-50 h-10">
-              <div className="rounded-lg bg-secondary bg-opacity-95 px-6 py-2 dark:bg-opacity-95">
+              <div className="rounded-lg bg-secondary bg-opacity-95 px-6 py-2 dark:bg-darkSecondary dark:bg-opacity-95">
                 <div className="mb-2 hover:text-primary">
                   {getHashLinkInnerComponent({
                     children: frontMatter.title,

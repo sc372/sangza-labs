@@ -15,7 +15,9 @@ const POSTS_PATH = `${process.cwd()}/data/**/*.md`
 export function getTitleForPath(post: Post) {
   if (post.meta.category === docCategoryType.project) {
     return post.slug.split(`/data/project/${post.meta.categoryTitle}`)[1].replace('/index.md', '')
-  } else if (post.meta.category === docCategoryType.blog) {
+  } else if (post.meta.category === docCategoryType.series) {
+    return post.slug.split(`/data/series/${post.meta.categoryTitle}`)[1].replace('/index.md', '')
+  } else {
     return post.slug.split(`/data/blog/`)[1].replace('/index.md', '')
   }
 }
@@ -23,7 +25,9 @@ export function getTitleForPath(post: Post) {
 export function getUriByPost(post: Post) {
   if (post.meta.category === docCategoryType.project) {
     return `/project/${post.meta.categoryTitle}${getTitleForPath(post)}`
-  } else if (post.meta.category === docCategoryType.blog) {
+  } else if (post.meta.category === docCategoryType.series) {
+    return `/series/${post.meta.categoryTitle}${getTitleForPath(post)}`
+  } else {
     return `/blog/${getTitleForPath(post)}`
   }
 }

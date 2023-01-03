@@ -15,8 +15,9 @@ import P from '@components/atoms/mdx-paragraph'
 import Pre from '@components/atoms/mdx-pre'
 import Strong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
-import CategoryListBox from '@components/molecules/category-list-box'
+import CategoryListPane from '@components/molecules/category-list-pane'
 import HashLinkPane from '@components/molecules/hash-link-pane'
+import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import { useHashLink } from '@hooks/useHashLink'
 import { useReadingTime } from '@hooks/useReadingTime'
 
@@ -82,12 +83,17 @@ const MdxProvider: FC<Props> = ({
                   )}
               </div>
             </div>
-            <div className="mb-10 border-t-[0.5px] border-solid text-divider dark:text-darkDivider"></div>
+            <div className="mb-5 border-t-[0.5px] border-solid text-divider dark:text-darkDivider"></div>
           </div>
-          <div className="prose min-w-full" ref={docRefForHashLink}>
+          <NonSsrWrapper>
             {categoryList !== undefined && !fpArray.isEmpty(categoryList) && (
-              <CategoryListBox categoryList={categoryList} />
+              <CategoryListPane
+                categoryList={categoryList}
+                currentTitle={frontMatter.title}
+              />
             )}
+          </NonSsrWrapper>
+          <div className="prose mt-5 min-w-full" ref={docRefForHashLink}>
             <MDXRemote {...mdxContent} components={MDXComponents} />
           </div>
         </div>
