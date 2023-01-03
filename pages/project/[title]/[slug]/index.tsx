@@ -9,16 +9,26 @@ import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getPost, getPostsByCategoryType } from '@utils/doc'
+import {
+  getPost,
+  getPostsByCategoryTitle,
+  getPostsByCategoryType,
+} from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
   slug: string
   frontMatter: Meta
   mdxContent: MDXRemoteSerializeResult
+  categoryList: Array<Post>
 }
 
-const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
+const ProjectPage: NextPage<Props> = ({
+  slug,
+  frontMatter,
+  mdxContent,
+  categoryList,
+}) => {
   return (
     <>
       <PostSeo
@@ -34,6 +44,7 @@ const ProjectPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
         slug={slug}
         frontMatter={frontMatter}
         mdxContent={mdxContent}
+        categoryList={categoryList}
       />
     </>
   )
@@ -66,18 +77,17 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const makeFullPath = (a: Params) => {
-    if (process.env.NODE_ENV === envType.development) {
-      return `${process.cwd()}/data/project/${a.title}/${a.slug}/index.md`
-    } else if (process.env.NODE_ENV === envType.production) {
+    if (process.env.NODE_ENV === envType.production) {
       return a.slug
     } else {
-      return ''
+      return `${process.cwd()}/data/project/${a.title}/${a.slug}/index.md`
     }
   }
   const makeResult = async (a: Post) => ({
     slug: a.slug,
     frontMatter: a.meta,
     mdxContent: await markdownToHtml(a.content),
+    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
   })
 
   const props = await fpFunction.pipe(

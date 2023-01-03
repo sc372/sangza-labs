@@ -4,7 +4,8 @@ createdDate: "{{createdDate}}"
 updatedDate: "{{createdDate}}"
 author: {{author}}
 category: series
-series: {{series}}
+categoryTitle: {{categoryTitle}}
+categoryOrder: {{categoryOrder}}
 tags: {{tags}}
 description:
 

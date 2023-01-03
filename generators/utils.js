@@ -1,11 +1,22 @@
-/**
- * 필수 입력 유효성 검증
- *
- * @param {string} name
- * @return {boolean|string}
- */
 const inputRequired = (name) => {
-  return (value) => (/.+/.test(value) ? true : `${name} is required`)
+  return (value) => (/.+/.test(value) ? true : `${name} 은 필수 입력 입니다.`)
 }
 
-module.exports = { inputRequired }
+const inputPositiveIntegerAndRequired = (name) => {
+  return (value) => {
+    const isRequired = /.+/.test(value)
+    const isNumber = /\d/.test(value)
+
+    if (!isRequired) {
+      return `${name} 은 필수 입력 입니다.`
+    } else if (isRequired && !isNumber) {
+      return `${name} 은 숫자가 아닙니다.`
+    } else if (isRequired && isNumber && (value <= 0 || value % 1 !== 0)) {
+      return `${name} 은 양의 정수가 아닙니다.`
+    } else {
+      return true
+    }
+  }
+}
+
+module.exports = { inputRequired, inputPositiveIntegerAndRequired }

@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const siteConfig = require('../site.config')
-const { inputRequired } = require('./utils')
+const { inputRequired, inputPositiveIntegerAndRequired } = require('./utils')
 
 // const authors = JSON.parse(fs.readFileSync('./data/author.json'))
 
@@ -19,6 +19,12 @@ module.exports = (plop) => {
         name: 'title',
         message: '프로젝트 포스트의 제목을 입력해주세요.',
         validate: inputRequired('title'),
+      },
+      {
+        type: 'input',
+        name: 'categoryOrder',
+        message: '프로젝트 포스트의 순번을 입력해주세요.',
+        validate: inputPositiveIntegerAndRequired('categoryOrder'),
       },
       {
         type: 'list',

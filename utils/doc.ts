@@ -50,6 +50,13 @@ export function getPostsByCategoryType(type: DocCategoryType): Array<Post> {
   )
 }
 
+export function getPostsByCategoryTitle(categoryTitle?: string): Array<Post> {
+  return fpFunction.pipe(
+    getAllPosts(),
+    fpArray.filter((a) => a.meta.categoryTitle === categoryTitle)
+  )
+}
+
 export function getFilteredPostsByTitleAndCategoryType(title: string, type: DocCategoryType): Array<Post> {
   return fpFunction.pipe(
     getPostsByCategoryType(type),

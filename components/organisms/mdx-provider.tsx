@@ -6,7 +6,7 @@ import * as fpFunction from 'fp-ts/function'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import Image from 'next/image'
 
-import { Meta } from '@common/interfaces'
+import { Meta, Post } from '@common/interfaces'
 import A from '@components/atoms/mdx-anchor'
 import MdxCodeBlock from '@components/atoms/mdx-code-block'
 import { H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
@@ -15,6 +15,7 @@ import P from '@components/atoms/mdx-paragraph'
 import Pre from '@components/atoms/mdx-pre'
 import Strong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
+import CategoryListBox from '@components/molecules/category-list-box'
 import HashLinkPane from '@components/molecules/hash-link-pane'
 import { useHashLink } from '@hooks/useHashLink'
 import { useReadingTime } from '@hooks/useReadingTime'
@@ -24,6 +25,7 @@ interface Props {
   frontMatter: Meta
   mdxContent: MDXRemoteSerializeResult
   className?: string
+  categoryList?: Array<Post>
 }
 
 const MDXComponents = {
@@ -46,6 +48,7 @@ const MdxProvider: FC<Props> = ({
   frontMatter,
   mdxContent,
   className,
+  categoryList,
 }) => {
   const { docRef, readingTime } = useReadingTime()
   const { docRef: docRefForHashLink, hashLinkElementList } = useHashLink()
@@ -65,7 +68,6 @@ const MdxProvider: FC<Props> = ({
                 <RiTimerLine />
                 <div className="ml-2">{readingTime}</div>
               </div>
-              {/* </div> */}
               <div className="mb-10 flex flex-row">
                 {frontMatter.tags !== undefined &&
                   !fpArray.isEmpty(frontMatter.tags) &&
@@ -74,11 +76,7 @@ const MdxProvider: FC<Props> = ({
                     fpArray.mapWithIndex((i, a) => (
                       <span className="flex items-center" key={i}>
                         {i === 0 && <RiPriceTag3Line />}
-                        <Tag
-                          name={a}
-                          href={`/tags/${a}`}
-                          className="ml-2"
-                        />
+                        <Tag name={a} href={`/tags/${a}`} className="ml-2" />
                       </span>
                     ))
                   )}
@@ -87,6 +85,9 @@ const MdxProvider: FC<Props> = ({
             <div className="mb-10 border-t-[0.5px] border-solid text-divider dark:text-darkDivider"></div>
           </div>
           <div className="prose min-w-full" ref={docRefForHashLink}>
+            {categoryList !== undefined && !fpArray.isEmpty(categoryList) && (
+              <CategoryListBox categoryList={categoryList} />
+            )}
             <MDXRemote {...mdxContent} components={MDXComponents} />
           </div>
         </div>

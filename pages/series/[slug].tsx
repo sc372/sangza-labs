@@ -9,16 +9,22 @@ import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getPostsByCategoryType, getPost } from '@utils/doc'
+import { getPostsByCategoryType, getPost, getPostsByCategoryTitle } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
   slug: string
   frontMatter: Meta
   mdxContent: MDXRemoteSerializeResult
+  categoryList: Array<Post>
 }
 
-const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
+const SeriesDetailPage: NextPage<Props> = ({
+  slug,
+  frontMatter,
+  mdxContent,
+  categoryList,
+}) => {
   return (
     <>
       <PostSeo
@@ -34,13 +40,14 @@ const BlogDetailPage: NextPage<Props> = ({ slug, frontMatter, mdxContent }) => {
         slug={slug}
         frontMatter={frontMatter}
         mdxContent={mdxContent}
+        categoryList={categoryList}
       />
     </>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPostsByCategoryType(docCategoryType.blog)
+  const posts = await getPostsByCategoryType(docCategoryType.series)
 
   const paths = fpFunction.pipe(
     posts,
@@ -66,13 +73,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (process.env.NODE_ENV === envType.production) {
       return a
     } else {
-      return `${process.cwd()}/data/blog/${a}/index.md`
+      return `${process.cwd()}/data/series/${a}/index.md`
     }
   }
   const makeResult = async (a: Post) => ({
     slug: a.slug,
     frontMatter: a.meta,
     mdxContent: await markdownToHtml(a.content),
+    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle)
   })
 
   const props = await fpFunction.pipe(
@@ -87,8 +95,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default BlogDetailPage
+export default SeriesDetailPage
 // @ts-ignore
-BlogDetailPage.getLayout = (page: ReactElement) => (
+SeriesDetailPage.getLayout = (page: ReactElement) => (
   <MainLayout>{page}</MainLayout>
 )

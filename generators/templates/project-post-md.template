@@ -5,6 +5,7 @@ updatedDate: "{{createdDate}}"
 author: {{author}}
 category: project
 categoryTitle: {{categoryTitle}}
+categoryOrder: {{categoryOrder}}
 tags: {{tags}}
 description:
 

@@ -4,8 +4,9 @@ createdDate: "{{createdDate}}"
 updatedDate: "{{createdDate}}"
 author: {{author}}
 category: blog
+categoryTitle: {{categoryTitle}}
 tags: {{tags}}
-description: 
+description:
 
 draft: {{draft}}
 

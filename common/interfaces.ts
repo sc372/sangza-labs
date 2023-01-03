@@ -17,6 +17,7 @@ export interface Meta {
   tags: Array<string>
   description: string
   title: string
+  categoryOrder?: number
 }
 
 export interface Post {
