@@ -2,17 +2,29 @@ import React, { FC } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useResetRecoilState } from 'recoil'
 
 import NonSsrWrapper from '@components/molecules/non-ssr-wrapper'
 import { useResponsive } from '@hooks/useResponsive'
+import { currentPageAtom } from '@modules/current-page/atom'
+import { searchTextAtom } from '@modules/search-text/atom'
 
 import siteConfig from '../../site.config'
 
 const Title: FC = () => {
   const { isLg } = useResponsive()
 
+  const resetCurrentPage = useResetRecoilState(currentPageAtom)
+  const resetSearchText = useResetRecoilState(searchTextAtom)
+
   return (
-    <Link href="/">
+    <Link
+      href="/"
+      onClick={() => {
+        resetCurrentPage()
+        resetSearchText()
+      }}
+    >
       <div className="cursor-point flex flex-row text-[calc(0.7vw_+_1rem)]">
         <NonSsrWrapper>
           {isLg ? (

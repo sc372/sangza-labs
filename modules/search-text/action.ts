@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 
 import { useDebounce } from '@hooks/useDebounce'
+import { currentPageAtom } from '@modules/current-page/atom'
 
 import { searchTextAtom } from './atom'
 
@@ -18,6 +19,7 @@ export const useSearchTextAction = <T>({
 }: UseSearchTextDebounceParams<T>) => {
   const [filteredData, setFilteredData] = useState<Array<T>>(data)
   const [searchText, setSearchText] = useRecoilState(searchTextAtom)
+  const resetCurrentPage = useResetRecoilState(currentPageAtom)
 
   const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchText(e.target.value)
@@ -28,6 +30,7 @@ export const useSearchTextAction = <T>({
   )
 
   useEffect(() => {
+    resetCurrentPage()
     setFilteredData(onSearchFilter(searchText))
   }, [debouncedSearchText])
 

@@ -27,7 +27,7 @@ const Header: FC<Props> = ({ className }) => {
             <Title />
           </div>
         </div>
-        <ToggleThemeButton className="dark:text-darkTertiary top-8 right-6 z-50 h-8 w-8 text-tertiary" />
+        <ToggleThemeButton className="top-8 right-6 z-50 h-8 w-8 text-tertiary dark:text-darkTertiary" />
       </div>
     </nav>
   )
