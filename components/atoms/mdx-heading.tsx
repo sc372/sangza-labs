@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, HTMLProps } from 'react'
 import { RiLinksLine } from 'react-icons/ri'
 
 interface Props {
@@ -18,35 +18,65 @@ function getHashLink(text: string) {
 const className =
   "relative target:before:invisible target:before:-mt-[6rem] target:before:block target:before:h-[6rem] target:before:content-['']"
 
-export const H1: FC<Props> = ({ children, anchor = getHashLink(children) }) => (
-  <h1 id={anchor} className={className}>
-    {getHashLinkInnerComponent({ children, link: `#${anchor}` })}
-  </h1>
-)
+export const MdxH1 = ({ children }: HTMLProps<HTMLElement>) => {
+  const anchor = getHashLink(children as string)
+  return (
+    <h1 id={anchor} className={className}>
+      {getHashLinkInnerComponent({
+        children: children as string,
+        link: `#${anchor}`,
+      })}
+    </h1>
+  )
+}
 
-export const H2: FC<Props> = ({ children, anchor = getHashLink(children) }) => (
-  <h2 id={anchor} className={className}>
-    {getHashLinkInnerComponent({ children, link: `#${anchor}` })}
-  </h2>
-)
+export const MdxH2 = ({ children }: HTMLProps<HTMLElement>) => {
+  const anchor = getHashLink(children as string)
+  return (
+    <h2 id={anchor} className={className}>
+      {getHashLinkInnerComponent({
+        children: children as string,
+        link: `#${anchor}`,
+      })}
+    </h2>
+  )
+}
 
-export const H3: FC<Props> = ({ children, anchor = getHashLink(children) }) => (
-  <h3 id={anchor} className={className}>
-    {getHashLinkInnerComponent({ children, link: `#${anchor}` })}
-  </h3>
-)
+export const MdxH3 = ({ children }: HTMLProps<HTMLElement>) => {
+  const anchor = getHashLink(children as string)
+  return (
+    <h3 id={anchor} className={className}>
+      {getHashLinkInnerComponent({
+        children: children as string,
+        link: `#${anchor}`,
+      })}
+    </h3>
+  )
+}
 
-export const H4: FC<Props> = ({ children, anchor = getHashLink(children) }) => (
-  <h4 id={anchor} className={className}>
-    {getHashLinkInnerComponent({ children, link: `#${anchor}` })}
-  </h4>
-)
+export const MdxH4 = ({ children }: HTMLProps<HTMLElement>) => {
+  const anchor = getHashLink(children as string)
+  return (
+    <h4 id={anchor} className={className}>
+      {getHashLinkInnerComponent({
+        children: children as string,
+        link: `#${anchor}`,
+      })}
+    </h4>
+  )
+}
 
-export const H5: FC<Props> = ({ children, anchor = getHashLink(children) }) => (
-  <h5 id={anchor} className={className}>
-    {getHashLinkInnerComponent({ children, link: `#${anchor}` })}
-  </h5>
-)
+export const MdxH5 = ({ children }: HTMLProps<HTMLElement>) => {
+  const anchor = getHashLink(children as string)
+  return (
+    <h5 id={anchor} className={className}>
+      {getHashLinkInnerComponent({
+        children: children as string,
+        link: `#${anchor}`,
+      })}
+    </h5>
+  )
+}
 
 export const getHashLinkInnerComponent: FC<InnerProps> = ({
   children,

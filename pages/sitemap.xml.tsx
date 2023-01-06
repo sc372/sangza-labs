@@ -20,7 +20,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const makeField = (a: Post): ISitemapField => ({
     loc: fpFunction.pipe(a, getUriByPost, makeUrl),
     changefreq: 'daily',
-    priority: '0.8',
+    priority: 0.8,
     lastmod: makeLastmod(a.meta.createdDate),
   })
 

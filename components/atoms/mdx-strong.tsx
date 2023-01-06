@@ -1,13 +1,9 @@
-import { FC } from 'react'
+import { HTMLProps } from 'react'
 
-interface Props {
-  children: string
-}
-
-const Strong: FC<Props> = ({ children }) => (
+const MdxStrong = ({ children }: HTMLProps<HTMLElement>) => (
   <strong className="text-primaryText dark:text-darkPrimaryText">
     {children}
   </strong>
 )
 
-export default Strong
+export default MdxStrong

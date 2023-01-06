@@ -4,16 +4,22 @@ import { RiPriceTag3Line, RiTimerLine } from 'react-icons/ri'
 import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import Image from 'next/image'
 
 import { Meta, Post } from '@common/interfaces'
-import A from '@components/atoms/mdx-anchor'
+import MdxAnchor from '@components/atoms/mdx-anchor'
 import MdxCodeBlock from '@components/atoms/mdx-code-block'
-import { H1, H2, H3, H4, H5 } from '@components/atoms/mdx-heading'
-import Li from '@components/atoms/mdx-list'
-import P from '@components/atoms/mdx-paragraph'
-import Pre from '@components/atoms/mdx-pre'
-import Strong from '@components/atoms/mdx-strong'
+import {
+  MdxH1,
+  MdxH2,
+  MdxH3,
+  MdxH4,
+  MdxH5,
+} from '@components/atoms/mdx-heading'
+import MdxImage from '@components/atoms/mdx-image'
+import MdxLi from '@components/atoms/mdx-list'
+import MdxP from '@components/atoms/mdx-paragraph'
+import MdxPre from '@components/atoms/mdx-pre'
+import MdxStrong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
 import CategoryListPane from '@components/molecules/category-list-pane'
 import HashLinkPane from '@components/molecules/hash-link-pane'
@@ -31,17 +37,17 @@ interface Props {
 
 const MDXComponents = {
   code: MdxCodeBlock,
-  image: Image,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  p: P,
-  pre: Pre,
-  a: A,
-  li: Li,
-  strong: Strong,
+  img: MdxImage,
+  h1: MdxH1,
+  h2: MdxH2,
+  h3: MdxH3,
+  h4: MdxH4,
+  h5: MdxH5,
+  p: MdxP,
+  pre: MdxPre,
+  a: MdxAnchor,
+  li: MdxLi,
+  strong: MdxStrong,
 }
 
 const MdxProvider: FC<Props> = ({

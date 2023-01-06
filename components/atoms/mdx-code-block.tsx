@@ -1,14 +1,14 @@
+import { HTMLProps } from 'react'
+
 import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/okaidia'
 
-interface Props {
-  children: string
-  className: string
-}
-
-const MdxCodeBlock = ({ children, className }: Props): JSX.Element => {
+const MdxCodeBlock = ({
+  children,
+  className,
+}: HTMLProps<HTMLElement>): JSX.Element => {
   const language =
     className !== undefined
       ? (className.replace(/language-/, '') as Language)
@@ -17,7 +17,7 @@ const MdxCodeBlock = ({ children, className }: Props): JSX.Element => {
   return (
     <Highlight
       {...defaultProps}
-      code={children}
+      code={children as string}
       theme={theme}
       language={language}
     >

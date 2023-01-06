@@ -1,11 +1,7 @@
-import { FC } from 'react'
+import { HTMLProps } from 'react'
 
-interface Props {
-  children: string
-}
-
-const Li: FC<Props> = ({ children }) => (
+const MdxLi = ({ children }: HTMLProps<HTMLElement>) => (
   <li className="text-primaryText dark:text-darkPrimaryText">{children}</li>
 )
 
-export default Li
+export default MdxLi

@@ -8,12 +8,12 @@ tags:
   - sangza
   - etc
 description:
-draft: true
+draft: false
 ---
 
 ## 봄과 함께
 
-![Alt text](yellow.JPG)
+![Alt text](/static/images/post/2019-05-06--새롭게-시작합니다/yellow.JPG=100x20)
 
 5월이다.
 

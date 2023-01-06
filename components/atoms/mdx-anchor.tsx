@@ -1,14 +1,9 @@
-import { FC } from 'react'
+import { HTMLProps } from 'react'
 
-interface Props {
-  href?: string
-  children: string
-}
-
-const A: FC<Props> = ({ children, href }) => (
+const MdxAnchor = ({ children, href }: HTMLProps<HTMLAnchorElement>) => (
   <a href={href} className="text-anchorText">
     {children}
   </a>
 )
 
-export default A
+export default MdxAnchor

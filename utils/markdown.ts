@@ -8,7 +8,7 @@ export const markdownToHtml = async (markdown: string) => {
     // https://mdxjs.com/packages/mdx/#compilefile-options
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      // rehypePlugins: [[rehypeImgSize, { dir: "public" }]],
       format: 'md',
     },
     // Indicates whether or not to parse the frontmatter from the mdx source
