@@ -6,7 +6,7 @@ module.exports = {
 
   // This will lint and format TypeScript and                                             //JavaScript files
   '**/*.(ts|tsx|js)': (filenames) => [
-    'next lint .',
+    'next lint --dir .',
     'prettier --write .',
     // `next lint ${filenames.join(' ')}`,
     // `prettier --write ${filenames.join(' ')}`,
