@@ -1,1 +1,1 @@
-export type Union<T> = T[keyof T];
+export type Union<T> = T[keyof T]

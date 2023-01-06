@@ -12,13 +12,13 @@ const MainLayout: FC<WrapperComponentProps> = ({ children }) => {
 
   return (
     <>
-      <Header className="dark:bg-darkBackground z-50 h-[5.95rem] bg-background px-5 md:px-14" />
-      <MenuDrawer className="dark:bg-darkBackground z-[200] w-[calc(10%_+_10rem)] bg-background py-[1vw] px-[2vw] " />
+      <Header className="z-50 h-[5.95rem] bg-background px-5 dark:bg-darkBackground md:px-14" />
+      <MenuDrawer className="z-[200] w-[calc(10%_+_10rem)] bg-background py-[1vw] px-[2vw] dark:bg-darkBackground " />
       {isOpenMenuDrawer && <Backdrop />}
-      <main className="dark:bg-darkBackground bg-background px-5 py-24 md:px-32">
+      <main className="bg-background px-5 py-24 dark:bg-darkBackground md:px-32">
         {children}
       </main>
-      <Footer className="dark:bg-darkBackground bg-background" />
+      <Footer className="bg-background dark:bg-darkBackground" />
     </>
   )
 }

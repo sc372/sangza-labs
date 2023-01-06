@@ -7,17 +7,17 @@ interface useReadingTime {
 
 export const useReadingTime = () => {
   const docRef = useRef<HTMLDivElement>(null)
-  const [readingTime, setReadingTime] = useState("")
+  const [readingTime, setReadingTime] = useState('')
 
   function getRedingTime(text: string): string {
-    const wpm = 125;
-    const words = text.trim().split(/\s+/).length;
-    const time = Math.ceil(words / wpm);
+    const wpm = 125
+    const words = text.trim().split(/\s+/).length
+    const time = Math.ceil(words / wpm)
     return `${time} min`
   }
 
   useEffect(() => {
-    if (!docRef?.current) return;
+    if (!docRef?.current) return
     setReadingTime(getRedingTime(docRef.current.innerText))
   }, [docRef])
 

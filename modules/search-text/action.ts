@@ -7,7 +7,6 @@ import { currentPageAtom } from '@modules/current-page/atom'
 
 import { searchTextAtom } from './atom'
 
-
 export interface UseSearchTextDebounceParams<T> {
   data: Array<T>
   onSearchFilter: (text: string) => Array<T>
@@ -24,20 +23,16 @@ export const useSearchTextAction = <T>({
   const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchText(e.target.value)
 
-  const debouncedSearchText = useDebounce<string>(
-    searchText,
-    500
-  )
+  const debouncedSearchText = useDebounce<string>(searchText, 500)
 
   useEffect(() => {
     resetCurrentPage()
     setFilteredData(onSearchFilter(searchText))
   }, [debouncedSearchText])
 
-
   return {
     searchText,
     filteredData,
-    onSearchInputChange
+    onSearchInputChange,
   }
 }

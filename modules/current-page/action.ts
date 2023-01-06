@@ -1,4 +1,3 @@
-
 import { useRecoilState } from 'recoil'
 
 import { currentPageAtom } from './atom'
@@ -10,6 +9,6 @@ export const useCurrentPageAction = () => {
 
   return {
     currentPage,
-    onCurrentPageChange
+    onCurrentPageChange,
   }
 }

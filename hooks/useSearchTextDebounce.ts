@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 import { useDebounce } from './useDebounce'
 
-
 export interface UseSearchTextDebounceParams<T> {
   data: Array<T>
   onSearchFilter: (text: string) => Array<T>
@@ -18,19 +17,14 @@ export const useSearchTextDebounce = <T>({
   const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchText(e.target.value)
 
-  const debouncedSearchText = useDebounce<string>(
-    searchText,
-    500
-  )
+  const debouncedSearchText = useDebounce<string>(searchText, 500)
 
   useEffect(() => {
     setFilteredData(onSearchFilter(searchText))
   }, [debouncedSearchText])
 
-
   return {
     filteredData,
-    onSearchInputChange
+    onSearchInputChange,
   }
-
 }

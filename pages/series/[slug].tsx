@@ -9,7 +9,11 @@ import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getPostsByCategoryType, getPost, getPostsByCategoryTitle } from '@utils/doc'
+import {
+  getPostsByCategoryType,
+  getPost,
+  getPostsByCategoryTitle,
+} from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
@@ -80,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     slug: a.slug,
     frontMatter: a.meta,
     mdxContent: await markdownToHtml(a.content),
-    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle)
+    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
   })
 
   const props = await fpFunction.pipe(

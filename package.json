@@ -7,10 +7,21 @@
     "post-build": "next-sitemap",
     "build": "next build && next-sitemap",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --no-cache --dir .",
     "format": "prettier --write .",
-    "lint-format": "npm run lint && npm run format",
+    "lint-format": "npm run lint --fix && npm run format",
     "g": "plop --plopfile ./generators/plopfile.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "next lint --no-cache --dir . --fix",
+      "prettier --write ."
+    ]
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.4",
@@ -62,6 +73,8 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "flat": "^5.0.2",
     "glob": "^8.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "next-compose-plugins": "^2.2.1",
     "next-sitemap": "^3.1.32",
     "plop": "^2.7.6",

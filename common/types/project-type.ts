@@ -1,13 +1,13 @@
-import siteConfig from "../../site.config"
-import { Union } from "./common-type"
+import siteConfig from '../../site.config'
+import { Union } from './common-type'
 
 export const projectType = {
-  smartroConpay: "smartro-conpay",
-  cjOnePay: "cj-one-pay",
-  jtnetVanCms: "jtnet-van-cms",
-  alliexVan: "allix-van",
-  vCommerce: "v-commerce",
-  bglam: "bglam",
+  smartroConpay: 'smartro-conpay',
+  cjOnePay: 'cj-one-pay',
+  jtnetVanCms: 'jtnet-van-cms',
+  alliexVan: 'allix-van',
+  vCommerce: 'v-commerce',
+  bglam: 'bglam',
   sangza: siteConfig.authors[0].id,
 } as const
 

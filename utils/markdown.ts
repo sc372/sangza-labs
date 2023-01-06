@@ -9,7 +9,7 @@ export const markdownToHtml = async (markdown: string) => {
     mdxOptions: {
       remarkPlugins: [],
       rehypePlugins: [],
-      format: 'md'
+      format: 'md',
     },
     // Indicates whether or not to parse the frontmatter from the mdx source
     parseFrontmatter: false,

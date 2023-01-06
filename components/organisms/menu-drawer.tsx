@@ -24,7 +24,7 @@ const MenuDrawer: FC<Props> = ({ className }) => {
       } ${className}`}
     >
       <h2 className="mb-3 text-2xl font-bold">think</h2>
-      <div className="dark:ring-darkDivider dark:bg-darkSecondary relative box-border ring-[0.5px] ring-divider">
+      <div className="relative box-border ring-[0.5px] ring-divider dark:bg-darkSecondary dark:ring-darkDivider">
         <Image
           src="/static/images/profile.jpg"
           alt="profile"
@@ -35,11 +35,11 @@ const MenuDrawer: FC<Props> = ({ className }) => {
           <h3 className="mb-[calc(0.5vw_+_5px)] text-base font-bold">
             {siteConfig.authors[0].id}
           </h3>
-          <p className="dark:text-darkTertiary mb-[0.3vw] italic text-tertiary">
+          <p className="mb-[0.3vw] italic text-tertiary dark:text-darkTertiary">
             {siteConfig.authors[0].bio}
           </p>
         </div>
-        <div className="dark:text-darkTertiary flex justify-end py-[0.5vw] px-[0.2vw] text-tertiary">
+        <div className="flex justify-end py-[0.5vw] px-[0.2vw] text-tertiary dark:text-darkTertiary">
           <Link href={siteConfig.authors[0].contacts.github} target="_blank">
             <button className="m-[1vw] hover:text-primary">
               <RiGithubFill size={30} />
@@ -52,7 +52,7 @@ const MenuDrawer: FC<Props> = ({ className }) => {
           </Link>
         </div>
       </div>
-      <div className="dark:text-darkTertiary mt-[calc(1vw_+_10px)] flex flex-col items-end text-lg text-tertiary">
+      <div className="mt-[calc(1vw_+_10px)] flex flex-col items-end text-lg text-tertiary dark:text-darkTertiary">
         {fpFunction.pipe(
           siteConfig.menuDrawer,
           fpArray.mapWithIndex((i, a) => (

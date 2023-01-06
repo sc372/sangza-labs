@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import MenuIconButton from '@components/atoms/menu-drawer-button'
 import Title from '@components/atoms/title'

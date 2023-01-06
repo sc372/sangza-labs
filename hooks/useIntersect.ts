@@ -5,7 +5,10 @@ type IntersectHandler = (
   observer: IntersectionObserver
 ) => void
 
-type UseIntersectType = (onIntersect: IntersectHandler, options?: IntersectionObserverInit) => RefObject<HTMLDivElement>
+type UseIntersectType = (
+  onIntersect: IntersectHandler,
+  options?: IntersectionObserverInit
+) => RefObject<HTMLDivElement>
 
 export const useIntersect: UseIntersectType = (onIntersect, options) => {
   const ref = useRef<HTMLDivElement>(null)

@@ -23,7 +23,7 @@ export const useInfiniteScroll = <T>({
   const [initAddedData, initRestData] = splitAt(pageSize)(data)
   const [addedData, setAddedData] = useState<Array<T>>(initAddedData)
   const [restData, setRestData] = useState<Array<T>>(initRestData)
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const partialRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target)
@@ -36,7 +36,7 @@ export const useInfiniteScroll = <T>({
   })
 
   const containerScrollToUp = () => {
-    containerRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+    containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -48,6 +48,6 @@ export const useInfiniteScroll = <T>({
     addedData,
     partialRef,
     containerRef,
-    containerScrollToUp
+    containerScrollToUp,
   }
 }

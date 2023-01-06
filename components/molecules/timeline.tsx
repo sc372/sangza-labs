@@ -27,11 +27,13 @@ const Timeline: FC<Props> = ({ className, list }) => {
               <h3 className="mb-1 flex items-center text-lg font-semibold">
                 {a.title}
               </h3>
-              {fpArray.some((aa: Post) => aa.meta.categoryTitle === a.type)(list) && (
+              {fpArray.some((aa: Post) => aa.meta.categoryTitle === a.type)(
+                list
+              ) && (
                 <Tag name="more" href={a.projectPagePath} className="ml-3" />
               )}
             </div>
-            <time className="dark:text-darkTertiary mb-2 block text-sm font-normal leading-none text-tertiary">
+            <time className="mb-2 block text-sm font-normal leading-none text-tertiary dark:text-darkTertiary">
               {a.period}
             </time>
             <p className="mb-4">
