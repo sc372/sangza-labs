@@ -15,7 +15,6 @@ import {
   MdxH4,
   MdxH5,
 } from '@components/atoms/mdx-heading'
-import MdxImage from '@components/atoms/mdx-image'
 import MdxLi from '@components/atoms/mdx-list'
 import MdxP from '@components/atoms/mdx-paragraph'
 import MdxPre from '@components/atoms/mdx-pre'
@@ -37,7 +36,6 @@ interface Props {
 
 const MDXComponents = {
   code: MdxCodeBlock,
-  img: MdxImage,
   h1: MdxH1,
   h2: MdxH2,
   h3: MdxH3,
