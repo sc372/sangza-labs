@@ -5,7 +5,7 @@ const now = dayjs()
 
 module.exports = {
   // export const siteConfig = {
-  url: '',
+  url: 'https://sangza-labs.vercel.app',
   title: 'sangza | scientific thinking',
   description: 'sangza 의 기록',
   locale: 'ko_KR',
