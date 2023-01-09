@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "post-build": "next-sitemap",
-    "build": "next build && next-sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint --dir .",
     "format": "prettier --write .",
     "lint-format": "npm run lint --fix && npm run format",
     "prepare": "husky install",
-    "g": "plop --plopfile ./generators/plopfile.js"
+    "g": "plop --plopfile ./generators/plopfile.js",
+    "sitemap": "next-sitemap"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.4",
