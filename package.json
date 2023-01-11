@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:prod": "npm run build && npm run post-build",
+    "post-build": "next-sitemap",
     "start": "next start",
     "lint": "next lint --dir .",
     "format": "prettier --write .",
