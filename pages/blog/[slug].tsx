@@ -8,7 +8,7 @@ import { docCategoryType } from '@common/types/doc-category-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import { getAllPosts, getPostBySlug, getPostsByCategoryType } from '@utils/doc'
+import { getPostBySlug, getPostsByCategoryType } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
@@ -44,11 +44,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fpFunction.pipe(
     posts,
     fpArray.map((a) => ({
-      params: { slug: a.slug.replace('blog/', '') },
+      params: { slug: a.slug },
     }))
   )
-
-  console.log(paths)
 
   return {
     paths,
@@ -64,32 +62,13 @@ interface Params {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
 
-  // const { slug } = params as Params
-  // const makeFullPath = (a: string) => {
-  //   if (process.env.NODE_ENV === envType.production) {
-  //     return a
-  //   } else {
-  //     return `${process.cwd()}/data/blog/${a}/index.md`
-  //   }
-  // }
   const makeResult = async (a: Post) => ({
     slug: a.slug,
     frontMatter: a.meta,
     mdxContent: await markdownToHtml(a.content),
   })
 
-  // const props = await fpFunction.pipe(
-  //   slug,
-  //   makeFullPath,
-  //   await getPost,
-  //   await makeResult
-  // )
-  const props = await fpFunction.pipe(
-    getAllPosts,
-    () => getPostBySlug(slug),
-    // () => getPostBySlug(`blog/${slug}`),
-    await makeResult
-  )
+  const props = await fpFunction.pipe(getPostBySlug(slug), await makeResult)
 
   return {
     props,

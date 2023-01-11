@@ -44,7 +44,7 @@ export function getPost(path: string): Post {
   const contents = fs.readFileSync(path, 'utf8')
   const { data, content } = matter(contents)
   const meta = data as Meta
-  const slug = path.split('/data/')[1].replace('/index.md', '')
+  const slug = path.split('/').reverse()[1]
 
   return { slug, meta, content, path }
 }
@@ -52,7 +52,7 @@ export function getPost(path: string): Post {
 export function getPostBySlug(slug: string): Post {
   return fpFunction.pipe(
     getAllPosts(),
-    fpArray.findFirst((a) => a.slug.includes(slug)),
+    fpArray.findFirst((a) => a.slug === slug),
     fpOption.getOrElse(() => ({} as Post))
   )
 }
