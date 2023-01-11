@@ -63,8 +63,9 @@ interface Params {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
   const makeFullPath = (a: string) => {
+    console.log(a)
     if (process.env.NODE_ENV === envType.production) {
-      return a
+      return `data/blog/${a}/index.md`
     } else {
       return `${process.cwd()}/data/blog/${a}/index.md`
     }
