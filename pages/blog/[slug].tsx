@@ -44,9 +44,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fpFunction.pipe(
     posts,
     fpArray.map((a) => ({
-      params: { slug: a.slug },
+      params: { slug: a.slug.replace('blog/', '') },
     }))
   )
+
+  console.log(paths)
 
   return {
     paths,
