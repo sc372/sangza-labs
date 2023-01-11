@@ -5,15 +5,10 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import { docCategoryType } from '@common/types/doc-category-type'
-import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
-import {
-  getPost,
-  getPostsByCategoryTitle,
-  getPostsByCategoryType,
-} from '@utils/doc'
+import { getAllPosts, getPostBySlug, getPostsByCategoryType } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
 interface Props {
@@ -76,24 +71,46 @@ interface Params {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const makeFullPath = (a: Params) => {
-    if (process.env.NODE_ENV === envType.production) {
-      return a.slug
-    } else {
-      return `${process.cwd()}/data/project/${a.title}/${a.slug}/index.md`
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+  console.log(params)
+
+  // const makeFullPath = (a: Params) => {
+  //   if (process.env.NODE_ENV === envType.production) {
+  //     return a.slug
+  //   } else {
+  //     return `${process.cwd()}/data/project/${a.title}/${a.slug}/index.md`
+  //   }
+  // }
+  // const makeResult = async (a: Post) => ({
+  //   slug: a.slug,
+  //   frontMatter: a.meta,
+  //   mdxContent: await markdownToHtml(a.content),
+  //   categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
+  // })
+
+  // const props = await fpFunction.pipe(
+  //   params as Params,
+  //   makeFullPath,
+  //   await getPost,
+  //   await makeResult
+  // )
+
+  const { title, slug } = params as Params
+
+  const makeResult = async (a: Post) => {
+    return {
+      slug: a.slug,
+      frontMatter: a.meta,
+      mdxContent: await markdownToHtml(a.content),
+      categoryList: [],
+      // categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
     }
   }
-  const makeResult = async (a: Post) => ({
-    slug: a.slug,
-    frontMatter: a.meta,
-    mdxContent: await markdownToHtml(a.content),
-    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
-  })
 
   const props = await fpFunction.pipe(
-    params as Params,
-    makeFullPath,
-    await getPost,
+    getAllPosts,
+    () => getPostBySlug(slug),
+    // () => getPostBySlug(`blog/${slug}`),
     await makeResult
   )
 

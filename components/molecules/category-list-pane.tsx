@@ -15,7 +15,6 @@ interface Props {
 }
 
 const CategoryListPane: FC<Props> = ({ categoryList, currentTitle }) => {
-  console.log(categoryList)
   const byCategoryOrder = fpFunction.pipe(
     fpNumber.Ord,
     fpOrd.contramap((a: Post) => a.meta.categoryOrder!)

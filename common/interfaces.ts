@@ -24,6 +24,7 @@ export interface Post {
   meta: Meta
   content: string
   slug: string
+  path: string
 }
 
 export interface Project {

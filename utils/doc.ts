@@ -2,6 +2,7 @@ import fs from 'fs'
 
 import * as fpArray from 'fp-ts/Array'
 import * as fpFunction from 'fp-ts/function'
+import * as fpOption from 'fp-ts/Option'
 import * as fpOrd from 'fp-ts/Ord'
 import * as fpString from 'fp-ts/string'
 import { sync } from 'glob'
@@ -17,15 +18,15 @@ const POSTS_PATH = `${process.cwd()}/data/**/*.md`
 
 export function getTitleForPath(post: Post) {
   if (post.meta.category === docCategoryType.project) {
-    return post.slug
+    return post.path
       .split(`/data/project/${post.meta.categoryTitle}`)[1]
       .replace('/index.md', '')
   } else if (post.meta.category === docCategoryType.series) {
-    return post.slug
+    return post.path
       .split(`/data/series/${post.meta.categoryTitle}`)[1]
       .replace('/index.md', '')
   } else {
-    return post.slug.split(`/data/blog/`)[1].replace('/index.md', '')
+    return post.path.split(`/data/blog/`)[1].replace('/index.md', '')
   }
 }
 
@@ -39,12 +40,21 @@ export function getUriByPost(post: Post) {
   }
 }
 
-export function getPost(slug: string): Post {
-  const contents = fs.readFileSync(slug, 'utf8')
+export function getPost(path: string): Post {
+  const contents = fs.readFileSync(path, 'utf8')
   const { data, content } = matter(contents)
   const meta = data as Meta
+  const slug = path.split('/data/')[1].replace('/index.md', '')
 
-  return { slug, meta, content }
+  return { slug, meta, content, path }
+}
+
+export function getPostBySlug(slug: string): Post {
+  return fpFunction.pipe(
+    getAllPosts(),
+    fpArray.findFirst((a) => a.slug.includes(slug)),
+    fpOption.getOrElse(() => ({} as Post))
+  )
 }
 
 export function getAllPosts(): Array<Post> {
@@ -54,13 +64,15 @@ export function getAllPosts(): Array<Post> {
   )
   const filteredNotDraft = (post: Post) => !post.meta.draft
 
-  return fpFunction.pipe(
+  const posts = fpFunction.pipe(
     sync(POSTS_PATH),
     fpArray.map(getPost),
     fpArray.filter(filteredNotDraft),
     fpArray.sortBy([updateDate]),
     fpArray.reverse
   )
+
+  return posts
 }
 
 export function getPostsByCategoryType(type: DocCategoryType): Array<Post> {
