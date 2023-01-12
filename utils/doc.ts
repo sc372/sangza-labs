@@ -49,11 +49,11 @@ export function getPost(path: string): Post {
   return { slug, meta, content, path }
 }
 
-export function getPostBySlug(slug: string): Post {
+export function getPostBySlug(slug: string): Post | null {
   return fpFunction.pipe(
     getAllPosts(),
     fpArray.findFirst((a) => a.slug === slug),
-    fpOption.getOrElse(() => ({} as Post))
+    fpOption.toNullable
   )
 }
 

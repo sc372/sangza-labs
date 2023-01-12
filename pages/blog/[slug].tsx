@@ -61,6 +61,7 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
+  const post = getPostBySlug(slug)
 
   const makeResult = async (a: Post) => ({
     slug: a.slug,
@@ -68,7 +69,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     mdxContent: await markdownToHtml(a.content),
   })
 
-  const props = await fpFunction.pipe(getPostBySlug(slug), await makeResult)
+  const props =
+    post !== null ? await fpFunction.pipe(post, await makeResult) : []
 
   return {
     props,

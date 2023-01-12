@@ -78,6 +78,7 @@ interface Params {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
+  const post = getPostBySlug(slug)
 
   const makeResult = async (a: Post) => {
     return {
@@ -88,7 +89,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const props = await fpFunction.pipe(getPostBySlug(slug), await makeResult)
+  const props =
+    post !== null ? await fpFunction.pipe(post, await makeResult) : []
 
   return {
     props,
