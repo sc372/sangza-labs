@@ -14,7 +14,7 @@ interface Props {
 const AboutPage: NextPage<Props> = ({ posts }) => {
   return (
     <div className="flex flex-col items-center justify-center xl:flex-row">
-      <div className="mx-5 flex justify-center md:mx-14">
+      <div className="mx-5 mb-5 flex justify-center md:mx-14 lg:mb-0">
         <SelfIIntro />
       </div>
       <div className="flex h-[55vh] justify-center overflow-y-auto px-5 md:px-14 xl:h-[70vh]">

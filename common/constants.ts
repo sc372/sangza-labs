@@ -68,7 +68,8 @@ export const PROJECT_LIST: Array<Project> = [
     descriptionList: [
       'Source management: SVN',
       'Frontend : Vue.js',
-      'Language : Javascript',
+      'Backend : Springboot',
+      'Language : JAVA, Javascript',
     ],
     roleList: ['UI 개발'],
     projectPagePath: '',
@@ -99,7 +100,7 @@ export const PROJECT_LIST: Array<Project> = [
       'VM : Ubuntu(EC2)',
       'Source management: Git(Github)',
       'CI / CD : CircleCI',
-      'Web Server : Ngins(EC2)',
+      'Web Server : Nginx(EC2)',
       'Backend : Node.js(EC2)',
       'Frontend : React.js',
     ],
