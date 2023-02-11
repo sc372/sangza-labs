@@ -22,6 +22,11 @@ module.exports = (plop) => {
       },
       {
         type: 'input',
+        name: 'description',
+        message: '프로젝트 포스트의 설명을 입력해주세요.',
+      },
+      {
+        type: 'input',
         name: 'categoryOrder',
         message: '프로젝트 포스트의 순번을 입력해주세요.',
         validate: inputPositiveIntegerAndRequired('categoryOrder'),
@@ -58,7 +63,7 @@ module.exports = (plop) => {
       return [
         {
           type: 'add',
-          path: '../data/project/{{dashCase title}}/{{createdDate}}--{{dashCase title}}/index.md',
+          path: '../data/project/{{dashCase categoryTitle}}/{{createdDate}}--{{dashCase title}}/index.md',
           templateFile: 'templates/project-post-md.template',
         },
       ]

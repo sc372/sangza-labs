@@ -15,6 +15,11 @@ module.exports = (plop) => {
         validate: inputRequired('title'),
       },
       {
+        type: 'input',
+        name: 'description',
+        message: '블로그의 설명을 입력해주세요.',
+      },
+      {
         type: 'list',
         name: 'author',
         message: '블로그의 작성자를 입력해주세요.',

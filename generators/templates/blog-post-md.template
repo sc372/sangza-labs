@@ -6,8 +6,6 @@ author: {{author}}
 category: blog
 categoryTitle: {{categoryTitle}}
 tags: {{tags}}
-description:
-
+description: {{description}}
 draft: {{draft}}
-
 ---

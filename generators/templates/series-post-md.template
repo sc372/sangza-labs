@@ -7,8 +7,6 @@ category: series
 categoryTitle: {{categoryTitle}}
 categoryOrder: {{categoryOrder}}
 tags: {{tags}}
-description:
-
+description: {{description}}
 draft: {{draft}}
-
 ---

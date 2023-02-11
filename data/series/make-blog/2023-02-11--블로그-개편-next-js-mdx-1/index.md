@@ -1,5 +1,5 @@
 ---
-title: 블로그 개편 | Next.js MDX (0)
+title: 블로그 개편 | Next.js MDX #1
 createdDate: '2023-02-11'
 updatedDate: '2023-02-11'
 author: sangza
@@ -31,9 +31,8 @@ draft: false
 그러다가 잠깐 구글링을 통해서 요즘에는 보통 블로그를 어떤 도구로 블로그를 제작하는지 알아봤다.\
 최근에는 Next.js 를 활용해서 제작하는 경우도 많은 것 같았다.
 
-[Next.js](https://nextjs.org) 는 예전에 다니던 회사에서 사용해 본적이 있는데,\
-당시에는 동적 웹앱에서 [서버사이드 렌더링(SSR)](https://www.youtube.com/watch?v=iZ9csAfU5Os) 을 통해서 [SEO](https://www.ascentkorea.com/seo-complete-guide-2022) 최적화를 하기 위해서 사용했던 기억이 있는데,\
-정적 웹사이트를 제작하는데에도 문제 없이 제작이 가능하는 것 같았다.
+[Next.js](https://nextjs.org) 는 예전에 다니던 회사에서 사용해 본적이 있었다.\
+당시에는 동적 웹앱에서 [서버사이드 렌더링(SSR)](https://www.youtube.com/watch?v=iZ9csAfU5Os) 을 통해서 [SEO](https://www.ascentkorea.com/seo-complete-guide-2022) 최적화를 하기 위해서 사용했던 기억이 있는데,정적 웹사이트를 제작하는데에도 문제 없이 제작이 가능하는 것 같았다.
 
 기본적으로 React.js 를 활용하고 [Markdown](https://projectunknown.tistory.com/2) 을 원활히 지원하고 SEO 최적화가 손쉬워야 하는데,\
 여러 글들을 읽어보니 해당 기능은 원활히 지원하는 것 같았다.\
@@ -58,7 +57,7 @@ Gatsby.js 에서는 마크다운을 플러그인으로 구현하게 되어 있�
 Next.js는 [공식 문서 에서 @next/mdx](https://nextjs.org/docs/advanced-features/using-mdx) 등의 라이브러리를 활용하여 사용하도록 제안하고 있다.\
 하지만, 난 next-mdx-remote 라이브러리를 활용하여 md 파일을 parsing 하는 방식으로 처리 했다.([참고](https://blog.kfirfitousi.com/posts/web-dev/mdx-nextjs-13))
 
-## Tailwind
+## TailwindCSS
 
 평소 CSS 를 적극적으로 다루지 않기 때문에 CSS 는 항상 마음의 부담이다.\
 최근 관심이 좀 있던 [Tailwind](https://tailwindcss.com/) 를 이번에 좀 적극적으로 활용해보고 싶었다.\
@@ -85,7 +84,6 @@ IO 와 같은 비동기 요청이 별로 없어서 많이 활용하지는 못했
 회사에서 가끔 UI 개발을 하는데 주로 Vue.js 를 사용해서 사이드 프로젝트를 해야만 React.js 를 사용해볼 수 있었는데,\
 오랜만에 블로그 새단장도 할겸, React.js 를 둘러싼 요즘 기술들을 조금이나마 경험할 수 있었다.
 
-그리고 언제나 공개되어 있는 자료의 도움을 많이 받고 있는데 그 중에 [yecffort 님의 글과 소스코드](https://yceffort.kr/2020/10/migrate-gatsby-from-nextjs)로 부터 많이 배울 수 있었다.\
-(이 사이트를 통해서 다른 사람들한테 도움이 되는 컨텐츠를 공유해야 겠다.)
+그리고 언제나 공개되어 있는 자료의 도움을 많이 받고 있는데 그 중에 [yecffort 님의 글과 소스코드](https://yceffort.kr/2020/10/migrate-gatsby-from-nextjs)로 부터 많이 배울 수 있었다.
 
 다음 포스트에서는 프로젝트 구조와 주요 로직에 대한 글을 포스팅 할 예정이다.
