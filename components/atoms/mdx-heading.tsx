@@ -11,7 +11,7 @@ interface InnerProps {
   onClick?: () => void
 }
 
-function getHashLink(text: string) {
+const getHashLink = (text: string) => {
   return text.replace(/[ ]/g, '-')
 }
 

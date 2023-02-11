@@ -9,6 +9,7 @@ export const projectType = {
   vCommerce: 'v-commerce',
   bglam: 'bglam',
   sangza: siteConfig.authors[0].id,
+  makeBlog: 'make-blog',
 } as const
 
 export type ProjectType = Union<typeof projectType>

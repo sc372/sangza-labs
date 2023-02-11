@@ -8,3 +8,4 @@ lerna.json
 public
 package-lock.json
 yarn.lock
+*.md

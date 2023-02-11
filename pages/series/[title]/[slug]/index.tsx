@@ -5,14 +5,13 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { Meta, Post } from '@common/interfaces'
 import { docCategoryType } from '@common/types/doc-category-type'
-import { envType } from '@common/types/env-type'
 import MainLayout from '@components/layouts/main-layout'
 import { PostSeo } from '@components/molecules/seo'
 import MdxProvider from '@components/organisms/mdx-provider'
 import {
   getPostsByCategoryType,
-  getPost,
   getPostsByCategoryTitle,
+  getPostBySlug,
 } from '@utils/doc'
 import { markdownToHtml } from '@utils/markdown'
 
@@ -56,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fpFunction.pipe(
     posts,
     fpArray.map((a) => ({
-      params: { slug: a.slug },
+      params: { slug: a.slug, title: a.meta.categoryTitle },
     }))
   )
 
@@ -69,30 +68,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 interface Params {
   [key: string]: string | undefined
   slug: string
+  title: string
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as Params
-  const makeFullPath = (a: string) => {
-    if (process.env.NODE_ENV === envType.production) {
-      return a
-    } else {
-      return `${process.cwd()}/data/series/${a}/index.md`
+  const post = getPostBySlug(slug)
+
+  const makeResult = async (a: Post) => {
+    return {
+      slug: a.slug,
+      frontMatter: a.meta,
+      mdxContent: await markdownToHtml(a.content),
+      categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
     }
   }
-  const makeResult = async (a: Post) => ({
-    slug: a.slug,
-    frontMatter: a.meta,
-    mdxContent: await markdownToHtml(a.content),
-    categoryList: await getPostsByCategoryTitle(a.meta.categoryTitle),
-  })
 
-  const props = await fpFunction.pipe(
-    slug,
-    makeFullPath,
-    await getPost,
-    await makeResult
-  )
+  const props =
+    post !== null ? await fpFunction.pipe(post, await makeResult) : []
 
   return {
     props,

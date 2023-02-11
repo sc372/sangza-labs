@@ -22,7 +22,7 @@ interface Props {
   categoryList: Array<Post>
 }
 
-const ProjectPage: NextPage<Props> = ({
+const ProjectDetailPage: NextPage<Props> = ({
   slug,
   frontMatter,
   mdxContent,
@@ -62,8 +62,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }))
   )
 
-  console.log(paths)
-
   return {
     paths,
     fallback: 'blocking',
@@ -97,6 +95,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default ProjectPage
+export default ProjectDetailPage
 // @ts-ignore
-ProjectPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>
+ProjectDetailPage.getLayout = (page: ReactElement) => (
+  <MainLayout>{page}</MainLayout>
+)

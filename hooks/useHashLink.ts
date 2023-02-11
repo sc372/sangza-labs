@@ -31,9 +31,9 @@ export const useHashLink = (): UseHashLink => {
     Array<HashLinkElement>
   >([])
 
-  function makeHashLinkElementList(
+  const makeHashLinkElementList = (
     ref: HTMLDivElement
-  ): Array<HashLinkElement> {
+  ): Array<HashLinkElement> => {
     return fpFunction.pipe(
       Array.from(ref.children),
       fpArray.filter(filteredHeadingElement),

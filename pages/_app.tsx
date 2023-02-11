@@ -18,7 +18,7 @@ type Props = AppProps & {
   Component: Page
 }
 
-function App({ Component, pageProps }: Props) {
+const App = ({ Component, pageProps }: Props) => {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
 
   dayjs.locale('ko')
