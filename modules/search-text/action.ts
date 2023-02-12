@@ -23,7 +23,7 @@ export const useSearchTextAction = <T>({
   const onSearchInputChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearchText(e.target.value)
 
-  const debouncedSearchText = useDebounce<string>(searchText, 500)
+  const debouncedSearchText = useDebounce<string>(searchText, 1000)
 
   useEffect(() => {
     resetCurrentPage()
