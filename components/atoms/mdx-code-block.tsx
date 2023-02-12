@@ -12,7 +12,7 @@ const MdxCodeBlock = ({
   const stringLength = children?.toLocaleString().length
 
   // TODO : inline code 의 경우 정상적으로 처리 되고 있지 않아서 임시로 넣은 코드
-  if (stringLength !== undefined && stringLength < 50) {
+  if (stringLength !== undefined && stringLength < 100) {
     return (
       <span className={`rounded bg-darkPrimaryText px-1 dark:bg-primaryText`}>
         {children}

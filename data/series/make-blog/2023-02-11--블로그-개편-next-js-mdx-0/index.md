@@ -32,7 +32,7 @@ draft: false
 최근에는 Next.js 를 활용해서 제작하는 경우도 많은 것 같았다.
 
 [Next.js](https://nextjs.org) 는 예전에 다니던 회사에서 사용해 본적이 있었다.\
-당시에는 동적 웹앱에서 [서버사이드 렌더링(SSR)](https://www.youtube.com/watch?v=iZ9csAfU5Os) 을 통해서 [SEO](https://www.ascentkorea.com/seo-complete-guide-2022) 최적화를 하기 위해서 사용했던 기억이 있는데,정적 웹사이트를 제작하는데에도 문제 없이 제작이 가능하는 것 같았다.
+당시에는 동적 웹앱에서 [서버사이드 렌더링(SSR)](https://www.youtube.com/watch?v=iZ9csAfU5Os) 을 통해서 [SEO](https://www.ascentkorea.com/seo-complete-guide-2022) 최적화를 하기 위해서 사용했던 기억이 있는데, 정적 웹사이트를 제작하는데에도 문제 없이 제작이 가능하는 것 같았다.
 
 기본적으로 React.js 를 활용하고 [Markdown](https://projectunknown.tistory.com/2) 을 원활히 지원하고 SEO 최적화가 손쉬워야 하는데,\
 여러 글들을 읽어보니 해당 기능은 원활히 지원하는 것 같았다.\
@@ -60,7 +60,7 @@ Next.js는 [공식 문서 에서 @next/mdx](https://nextjs.org/docs/advanced-fea
 ## TailwindCSS
 
 평소 CSS 를 적극적으로 다루지 않기 때문에 CSS 는 항상 마음의 부담이다.\
-최근 관심이 좀 있던 [Tailwind](https://tailwindcss.com/) 를 이번에 좀 적극적으로 활용해보고 싶었다.\
+최근 관심이 좀 있던 [TailwindCSS](https://tailwindcss.com/) 를 이번에 좀 적극적으로 활용해보고 싶었다.\
 프로젝트에서 CSS 구조를 어떻게 잡아야 하는지 잘 모르기도 해서,\
 어떤 기준이 되는 방식을 잘 따라가면 좀 수월하지 않을까 싶은 마음에서 선택하게 됐는데, 나름 잘 활용할 수 있었다.\
 Theme 설정하는 방식도 잘 되어 있고, 까다로운 부분은 확장하여 CSS를 직접 활용할 수 있는 점도 좋았다.
@@ -79,7 +79,7 @@ Theme 설정하는 방식도 잘 되어 있고, 까다로운 부분은 확장하
 IO 와 같은 비동기 요청이 별로 없어서 많이 활용하지는 못했다.\
 서버에 API 요청 등의 비동기 요청이 많은 다른 프로젝트에서 적극적으로 활용해봐야겠다.
 
-## 회고
+## 마무리
 
 회사에서 가끔 UI 개발을 하는데 주로 Vue.js 를 사용해서 사이드 프로젝트를 해야만 React.js 를 사용해볼 수 있었는데,\
 오랜만에 블로그 새단장도 할겸, React.js 를 둘러싼 요즘 기술들을 조금이나마 경험할 수 있었다.

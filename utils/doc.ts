@@ -14,7 +14,7 @@ import {
   docCategoryType,
 } from '@common/types/doc-category-type'
 
-const POSTS_PATH = `${process.cwd()}/data/**/*.md`
+const POSTS_PATTERN = `${process.cwd()}/data/**/*.md`
 const SERIES_PATH = `${process.cwd()}/data/series/`
 
 export const getTitleForPath = (post: Post) => {
@@ -66,7 +66,7 @@ export const getAllPosts = (): Array<Post> => {
   const filteredNotDraft = (post: Post) => !post.meta.draft
 
   const posts = fpFunction.pipe(
-    sync(POSTS_PATH),
+    sync(POSTS_PATTERN),
     fpArray.map(getPost),
     fpArray.filter(filteredNotDraft),
     fpArray.sortBy([updateDate]),
