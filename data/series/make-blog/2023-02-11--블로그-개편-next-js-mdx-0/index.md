@@ -1,5 +1,5 @@
 ---
-title: 블로그 개편 | Next.js MDX #1
+title: 블로그 개편 | Next.js MDX (0)
 createdDate: '2023-02-11'
 updatedDate: '2023-02-11'
 author: sangza

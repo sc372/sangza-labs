@@ -9,6 +9,17 @@ const MdxCodeBlock = ({
   children,
   className,
 }: HTMLProps<HTMLElement>): JSX.Element => {
+  const stringLength = children?.toLocaleString().length
+
+  // TODO : inline code 의 경우 정상적으로 처리 되고 있지 않아서 임시로 넣은 코드
+  if (stringLength !== undefined && stringLength < 50) {
+    return (
+      <span className={`rounded bg-darkPrimaryText px-1 dark:bg-primaryText`}>
+        {children}
+      </span>
+    )
+  }
+
   const language =
     className !== undefined
       ? (className.replace(/language-/, '') as Language)

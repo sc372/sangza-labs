@@ -17,7 +17,6 @@ import {
 } from '@components/atoms/mdx-heading'
 import MdxLi from '@components/atoms/mdx-list'
 import MdxP from '@components/atoms/mdx-paragraph'
-import MdxPre from '@components/atoms/mdx-pre'
 import MdxStrong from '@components/atoms/mdx-strong'
 import Tag from '@components/atoms/tag'
 import CategoryListPane from '@components/molecules/category-list-pane'
@@ -42,7 +41,6 @@ const MDXComponents = {
   h4: MdxH4,
   h5: MdxH5,
   p: MdxP,
-  pre: MdxPre,
   a: MdxAnchor,
   li: MdxLi,
   strong: MdxStrong,
